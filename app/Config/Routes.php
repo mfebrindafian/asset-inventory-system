@@ -38,10 +38,11 @@ $routes->set404Override();
 
 
 $routes->get('/', 'masterAkses::index');
+$routes->get('/dashboard', 'masterDashboard::index');
+
 // $routes->post('/login', 'masterAkses::open');
 // $routes->post('/gantiPasswordDefault', 'masterAkses::gantiPasswordDefault');
 // $routes->get('/logout', 'masterAkses::logout');
-// $routes->get('/dashboard', 'masterDashboard::index');
 
 
 

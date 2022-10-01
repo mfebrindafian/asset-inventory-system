@@ -17,32 +17,19 @@ use App\Models\MasterFungsionalModel;
 
 class masterKelolaMaster extends BaseController
 {
-    protected $masterKelolaMasterModel;
-    protected $masterPegawaiModel;
+
     protected $masterUserModel;
     protected $masterUserLevelModel;
     protected $masterAksesUserLevelModel;
-    protected $masterEs3Model;
-    protected $masterGolonganModel;
-    protected $masterJabatanModel;
-    protected $masterPendidikanModel;
     protected $masterSatkerModel;
-    protected $masterEs4Model;
-    protected $masterFungsionalModel;
+
 
     public function __construct()
     {
         $this->masterUserModel = new masterUserModel();
         $this->masterUserLevelModel = new masterUserLevelModel();
         $this->masterAksesUserLevelModel = new masterAksesUserLevelModel();
-        $this->masterPegawaiModel = new MasterPegawaiModel();
-        $this->masterEs3Model = new MasterEs3Model();
-        $this->masterGolonganModel = new MasterGolonganModel();
-        $this->masterJabatanModel = new MasterJabatanModel();
-        $this->masterPendidikanModel = new MasterPendidikanModel();
         $this->masterSatkerModel = new MasterSatkerModel();
-        $this->masterEs4Model = new MasterEs4Model();
-        $this->masterFungsionalModel = new MasterFungsionalModel();
     }
 
     public function masterUser()
