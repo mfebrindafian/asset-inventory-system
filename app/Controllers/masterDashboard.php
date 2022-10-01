@@ -24,6 +24,9 @@ class masterDashboard extends BaseController
 
     public function index()
     {
-        return view('dashboard/dashboard');
+        $data = [
+            'halaman' => 'dashboard'
+        ];
+        return view('dashboard/dashboard', $data);
     }
 }
