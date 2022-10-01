@@ -1,6 +1,3 @@
-<?= $this->extend('layout/template'); ?>
-
-<?= $this->section('header'); ?>
 <header class="mb-3">
     <nav class="navbar navbar-expand navbar-light navbar-top">
         <div class="container-fluid">
@@ -70,4 +67,3 @@
         </div>
     </nav>
 </header>
-<?= $this->endSection(); ?>
