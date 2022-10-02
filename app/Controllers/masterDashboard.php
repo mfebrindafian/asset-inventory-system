@@ -29,4 +29,13 @@ class masterDashboard extends BaseController
         ];
         return view('dashboard/dashboard', $data);
     }
+
+    public function listBmnOnDashboard()
+    {
+        return view('dashboard/listdetail');
+    }
+    public function detailBmnOnDashboard()
+    {
+        return view('dashboard/detail');
+    }
 }

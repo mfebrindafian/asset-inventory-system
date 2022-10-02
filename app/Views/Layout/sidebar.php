@@ -21,7 +21,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="importkki.html" class="sidebar-link">
+                <a href="<?= base_url('/importkki'); ?>" class="sidebar-link">
                     <i class="bi bi-file-earmark-arrow-up-fill"></i>
                     <span>Import KKI</span>
                 </a>

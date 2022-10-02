@@ -39,6 +39,27 @@ $routes->set404Override();
 
 $routes->get('/', 'masterAkses::index');
 $routes->get('/dashboard', 'masterDashboard::index');
+$routes->get('/list-bmn-dashboard', 'masterDashboard::listBmnOnDashboard');
+$routes->get('/detail-bmn-dashboard', 'masterDashboard::detailBmnOnDashboard');
+
+$routes->get('/list-kki', 'masterKki::listkki');
+$routes->get('/detail-kki', 'masterKki::detailkki');
+
+
+$routes->get('/inv-pmnontik', 'masterInventarisasi::pmnontik');
+$routes->get('/inv-pmtik', 'masterInventarisasi::pmtik');
+$routes->get('/inv-atb', 'masterInventarisasi::atb');
+$routes->get('/inv-atl', 'masterInventarisasi::atl');
+$routes->get('/kertas-kerja', 'masterInventarisasi::kertaskerja');
+
+
+$routes->get('/report-rekapitulasi', 'masterReport::rekapitulasi');
+$routes->get('/report-inventarisasi', 'masterReport::inventarisasi');
+
+$routes->get('/label', 'masterLabel::label');
+$routes->get('/detail-label', 'masterLabel::detaillabel');
+
+
 
 // $routes->post('/login', 'masterAkses::open');
 // $routes->post('/gantiPasswordDefault', 'masterAkses::gantiPasswordDefault');
