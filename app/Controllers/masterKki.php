@@ -10,10 +10,16 @@ class masterKki extends BaseController
 
     public function listkki()
     {
-        return view('kki/importkki');
+        $data = [
+            'halaman' => 'kki'
+        ];
+        return view('kki/importkki', $data);
     }
     public function detailkki()
     {
-        return view('kki/detailkki');
+        $data = [
+            'halaman' => 'kki'
+        ];
+        return view('kki/detailkki', $data);
     }
 }

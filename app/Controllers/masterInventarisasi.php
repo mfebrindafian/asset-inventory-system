@@ -10,22 +10,37 @@ class masterInventarisasi extends BaseController
 
     public function pmNonTik()
     {
-        return view('inventarisasi/pmnontik');
+        $data = [
+            'halaman' => 'pmnontik'
+        ];
+        return view('inventarisasi/pmnontik', $data);
     }
     public function pmTik()
     {
-        return view('inventarisasi/pmtik');
+        $data = [
+            'halaman' => 'pmtik'
+        ];
+        return view('inventarisasi/pmtik', $data);
     }
     public function atb()
     {
-        return view('inventarisasi/atb');
+        $data = [
+            'halaman' => 'atb'
+        ];
+        return view('inventarisasi/atb', $data);
     }
     public function atl()
     {
-        return view('inventarisasi/atl');
+        $data = [
+            'halaman' => 'atl'
+        ];
+        return view('inventarisasi/atl', $data);
     }
     public function kertaskerja()
     {
-        return view('inventarisasi/isikertaskerja');
+        $data = [
+            'halaman' => 'isikertaskerja'
+        ];
+        return view('inventarisasi/isikertaskerja', $data);
     }
 }

@@ -10,10 +10,16 @@ class masterLabel extends BaseController
 
     public function label()
     {
-        return view('label/carilabel');
+        $data = [
+            'halaman' => 'carilabel'
+        ];
+        return view('label/carilabel', $data);
     }
-    public function detailkki()
+    public function detaillabel()
     {
-        return view('label/detaillabel');
+        $data = [
+            'halaman' => 'detaillabel'
+        ];
+        return view('label/detaillabel', $data);
     }
 }

@@ -10,10 +10,16 @@ class masterReport extends BaseController
 
     public function rekapitulasi()
     {
-        return view('report/rekapitulasi');
+        $data = [
+            'halaman' => 'rekapitulasi'
+        ];
+        return view('report/rekapitulasi', $data);
     }
-    public function inventariasasi()
+    public function inventarisasi()
     {
-        return view('report/inventarisasi');
+        $data = [
+            'halaman' => 'inventarisasi'
+        ];
+        return view('report/inventarisasi', $data);
     }
 }
