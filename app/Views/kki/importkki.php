@@ -114,25 +114,28 @@
                     <i data-feather="x"></i>
                 </button>
             </div>
-            <div class="modal-body">
-                <fieldset class="form-group">
-                    <select class="form-select" id="basicSelect">
-                        <option>- Satker -</option>
-                        <option>Fakultas Sains dan Teknologi</option>
-                        <option>Fakultas Hukum</option>
-                        <option>Fakultas Peternakan</option>
-                    </select>
-                </fieldset>
-                <input type="file" class="basic-filepond" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
-                    <span>Batal</span>
-                </button>
-                <button type="submit" class="btn btn-primary ml-1">
-                    <span>Import</span>
-                </button>
-            </div>
+            <form action="<?= base_url('/import-kki'); ?>" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <fieldset class="form-group">
+                        <select class="form-select" id="basicSelect" name="satker">
+                            <option>- Satker -</option>
+                            <option value="1">Fakultas Sains dan Teknologi</option>
+                            <option value="2">Fakultas Hukum</option>
+                            <option value="3">Fakultas Peternakan</option>
+                        </select>
+                    </fieldset>
+                    <!-- class="basic-filepond" -->
+                    <input type="file" name="filekki" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary ml-1">
+                        <span>Import</span>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

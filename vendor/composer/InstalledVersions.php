@@ -25,24 +25,24 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'v4.2.1',
-    'version' => '4.2.1.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '809b8d5dfa0b22fb29417cfc91a4a282abacbcf6',
     'name' => 'codeigniter4/appstarter',
   ),
   'versions' => 
   array (
     'codeigniter4/appstarter' => 
     array (
-      'pretty_version' => 'v4.2.1',
-      'version' => '4.2.1.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '809b8d5dfa0b22fb29417cfc91a4a282abacbcf6',
     ),
     'codeigniter4/framework' => 
     array (
@@ -61,6 +61,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '10dcfce151b967d20fde1b34ae6640712c3891bc',
+    ),
+    'ezyang/htmlpurifier' => 
+    array (
+      'pretty_version' => 'v4.16.0',
+      'version' => '4.16.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '523407fb06eb9e5f3d59889b3978d5bfe94299c8',
     ),
     'fakerphp/faker' => 
     array (
@@ -89,6 +98,33 @@ private static $installed = array (
       ),
       'reference' => '58af67282db37d24e584a837a94ee55b9c7552be',
     ),
+    'maennchen/zipstream-php' => 
+    array (
+      'pretty_version' => '2.2.1',
+      'version' => '2.2.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '211e9ba1530ea5260b45d90c9ea252f56ec52729',
+    ),
+    'markbaker/complex' => 
+    array (
+      'pretty_version' => '3.0.1',
+      'version' => '3.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ab8bc271e404909db09ff2d5ffa1e538085c0f22',
+    ),
+    'markbaker/matrix' => 
+    array (
+      'pretty_version' => '3.0.0',
+      'version' => '3.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c66aefcafb4f6c269510e9ac46b82619a904c576',
+    ),
     'mikey179/vfsstream' => 
     array (
       'pretty_version' => 'v1.6.10',
@@ -106,6 +142,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '14daed4296fae74d9e3201d2c4925d1acb7aa614',
+    ),
+    'myclabs/php-enum' => 
+    array (
+      'pretty_version' => '1.8.4',
+      'version' => '1.8.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a867478eae49c9f59ece437ae7f9506bfaa27483',
     ),
     'nikic/php-parser' => 
     array (
@@ -160,6 +205,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '77a32518733312af16a44300404e945338981de3',
+    ),
+    'phpoffice/phpspreadsheet' => 
+    array (
+      'pretty_version' => '1.25.2',
+      'version' => '1.25.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a317a09e7def49852400a4b3eca4a4b0790ceeb5',
     ),
     'phpspec/prophecy' => 
     array (
@@ -233,6 +287,33 @@ private static $installed = array (
       ),
       'reference' => 'c71ecc56dfe541dbd90c5360474fbc405f8d5963',
     ),
+    'psr/http-client' => 
+    array (
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '2dfb5f6c5eff0e91e20e913f8c5452ed95b86621',
+    ),
+    'psr/http-factory' => 
+    array (
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '12ac7fcd07e5b077433f5f2bee95b3a771bf61be',
+    ),
+    'psr/http-message' => 
+    array (
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f6561bf28d520154e4b0ec72be95418abe6d9363',
+    ),
     'psr/log' => 
     array (
       'pretty_version' => '1.1.4',
@@ -241,6 +322,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
+    ),
+    'psr/simple-cache' => 
+    array (
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8707bf3cea6f710bf6ef05491234e3ab06f6432a',
     ),
     'sebastian/cli-parser' => 
     array (
@@ -394,6 +484,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '07f1b9cc2ffee6aaafcf4b710fbc38ff736bd918',
+    ),
+    'symfony/polyfill-mbstring' => 
+    array (
+      'pretty_version' => 'v1.26.0',
+      'version' => '1.26.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9344f9cb97f3b19424af1a21a3b0e75b0a7d8d7e',
     ),
     'theseer/tokenizer' => 
     array (
