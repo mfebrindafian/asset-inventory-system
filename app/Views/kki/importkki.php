@@ -30,56 +30,37 @@
                     <fieldset class="form-group">
                         <select class="form-select" id="basicSelect">
                             <option>- Satker -</option>
-                            <option>Fakultas Sains dan Teknologi</option>
-                            <option>Fakultas Hukum</option>
-                            <option>Fakultas Peternakan</option>
+                            <?php if ($list_satker != null) : ?>
+                                <?php foreach ($list_satker as $satker) : ?>
+                                    <option value="<?= $satker['id']; ?>"><?= $satker['nama_satker']; ?></option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+
                         </select>
                     </fieldset>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-12">
-                    <div class="card">
-                        <div class="row px-4 py-4">
-                            <div class="col-md-10">
-                                <h4 class="card-title">Fakultas Sains Dan Teknologi</h4>
-                                <span class="badge bg-light-primary">Jumlah data: 8.008</span>
-                                <p class="text-muted mt-4 mb-0">Kode Batch: 02r3m93</p>
-                            </div>
-                            <div class="col-md-2 mt-3 mt-md-0 d-flex justify-content-end align-items-center">
-                                <a href="<?= base_url('/detail-kki') ?>" class="btn btn-outline-primary">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-12">
-                    <div class="card">
-                        <div class="row px-4 py-4">
-                            <div class="col-md-10">
-                                <h4 class="card-title">Fakultas Hukum</h4>
-                                <span class="badge bg-light-primary">Jumlah data: 208</span>
-                                <p class="text-muted mt-4 mb-0">Kode Batch: 1n9ue1u</p>
-                            </div>
-                            <div class="col-md-2 mt-3 mt-md-0 d-flex justify-content-end align-items-center">
-                                <a href="<?= base_url('/detail-kki') ?>" class="btn btn-outline-primary">Detail</a>
+
+                <?php if ($list_kki != null) : ?>
+                    <?php foreach ($list_kki as $kki) : ?>
+                        <div class="col-12 col-md-12">
+                            <div class="card">
+                                <div class="row px-4 py-4">
+                                    <div class="col-md-10">
+                                        <h4 class="card-title"><?= $kki['nama_satker']; ?></h4>
+                                        <span class="badge bg-light-primary">Jumlah data: <?= $kki['jml_perKdBatch']; ?></span>
+                                        <p class="text-muted mt-4 mb-0">Kode Batch: <?= $kki['kd_batch']; ?></p>
+                                    </div>
+                                    <div class="col-md-2 mt-3 mt-md-0 d-flex justify-content-end align-items-center">
+                                        <a href="<?= base_url('/detail-kki') ?>" class="btn btn-outline-primary">Detail</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-12">
-                    <div class="card">
-                        <div class="row px-4 py-4">
-                            <div class="col-md-10">
-                                <h4 class="card-title">Fakultas Peternakan</h4>
-                                <span class="badge bg-light-primary">Jumlah data: 1.180</span>
-                                <p class="text-muted mt-4 mb-0">Kode Batch: r40j323</p>
-                            </div>
-                            <div class="col-md-2 mt-3 mt-md-0 d-flex justify-content-end align-items-center">
-                                <a href="<?= base_url('/detail-kki') ?>" class="btn btn-outline-primary">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
             </div>
             <div class="row">
                 <nav aria-label="Page navigation example">
@@ -119,9 +100,12 @@
                     <fieldset class="form-group">
                         <select class="form-select" id="basicSelect" name="satker">
                             <option>- Satker -</option>
-                            <option value="1">Fakultas Sains dan Teknologi</option>
-                            <option value="2">Fakultas Hukum</option>
-                            <option value="3">Fakultas Peternakan</option>
+                            <?php if ($list_satker != null) : ?>
+                                <?php foreach ($list_satker as $satker) : ?>
+                                    <option value="<?= $satker['id']; ?>"><?= $satker['nama_satker']; ?></option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+
                         </select>
                     </fieldset>
                     <!-- class="basic-filepond" -->

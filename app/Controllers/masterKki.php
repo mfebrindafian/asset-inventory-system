@@ -3,22 +3,46 @@
 namespace App\Controllers;
 
 use App\Models\masterTabelBmnModel;
+use App\Models\masterTabelAkunModel;
+use App\Models\masterTabelBarangModel;
+use App\Models\masterSatkerModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class masterKki extends BaseController
 {
     protected $masterTabelBmnModel;
+    protected $masterTabelAkunModel;
+    protected $masterTabelBarangModel;
+    protected $masterSatkerModel;
     public function __construct()
     {
-
         $this->masterTabelBmnModel = new masterTabelBmnModel();
+        $this->masterTabelAkunModel = new masterTabelAkunModel();
+        $this->masterTabelBarangModel = new masterTabelBarangModel();
+        $this->masterSatkerModel = new masterSatkerModel();
     }
 
     public function listkki()
     {
+        $list_satker = $this->masterSatkerModel->getAllSatker();
+        $list_bmn = $this->masterTabelBmnModel->getListBmn();
+
+        if ($list_bmn != null) {
+            foreach ($list_bmn as $bmn) {
+                $satker = $this->masterSatkerModel->getNamaSatker($bmn['satker_id']);
+                $data_batch[] = [
+                    'kd_batch' => $bmn['kd_batch'],
+                    'jml_perKdBatch' => count($this->masterTabelBmnModel->getJmlBatch($bmn['kd_batch'])),
+                    'nama_satker' => $satker['nama_satker']
+                ];
+            }
+        }
+
         $data = [
-            'halaman' => 'kki'
+            'halaman' => 'kki',
+            'list_kki' => $data_batch,
+            'list_satker' => $list_satker
         ];
         return view('kki/importkki', $data);
     }
@@ -32,41 +56,51 @@ class masterKki extends BaseController
 
     public function importkki()
     {
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'Hello World !');
 
-        $writer = new Xlsx($spreadsheet);
-        $writer->save('hello world.xlsx');
+        $file = $this->request->getFile('filekki');
+        $satker = $this->request->getVar('satker');
+        $kd_batch = $this->masterTabelBmnModel->getKodeBatch();
 
-        // echo "proses import";
-        // $satker = $this->request->getVar('satker');
-        // $file = $this->request->getFile('filekki');
+        $extension = $file->getClientExtension();
 
-        // new PHPExcel;
-        // //mengambil lokasi tempat filenya
-        // $filelocation = $file->getTempName();
+        if ($extension == 'xlsx' || $extension == 'xls') {
+            if ($extension == 'xls') {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+            $spreadsheet = $reader->load($file);
+            $bmn = $spreadsheet->getActiveSheet()->toArray();
 
-        // //baca file excel
-        // $objPHPExcel = PHPExcel_IOFactory::load($filelocation);
-        // //ambil sheet aktif
-        // $sheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+            foreach ($bmn as $key => $value) {
+                if ($key == 0) {
+                    continue;
+                }
 
-        // //melakukan perulangan untuk mengambil data
-        // foreach ($sheet as $key => $data) {
-        //     //skip baris 1 karena judul di table excel
-        //     if ($key == 1) {
-        //         continue;
-        //     }
-        //     $this->masterTabelBmnModel->save([
-        //         'akun_id' => $data['A'],
-        //         'barang_id' => $data['B'],
-        //         'thn_perolehan' => $data['C'],
-        //         'nup' => $data['D'],
-        //         'merk_tipe' => $data['E'],
-        //         'kuantitas' => $data['F'],
-        //         'nilai_bmn' => $data['G']
-        //     ]);
-        // }
+                $akun_id = $this->masterTabelAkunModel->getId($value['0']);
+
+                if ($akun_id == null) {
+                    $akun_id['id'] = 0;
+                }
+                $barang_id = $this->masterTabelBarangModel->getId($value['1']);
+                if ($barang_id == null) {
+                    $barang_id['id'] = 0;
+                }
+
+                $this->masterTabelBmnModel->save([
+                    'akun_id' => $akun_id['id'],
+                    'barang_id' => $barang_id['id'],
+                    'thn_perolehan' => $value['2'],
+                    'nup' => $value['3'],
+                    'merk_tipe' => $value['4'],
+                    'kuantitas' => $value['5'],
+                    'nilai_bmn' => $value['6'],
+                    'satker_id' => $satker,
+                    'kd_batch' => $kd_batch,
+                ]);
+            }
+        } else {
+            //return kesalahan
+        }
     }
 }
