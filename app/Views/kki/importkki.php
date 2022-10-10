@@ -53,7 +53,7 @@
                                         <p class="text-muted mt-4 mb-0">Kode Batch: <?= $kki['kd_batch']; ?></p>
                                     </div>
                                     <div class="col-md-2 mt-3 mt-md-0 d-flex justify-content-end align-items-center">
-                                        <a href="<?= base_url('/detail-kki') ?>" class="btn btn-outline-primary">Detail</a>
+                                        <a href="<?= base_url('/detail-kki/' . $kki['kd_batch']) ?>" class="btn btn-outline-primary">Detail</a>
                                     </div>
                                 </div>
                             </div>

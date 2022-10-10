@@ -43,7 +43,7 @@ $routes->get('/list-bmn-dashboard', 'masterDashboard::listBmnOnDashboard');
 $routes->get('/detail-bmn-dashboard', 'masterDashboard::detailBmnOnDashboard');
 
 $routes->get('/list-kki', 'masterKki::listkki');
-$routes->get('/detail-kki', 'masterKki::detailkki');
+$routes->get('/detail-kki/(:segment)', 'masterKki::detailkki/$1');
 $routes->post('/import-kki', 'masterKki::importkki');
 
 

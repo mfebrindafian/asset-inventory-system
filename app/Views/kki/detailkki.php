@@ -36,10 +36,10 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    <p class="text-subtitle text-muted">Satker: <strong>Fakultas Sains dan Teknologi</strong></p>
+                    <p class="text-subtitle text-muted">Satker: <strong><?= $nama_satker; ?></strong></p>
                 </div>
                 <div class="col-6">
-                    <p class="text-subtitle text-muted text-end">Kode Batch: r94345j</p>
+                    <p class="text-subtitle text-muted text-end">Kode Batch: <?= $kd_batch; ?></p>
                 </div>
             </div>
             <div class="row">
@@ -48,90 +48,83 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <ul class="nav nav-tabs mb-3" id="myTab" role="tablist ">
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link active" id="pmnontik-tab" data-bs-toggle="tab" href="#pmnontik" role="tab" aria-controls="pmnontik" aria-selected="false">PM NON TIK</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="pmtik-tab" data-bs-toggle="tab" href="#pmtik" role="tab" aria-controls="pmtik" aria-selected="true">PM TIK</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="atb-tab" data-bs-toggle="tab" href="#atb" role="tab" aria-controls="atb" aria-selected="false">ATB</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="atl-tab" data-bs-toggle="tab" href="#atl" role="tab" aria-controls="atl" aria-selected="false">ATL</a>
-                                    </li>
+                                    <?php if ($data_bmn != null) : ?>
+                                        <?php foreach ($data_bmn as $bmn) : ?>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" id="<?= $bmn['uraian_akun']; ?>-tab" data-bs-toggle="tab" href="#<?= $bmn['uraian_akun']; ?>" role="tab" aria-controls="<?= $bmn['uraian_akun']; ?>" aria-selected="false"><?= $bmn['uraian_akun']; ?></a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </ul>
+
                                 <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="pmnontik" role="tabpanel" aria-labelledby="pmnontik-tab">
-                                        <!-- Table with outer spacing -->
-                                        <div class="table-responsive">
-                                            <table class="table table-lg">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th>Kode Barang</th>
-                                                        <th>Nama Barang</th>
-                                                        <th>Tahun Perolehan</th>
-                                                        <th>NUP</th>
-                                                        <th>Merek</th>
-                                                        <th>Kuantitas</th>
-                                                        <th>Nilai BMN</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="text-bold-500">1</td>
-                                                        <td>3030211008</td>
-                                                        <td class="text-bold-500">Cermin Besar</td>
-                                                        <td class="text-bold-500">2015</td>
-                                                        <td class="text-bold-500">2</td>
-                                                        <td class="text-bold-500">Panasonic</td>
-                                                        <td class="text-bold-500">1</td>
-                                                        <td class="text-bold-500">8.635.000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-bold-500">2</td>
-                                                        <td>3030211002</td>
-                                                        <td class="text-bold-500">Rak-Rak Penyimpan</td>
-                                                        <td class="text-bold-500">2015</td>
-                                                        <td class="text-bold-500">4</td>
-                                                        <td class="text-bold-500">Sumber Jaya</td>
-                                                        <td class="text-bold-500">1</td>
-                                                        <td class="text-bold-500">2.635.000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-bold-500">3</td>
-                                                        <td>3030211001</td>
-                                                        <td class="text-bold-500">Stopwatch</td>
-                                                        <td class="text-bold-500">2015</td>
-                                                        <td class="text-bold-500">5</td>
-                                                        <td class="text-bold-500">Sumber Jaya</td>
-                                                        <td class="text-bold-500">10</td>
-                                                        <td class="text-bold-500">1.635.000</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <nav aria-label="Page navigation example">
-                                            <ul class="pagination pagination-primary justify-content-end">
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">
-                                                        <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">
-                                                        <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
+                                    <?php if ($data_bmn != null) : ?>
+                                        <?php foreach ($data_bmn as $bmn) : ?>
+                                            <?php if ($bmn['uraian_akun'] == 'PM_NON_TIK') {
+                                                $active = 'active';
+                                            } else {
+                                                $active = '';
+                                            } ?>
+                                            <div class="tab-pane fade show <?= $active; ?>" id="<?= $bmn['uraian_akun']; ?>" role="tabpanel" aria-labelledby="<?= $bmn['uraian_akun']; ?>-tab">
+                                                <!-- Table with outer spacing -->
+                                                <div class="table-responsive">
+                                                    <table class="table table-lg">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No.</th>
+                                                                <th>Kode Barang</th>
+                                                                <th>Nama Barang</th>
+                                                                <th>Tahun Perolehan</th>
+                                                                <th>NUP</th>
+                                                                <th>Merek</th>
+                                                                <th>Kuantitas</th>
+                                                                <th>Nilai BMN</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php if ($bmn['data'] != null) : ?>
+                                                                <?php $no = 1; ?>
+                                                                <?php foreach ($bmn['data'] as $data) : ?>
+                                                                    <?php if ($data['akun_id'] == $bmn['akun_id']) : ?>
+                                                                        <tr>
+                                                                            <td class="text-bold-500"><?= $no++; ?></td>
+                                                                            <td><?= $data['kd_barang']; ?></td>
+                                                                            <td class="text-bold-500"><?= $data['nama_barang']; ?></td>
+                                                                            <td class="text-bold-500"><?= $data['thn_perolehan']; ?></td>
+                                                                            <td class="text-bold-500"><?= $data['nup']; ?></td>
+                                                                            <td class="text-bold-500"><?= $data['merk_tipe']; ?></td>
+                                                                            <td class="text-bold-500"><?= $data['kuantitas']; ?></td>
+                                                                            <td class="text-bold-500"><?= $data['nilai_bmn']; ?></td>
+                                                                        </tr>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination pagination-primary justify-content-end">
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">
+                                                                <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">
+                                                                <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -184,7 +177,7 @@
                     <span>Batal</span>
                 </button>
                 <button type="submit" class="btn btn-danger ml-1">
-                    <span>Hapus</span>
+                    <a href="<?= base_url('/hapusBatch'); ?>"><span>Hapus</span></a>
                 </button>
             </div>
         </div>

@@ -46,23 +46,42 @@ class masterKki extends BaseController
         ];
         return view('kki/importkki', $data);
     }
-    public function detailkki()
+    public function detailkki($kd_batch)
     {
+        $data_batch = $this->masterTabelBmnModel->getDataBatch($kd_batch);
+
+        $list_akun = $this->masterTabelAkunModel->getAllAkun();
+
+        $urBatch = 0;
+        if ($data_batch != null) {
+            $satker = $this->masterSatkerModel->getNamaSatker($data_batch[0]['satker_id']);
+            foreach ($list_akun as $akun) {
+                foreach ($data_batch as $batch) {
+                    if ($akun['id'] == $batch['akun_id']) {
+                        $bmn[$urBatch]['data'][] = $batch;
+                        $bmn[$urBatch]['uraian_akun'] = $akun['ur_akun'];
+                        $bmn[$urBatch]['akun_id'] = $akun['id'];
+                    }
+                }
+                $urBatch++;
+            }
+        }
         $data = [
-            'halaman' => 'kki'
+            'halaman' => 'kki',
+            'kd_batch' => $kd_batch,
+            'nama_satker' => $satker['nama_satker'],
+            'data_bmn' => $bmn
+
         ];
         return view('kki/detailkki', $data);
     }
 
     public function importkki()
     {
-
         $file = $this->request->getFile('filekki');
         $satker = $this->request->getVar('satker');
         $kd_batch = $this->masterTabelBmnModel->getKodeBatch();
-
         $extension = $file->getClientExtension();
-
         if ($extension == 'xlsx' || $extension == 'xls') {
             if ($extension == 'xls') {
                 $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
@@ -76,9 +95,7 @@ class masterKki extends BaseController
                 if ($key == 0) {
                     continue;
                 }
-
                 $akun_id = $this->masterTabelAkunModel->getId($value['0']);
-
                 if ($akun_id == null) {
                     $akun_id['id'] = 0;
                 }
@@ -86,7 +103,6 @@ class masterKki extends BaseController
                 if ($barang_id == null) {
                     $barang_id['id'] = 0;
                 }
-
                 $this->masterTabelBmnModel->save([
                     'akun_id' => $akun_id['id'],
                     'barang_id' => $barang_id['id'],

@@ -18,4 +18,12 @@ class masterTabelAkunModel extends Model
             ->get()
             ->getRowArray();
     }
+
+    public function getAllAkun()
+    {
+        return $this
+            ->table($this->table)
+            ->get()
+            ->getResultArray();
+    }
 }

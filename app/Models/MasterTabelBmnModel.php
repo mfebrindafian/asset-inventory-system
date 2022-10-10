@@ -37,4 +37,15 @@ class masterTabelBmnModel extends Model
             ->get()
             ->getResultArray();
     }
+    public function getDataBatch($kd_batch)
+    {
+        return $this
+            ->table('tbl_bmn')
+            ->select('tbl_bmn.*,tbl_akun.*,tbl_barang.*')
+            ->where('kd_batch', $kd_batch)
+            ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+            ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+            ->get()
+            ->getResultArray();
+    }
 }
