@@ -48,4 +48,12 @@ class masterTabelBmnModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function deleteBatch($kd_batch)
+    {
+        return $this
+            ->table('tbl_bmn')
+            ->where('kd_batch', $kd_batch)
+            ->delete();
+    }
 }

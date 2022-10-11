@@ -37,6 +37,8 @@ class masterKki extends BaseController
                     'nama_satker' => $satker['nama_satker']
                 ];
             }
+        } else {
+            $data_batch = null;
         }
 
         $data = [
@@ -118,5 +120,63 @@ class masterKki extends BaseController
         } else {
             //return kesalahan
         }
+        return redirect()->to('/list-kki');
+    }
+
+    public  function hapuskki($kd_batch)
+    {
+        // $list_batch = $this->masterTabelBmnModel->getDataBatch($kd_batch);
+
+
+        $this->masterTabelBmnModel->deleteBatch($kd_batch);
+        return redirect()->to('/list-kki');
+    }
+
+    public function importupdatekki()
+    {
+        $nama_satker = $this->request->getVar('nama_satker');
+        $id_satker = $this->masterSatkerModel->getIdSatker($nama_satker);
+        $kd_batch = $this->request->getVar('kd_batch_update');
+
+        $file = $this->request->getFile('filekki');
+
+        $extension = $file->getClientExtension();
+        if ($extension == 'xlsx' || $extension == 'xls') {
+            if ($extension == 'xls') {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+            $spreadsheet = $reader->load($file);
+            $bmn = $spreadsheet->getActiveSheet()->toArray();
+
+            foreach ($bmn as $key => $value) {
+                if ($key == 0) {
+                    continue;
+                }
+                $akun_id = $this->masterTabelAkunModel->getId($value['0']);
+                if ($akun_id == null) {
+                    $akun_id['id'] = 0;
+                }
+                $barang_id = $this->masterTabelBarangModel->getId($value['1']);
+                if ($barang_id == null) {
+                    $barang_id['id'] = 0;
+                }
+                $this->masterTabelBmnModel->save([
+                    'akun_id' => $akun_id['id'],
+                    'barang_id' => $barang_id['id'],
+                    'thn_perolehan' => $value['2'],
+                    'nup' => $value['3'],
+                    'merk_tipe' => $value['4'],
+                    'kuantitas' => $value['5'],
+                    'nilai_bmn' => $value['6'],
+                    'satker_id' => $id_satker['id'],
+                    'kd_batch' => $kd_batch,
+                ]);
+            }
+        } else {
+            //return kesalahan
+        }
+        return redirect()->to('/list-kki');
     }
 }

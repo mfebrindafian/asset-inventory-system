@@ -45,6 +45,8 @@ $routes->get('/detail-bmn-dashboard', 'masterDashboard::detailBmnOnDashboard');
 $routes->get('/list-kki', 'masterKki::listkki');
 $routes->get('/detail-kki/(:segment)', 'masterKki::detailkki/$1');
 $routes->post('/import-kki', 'masterKki::importkki');
+$routes->post('/import-update-kki', 'masterKki::importupdatekki');
+$routes->get('/hapus-batch/(:segment)', 'masterKki::hapuskki/$1');
 
 
 $routes->get('/inv-pmnontik', 'masterInventarisasi::pmnontik');

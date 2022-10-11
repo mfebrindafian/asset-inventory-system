@@ -49,23 +49,26 @@
                             <div class="card-body">
                                 <ul class="nav nav-tabs mb-3" id="myTab" role="tablist ">
                                     <?php if ($data_bmn != null) : ?>
+                                        <?php $ke = 0; ?>
                                         <?php foreach ($data_bmn as $bmn) : ?>
                                             <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="<?= $bmn['uraian_akun']; ?>-tab" data-bs-toggle="tab" href="#<?= $bmn['uraian_akun']; ?>" role="tab" aria-controls="<?= $bmn['uraian_akun']; ?>" aria-selected="false"><?= $bmn['uraian_akun']; ?></a>
+                                                <a class="nav-link <?php if ($ke == 0) {
+                                                                        echo 'active';
+                                                                    } ?>" id="<?= $bmn['uraian_akun']; ?>-tab" data-bs-toggle="tab" href="#<?= $bmn['uraian_akun']; ?>" role="tab" aria-controls="<?= $bmn['uraian_akun']; ?>" aria-selected="false"><?= $bmn['uraian_akun']; ?></a>
                                             </li>
+                                            <?php $ke++ ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </ul>
 
                                 <div class="tab-content" id="myTabContent">
+                                    <?php $ke2 = 0; ?>
                                     <?php if ($data_bmn != null) : ?>
                                         <?php foreach ($data_bmn as $bmn) : ?>
-                                            <?php if ($bmn['uraian_akun'] == 'PM_NON_TIK') {
-                                                $active = 'active';
-                                            } else {
-                                                $active = '';
-                                            } ?>
-                                            <div class="tab-pane fade show <?= $active; ?>" id="<?= $bmn['uraian_akun']; ?>" role="tabpanel" aria-labelledby="<?= $bmn['uraian_akun']; ?>-tab">
+
+                                            <div class="tab-pane fade show <?php if ($ke2 == 0) {
+                                                                                echo 'active';
+                                                                            } ?>" id="<?= $bmn['uraian_akun']; ?>" role="tabpanel" aria-labelledby="<?= $bmn['uraian_akun']; ?>-tab">
                                                 <!-- Table with outer spacing -->
                                                 <div class="table-responsive">
                                                     <table class="table table-lg">
@@ -120,6 +123,7 @@
                                                     </ul>
                                                 </nav>
                                             </div>
+                                            <?php $ke2++ ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </div>
@@ -136,26 +140,30 @@
 <!-- MODAL -->
 <div class="modal fade text-left modal-borderless" id="modal-import" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Import KKI</h5>
-                <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
-                    <i data-feather="x"></i>
-                </button>
+        <form action="<?= base_url('/import-update-kki'); ?>" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="nama_satker" id="" value="<?= $nama_satker; ?>">
+            <input type="hidden" name="kd_batch_update" id="" value="<?= $kd_batch; ?>">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Import KKI</h5>
+                    <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted">Tambahkan data pada batch ini</p>
+                    <input type="file" name="filekki" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary ml-1">
+                        <span>Update</span>
+                    </button>
+                </div>
             </div>
-            <div class="modal-body">
-                <p class="text-muted">Tambahkan data pada batch ini</p>
-                <input type="file" class="basic-filepond" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
-                    <span>Batal</span>
-                </button>
-                <button type="submit" class="btn btn-primary ml-1">
-                    <span>Update</span>
-                </button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -177,7 +185,7 @@
                     <span>Batal</span>
                 </button>
                 <button type="submit" class="btn btn-danger ml-1">
-                    <a href="<?= base_url('/hapusBatch'); ?>"><span>Hapus</span></a>
+                    <a href="<?= base_url('/hapus-batch/' . $kd_batch); ?>"><span>Hapus</span></a>
                 </button>
             </div>
         </div>

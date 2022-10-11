@@ -28,4 +28,13 @@ class MasterSatkerModel extends Model
             ->get()
             ->getRowArray();
     }
+    public function getIdSatker($nama_satker)
+    {
+        return $this
+            ->table('tbl_satker')
+            ->select('id')
+            ->where('nama_satker', $nama_satker)
+            ->get()
+            ->getRowArray();
+    }
 }
