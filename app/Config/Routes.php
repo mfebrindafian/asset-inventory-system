@@ -38,7 +38,7 @@ $routes->set404Override();
 
 
 $routes->get('/', 'masterAkses::index');
-$routes->get('/dashboard', 'masterDashboard::index');
+$routes->get('/dashboard-sibamira', 'masterDashboard::index');
 $routes->get('/list-bmn-dashboard', 'masterDashboard::listBmnOnDashboard');
 $routes->get('/detail-bmn-dashboard', 'masterDashboard::detailBmnOnDashboard');
 

@@ -7,10 +7,9 @@ use CodeIgniter\Model;
 
 class MasterUserModel extends Model
 {
-    protected $useTimestamps = true;
-    protected $useSoftDeletes = true;
+    protected $DBGroup = 'sibamira2';
     protected $table = 'tbl_user';
-    protected $allowedFields = ['username', 'fullname', 'email', 'password', 'token', 'image', 'nip_lama_user',  'is_active'];
+    protected $allowedFields = ['username', 'password'];
 
     public function get_data_login($username, $tbl)
     {

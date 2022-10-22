@@ -1,26 +1,18 @@
 <?php
 
 namespace App\Controllers;
-
 use App\Models\MasterUserModel;
 use App\Models\MasterPegawaiModel;
-use App\Models\MasterEs3Model;
-use App\Models\MasterEs4Model;
 
 class masterUser extends BaseController
 {
     protected $masterUserModel;
     protected $masterPegawaiModel;
-    protected $masterEs3Model;
-    protected $masterEs4Model;
-
 
     public function __construct()
     {
         $this->masterUserModel = new masterUserModel();
         $this->masterPegawaiModel = new masterPegawaiModel();
-        $this->masterEs3Model = new MasterEs3Model();
-        $this->masterEs4Model = new MasterEs4Model();
     }
 
     public function profile()

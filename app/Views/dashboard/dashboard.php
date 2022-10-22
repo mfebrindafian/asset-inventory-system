@@ -26,53 +26,62 @@
                     <fieldset class="form-group">
                         <select class="form-select" id="basicSelect">
                             <option>- Satker -</option>
-                            <option>Fakultas Sains dan Teknologi</option>
-                            <option>Fakultas Hukum</option>
-                            <option>Fakultas Peternakan</option>
+                            <?php if ($list_satker != null) : ?>
+                                <?php foreach ($list_satker as $satker) : ?>
+                                    <option value="<?= $satker['id']; ?>"><?= $satker['nama_satker']; ?></option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </select>
                     </fieldset>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-lg-6 col-md-12">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="text-muted">Unit Satker: <span class="font-bold">Fakultas Sains dan Teknologi</span></p>
-                                    <p class="text-muted">Total barang: <span class="font-bold">1.122</span></p>
-                                </div>
-                                <div class="col-6">
-                                    <div class="float-end">
-                                        <h3 class="text-end">PM NON TIK</h3>
-                                        <p class="text-muted text-end">Peralatan Mesin Non TIK</p>
+                <?php $ke = 1; ?>
+                <?php if ($list_akun != null) : ?>
+                    <?php foreach ($list_akun as $akun) : ?>
+
+                        <div class="col-12 col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-body px-4 py-4-5">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="text-muted">Unit Satker: <span class="font-bold"></span></p>
+                                            <p class="text-muted">Total barang: <span class="font-bold"><?= $data_bmn['all'][$ke]; ?></span></p>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="float-end">
+                                                <h3 class="text-end"><?= $akun['ur_akun']; ?></h3>
+                                                <p class="text-muted text-end"><?= $akun['ket']; ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <a href="sudah.html" class="badge bg-light-success pt-3 w-100">
+                                                <h6>Sudah diproses</h6>
+                                                <h1 class="my-4"><?= $data_bmn['sudah'][$ke]; ?></h1>
+                                            </a>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="belum.html" class="badge bg-light-danger pt-3 w-100">
+                                                <h6>Belum diproses</h6>
+                                                <h1 class="my-4"><?= $data_bmn['belum'][$ke]; ?></h1>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-12">
+                                            <a href="listdetail.html" class="btn btn-outline-primary w-100">Detail</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <a href="sudah.html" class="badge bg-light-success pt-3 w-100">
-                                        <h6>Sudah diproses</h6>
-                                        <h1 class="my-4">2.231</h1>
-                                    </a>
-                                </div>
-                                <div class="col-6">
-                                    <a href="belum.html" class="badge bg-light-danger pt-3 w-100">
-                                        <h6>Belum diproses</h6>
-                                        <h1 class="my-4">1.084</h1>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row mt-4">
-                                <div class="col-12">
-                                    <a href="listdetail.html" class="btn btn-outline-primary w-100">Detail</a>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                </div>
+                        <?php $ke++ ?>
+                    <?php endforeach; ?>
+                <?php endif ?>
 
-                <div class="col-12 col-lg-6 col-md-12">
+                <!-- <div class="col-12 col-lg-6 col-md-12">
                     <div class="card">
                         <div class="card-body px-4 py-4-5">
                             <div class="row">
@@ -185,8 +194,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div class="row">
+            </div> -->
+                <!-- <div class="row">
                                                   <div class="col-12">
                                                        <div class="card">
                                                             <div class="card-header">
@@ -198,7 +207,7 @@
                                                        </div>
                                                   </div>
                                              </div> -->
-        </div>
+            </div>
     </section>
 </div>
 <?= $this->endSection(); ?>

@@ -27,18 +27,13 @@ class masterAkses extends BaseController
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
         $user = $this->masterUserModel->getUser($username);
-
-
         $pass_default =  password_hash('123456', PASSWORD_DEFAULT);
-
-
 
         if ($user == NULL) {
             session()->setFlashdata('pesan', 'Username Anda Salah');
             session()->setFlashdata('icon', 'error');
             return redirect()->to('/');
         }
-
 
         $list_user_level = $this->masterAksesUserLevelModel->getUserLevel($user['id']);
         $level_id = $list_user_level[count($list_user_level) - 1]['level_id'];
@@ -54,7 +49,6 @@ class masterAkses extends BaseController
                 ];
                 return view('siphp/gantiPassword', $data);
             }
-
 
             if ($user['is_active'] == 'Y') {
                 $data = [
@@ -72,9 +66,6 @@ class masterAkses extends BaseController
                 session()->setFlashdata('icon', 'error');
                 return redirect()->to('/');
             }
-
-
-
 
             session()->set($data);
             session()->setFlashdata('pesan', 'berhasil login');
