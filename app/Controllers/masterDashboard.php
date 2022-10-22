@@ -81,10 +81,16 @@ class masterDashboard extends BaseController
 
     public function listBmnOnDashboard()
     {
-        return view('dashboard/listdetail');
+        $data = [
+            'halaman' => 'dashboard'
+        ];
+        return view('dashboard/listdetail', $data);
     }
     public function detailBmnOnDashboard()
     {
-        return view('dashboard/detail');
+        $data = [
+            'halaman' => 'dashboard'
+        ];
+        return view('dashboard/detail', $data);
     }
 }

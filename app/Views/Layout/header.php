@@ -19,7 +19,7 @@
 
                             <div class="user-img d-flex align-items-center">
                                 <div class="avatar avatar-md">
-                                    <img src="assets/images/avatar.png" />
+                                    <img src="<?= base_url('/assets/images/avatar.png') ?>" />
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                             <hr class="dropdown-divider" />
                         </li>
                         <li>
-                            <a class="dropdown-item" href="login.html"><i class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</a>
+                            <a class="dropdown-item" href="<?= base_url('/logout') ?>"><i class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</a>
                         </li>
                     </ul>
                 </div>

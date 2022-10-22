@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
-                    <li class="breadcrumb-item"><a href="importkki.html">Import KKI</a></li>
+                    <li class="breadcrumb-item"><a href="<?= base_url('/list-kki') ?>">Import KKI</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Detail KKI</li>
                 </ol>
             </nav>

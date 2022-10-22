@@ -63,7 +63,6 @@ $routes->get('/label', 'masterLabel::label');
 $routes->get('/detail-label', 'masterLabel::detaillabel');
 
 
-
 // $routes->post('/login', 'masterAkses::open');
 // $routes->post('/gantiPasswordDefault', 'masterAkses::gantiPasswordDefault');
 // $routes->get('/logout', 'masterAkses::logout');

@@ -57,21 +57,21 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <a href="sudah.html" class="badge bg-light-success pt-3 w-100">
-                                                <h6>Sudah diproses</h6>
-                                                <h1 class="my-4"><?= $data_bmn['sudah'][$ke]; ?></h1>
+                                            <a href="<?= base_url('/list-bmn-dashboard') ?>" class="badge bg-light-success pt-3 w-100">
+                                                <h6 class="text-wrap">Sudah diproses</h6>
+                                                <h1 class="my-4 text-truncate"><?= $data_bmn['sudah'][$ke]; ?></h1>
                                             </a>
                                         </div>
                                         <div class="col-6">
-                                            <a href="belum.html" class="badge bg-light-danger pt-3 w-100">
-                                                <h6>Belum diproses</h6>
-                                                <h1 class="my-4"><?= $data_bmn['belum'][$ke]; ?></h1>
+                                            <a href="<?= base_url('/list-bmn-dashboard') ?>" class="badge bg-light-danger pt-3 w-100">
+                                                <h6 class="text-wrap">Belum diproses</h6>
+                                                <h1 class="my-4 text-truncate"><?= $data_bmn['belum'][$ke]; ?></h1>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col-12">
-                                            <a href="listdetail.html" class="btn btn-outline-primary w-100">Detail</a>
+                                            <a href="<?= base_url('/list-bmn-dashboard') ?>" class="btn btn-outline-primary w-100">Detail</a>
                                         </div>
                                     </div>
                                 </div>
@@ -98,21 +98,21 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="sudah.html" class="badge bg-light-success pt-3 w-100">
-                                        <h6>Sudah diproses</h6>
-                                        <h1 class="my-4">128</h1>
+                                    <a href="<?= base_url('/list-bmn-dashboard') ?>" class="badge bg-light-success pt-3 w-100">
+                                        <h6 class="text-wrap">Sudah diproses</h6>
+                                        <h1 class="my-4 text-truncate">128</h1>
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="belum.html" class="badge bg-light-danger pt-3 w-100">
-                                        <h6>Belum diproses</h6>
-                                        <h1 class="my-4">1.200</h1>
+                                    <a href="<?= base_url('/list-bmn-dashboard') ?>" class="badge bg-light-danger pt-3 w-100">
+                                        <h6 class="text-wrap">Belum diproses</h6>
+                                        <h1 class="my-4 text-truncate">1.200</h1>
                                     </a>
                                 </div>
                             </div>
                             <div class="row mt-4">
                                 <div class="col-12">
-                                    <a href="listdetail.html" class="btn btn-outline-primary w-100">Detail</a>
+                                    <a href="<?= base_url('/list-bmn-dashboard') ?>" class="btn btn-outline-primary w-100">Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -136,21 +136,21 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="sudah.html" class="badge bg-light-success pt-3 w-100">
-                                        <h6>Sudah diproses</h6>
-                                        <h1 class="my-4">980</h1>
+                                    <a href="<?= base_url('/list-bmn-dashboard') ?>" class="badge bg-light-success pt-3 w-100">
+                                        <h6 class="text-wrap">Sudah diproses</h6>
+                                        <h1 class="my-4 text-truncate">980</h1>
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="belum.html" class="badge bg-light-danger pt-3 w-100">
-                                        <h6>Belum diproses</h6>
-                                        <h1 class="my-4">7.248</h1>
+                                    <a href="<?= base_url('/list-bmn-dashboard') ?>" class="badge bg-light-danger pt-3 w-100">
+                                        <h6 class="text-wrap">Belum diproses</h6>
+                                        <h1 class="my-4 text-truncate">7.248</h1>
                                     </a>
                                 </div>
                             </div>
                             <div class="row mt-4">
                                 <div class="col-12">
-                                    <a href="listdetail.html" class="btn btn-outline-primary w-100">Detail</a>
+                                    <a href="<?= base_url('/list-bmn-dashboard') ?>" class="btn btn-outline-primary w-100">Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -174,21 +174,21 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="sudah.html" class="badge bg-light-success pt-3 w-100">
-                                        <h6>Sudah diproses</h6>
-                                        <h1 class="my-4">4.231</h1>
+                                    <a href="<?= base_url('/list-bmn-dashboard') ?>" class="badge bg-light-success pt-3 w-100">
+                                        <h6 class="text-wrap">Sudah diproses</h6>
+                                        <h1 class="my-4 text-truncate">4.231</h1>
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="belum.html" class="badge bg-light-danger pt-3 w-100">
-                                        <h6>Belum diproses</h6>
-                                        <h1 class="my-4">120</h1>
+                                    <a href="<?= base_url('/list-bmn-dashboard') ?>" class="badge bg-light-danger pt-3 w-100">
+                                        <h6 class="text-wrap">Belum diproses</h6>
+                                        <h1 class="my-4 text-truncate">120</h1>
                                     </a>
                                 </div>
                             </div>
                             <div class="row mt-4">
                                 <div class="col-12">
-                                    <a href="listdetail.html" class="btn btn-outline-primary w-100">Detail</a>
+                                    <a href="<?= base_url('/list-bmn-dashboard') ?>" class="btn btn-outline-primary w-100">Detail</a>
                                 </div>
                             </div>
                         </div>

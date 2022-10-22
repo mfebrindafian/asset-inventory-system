@@ -2,7 +2,7 @@
     <div class="sidebar-header position-relative">
         <div class="d-flex justify-content-between align-items-center">
             <div class="logo mt-4">
-                <a href="#"><img src="assets/images/logo-sibamira.png" style="width: 222px; height: 100%" alt="Logo Sibamira" srcset="" /></a>
+                <a href="#"><img src="<?= base_url('/assets/images/logo-sibamira.png') ?>" style="width: 222px; height: 100%" alt="Logo Sibamira" srcset="" /></a>
             </div>
             <div class="sidebar-toggler x">
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
