@@ -19,15 +19,16 @@ class masterAkses extends BaseController
 
     public function index()
     {
-        return view('siphp/login');
+        return view('login/login');
     }
 
     public function open()
     {
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
+
         $user = $this->masterUserModel->getUser($username);
-        $pass_default =  password_hash('123456', PASSWORD_DEFAULT);
+
 
         if ($user == NULL) {
             session()->setFlashdata('pesan', 'Username Anda Salah');
@@ -36,40 +37,31 @@ class masterAkses extends BaseController
         }
 
         $list_user_level = $this->masterAksesUserLevelModel->getUserLevel($user['id']);
+
         $level_id = $list_user_level[count($list_user_level) - 1]['level_id'];
+        if ($level_id == 3) {
+            $satker_id = $this->masterAksesUserLevelModel->getSatkerId($user['id']);
+        } else {
+            $satker_id['satker_id'] = 0;
+        }
+
         $list_menu = $this->masterAksesUserLevelModel->getAksesMenu($level_id, $user['id']);
         $list_submenu = $this->masterAksesUserLevelModel->getAksesSubmenu($level_id, $user['id']);
         if (password_verify($password, $user['password'])) {
-
-            if (password_verify($password, $pass_default)) {
-                $alert = false;
-                $data = [
-                    'alert' => $alert,
-                    'data_user' => $user
-                ];
-                return view('siphp/gantiPassword', $data);
-            }
-
-            if ($user['is_active'] == 'Y') {
-                $data = [
-                    'log' => TRUE,
-                    'user_id' => $user['id'],
-                    'level_id' => $level_id,
-                    'list_user_level' => $list_user_level,
-                    'list_menu'  => $list_menu,
-                    'list_submenu' => $list_submenu,
-                    'fullname' => $user['fullname'],
-                    'data_user' => $user
-                ];
-            } else {
-                session()->setFlashdata('pesan', 'Akun Tidak Aktif');
-                session()->setFlashdata('icon', 'error');
-                return redirect()->to('/');
-            }
+            $data = [
+                'log' => TRUE,
+                'user_id' => $user['id'],
+                'level_id' => $level_id,
+                'list_user_level' => $list_user_level,
+                'satker_id' => $satker_id['satker_id'],
+                'list_menu'  => $list_menu,
+                'list_submenu' => $list_submenu,
+                'data_user' => $user
+            ];
 
             session()->set($data);
             session()->setFlashdata('pesan', 'berhasil login');
-            return redirect()->to('/dashboard');
+            return redirect()->to('/dashboard-sibamira');
         }
         session()->setFlashdata('pesan', 'Password salah');
         session()->setFlashdata('icon', 'error');

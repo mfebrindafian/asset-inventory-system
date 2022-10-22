@@ -38,6 +38,10 @@ $routes->set404Override();
 
 
 $routes->get('/', 'masterAkses::index');
+$routes->post('/login', 'masterAkses::open');
+$routes->get('/logout', 'masterAkses::logout');
+
+
 $routes->get('/dashboard-sibamira', 'masterDashboard::index');
 $routes->get('/list-bmn-dashboard', 'masterDashboard::listBmnOnDashboard');
 $routes->get('/detail-bmn-dashboard', 'masterDashboard::detailBmnOnDashboard');
@@ -53,7 +57,7 @@ $routes->get('/inv-pmnontik', 'masterInventarisasi::pmnontik');
 $routes->get('/inv-pmtik', 'masterInventarisasi::pmtik');
 $routes->get('/inv-atb', 'masterInventarisasi::atb');
 $routes->get('/inv-atl', 'masterInventarisasi::atl');
-$routes->get('/kertas-kerja', 'masterInventarisasi::kertaskerja');
+$routes->get('/kertas-kerja/(:segment)', 'masterInventarisasi::kertaskerja/$1');
 
 
 $routes->get('/report-rekapitulasi', 'masterReport::rekapitulasi');
@@ -63,9 +67,9 @@ $routes->get('/label', 'masterLabel::label');
 $routes->get('/detail-label', 'masterLabel::detaillabel');
 
 
-// $routes->post('/login', 'masterAkses::open');
+
 // $routes->post('/gantiPasswordDefault', 'masterAkses::gantiPasswordDefault');
-// $routes->get('/logout', 'masterAkses::logout');
+
 
 
 

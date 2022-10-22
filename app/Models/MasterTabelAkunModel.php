@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class masterTabelAkunModel extends Model
 {
     protected $table = 'tbl_akun';
-    protected $allowedFields = ['ur_akun', 'ket'];
+    protected $allowedFields = ['ur_akun', 'ket_akun'];
 
     public function getId($ur_akun)
     {

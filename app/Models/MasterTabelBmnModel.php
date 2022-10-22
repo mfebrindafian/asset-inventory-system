@@ -12,9 +12,9 @@ class masterTabelBmnModel extends Model
     public function getAllBmn()
     {
         return $this
-        ->table('tbl_bmn')
-        ->get()
-        ->getResultArray();
+            ->table('tbl_bmn')
+            ->get()
+            ->getResultArray();
     }
 
 
@@ -28,12 +28,22 @@ class masterTabelBmnModel extends Model
         return $kd_batch;
     }
 
-
     public function getListBmn()
     {
         return $this
             ->table('tbl_bmn')
             ->groupBy('kd_batch')
+            ->get()
+            ->getResultArray();
+    }
+
+    public function getListBmnBySatkerId($satker_id)
+    {
+        return $this
+            ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+            ->where('tbl_bmn.satker_id', $satker_id)
+            ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+            ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
             ->get()
             ->getResultArray();
     }
@@ -50,7 +60,7 @@ class masterTabelBmnModel extends Model
     {
         return $this
             ->table('tbl_bmn')
-            ->select('tbl_bmn.*,tbl_akun.*,tbl_barang.*')
+            ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
             ->where('kd_batch', $kd_batch)
             ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
             ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
@@ -64,5 +74,16 @@ class masterTabelBmnModel extends Model
             ->table('tbl_bmn')
             ->where('kd_batch', $kd_batch)
             ->delete();
+    }
+
+    public function getDataBmnById($id_bmn)
+    {
+        return $this
+            ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+            ->where('tbl_bmn.id', $id_bmn)
+            ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+            ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+            ->get()
+            ->getRowArray();
     }
 }

@@ -23,7 +23,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        // 'authFilter' => \App\Filters\AuthFilter::class,
+        'authFilter' => \App\Filters\AuthFilter::class,
     ];
 
     /**
@@ -34,7 +34,7 @@ class Filters extends BaseConfig
      */
     public $globals = [
         'before' => [
-            // 'authFilter'  => ['except' => []]
+            'authFilter'  => ['except' => ['/', '/login', 'login/*']]
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
@@ -42,7 +42,7 @@ class Filters extends BaseConfig
 
         'after' => [
             //'toolbar',
-            // 'authFilter'  => ['except' => []],
+            'authFilter'  => ['except' => ['/dashboard-sibamira', '/dashboard-sibamira/*', '/list-bmn-dashboard', '/list-bmn-dashboard/*', '/detail-bmn-dashboard', '/detail-bmn-dashboard/*', '/list-kki', '/detail-kki/*', '/import-kki', '/import-update-kki', '/hapus-batch/*', '/inv-pmnontik', '/inv-pmtik', '/inv-atb', '/inv-atl', '/kertas-kerja/*', '/report-rekapitulasi', '/report-inventarisasi', '/label', '/detail-label']],
             // 'honeypot', 
             // 'secureheaders',
         ],

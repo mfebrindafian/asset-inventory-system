@@ -26,6 +26,8 @@ class masterDashboard extends BaseController
 
     public function index()
     {
+        $satker_choose = $this->request->getVar('satker_choose');
+        d($satker_choose);
         $list_akun = $this->masterAkunModel->getAllAkun();
         $list_bmn = $this->masterBmnModel->getAllBmn();
 
