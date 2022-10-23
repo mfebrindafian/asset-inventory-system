@@ -23,6 +23,13 @@
                         $(this).text(data['data_bmn'][jenis[indexx]][index + 1]);
                     });
                 });
+
+                $('.konten-dashboard').find('a').each(function() {
+                    let link = $(this).attr('href')
+                    let finalLink = link.split('/');
+                    var result = '/' + finalLink[finalLink.length - 4] + '/' + finalLink[finalLink.length - 3] + '/' + finalLink[finalLink.length - 2] + '/' + satker;
+                    $(this).attr('href', result)
+                });
             }
         });
     })

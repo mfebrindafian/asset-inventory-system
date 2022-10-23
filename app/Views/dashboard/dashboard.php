@@ -25,8 +25,7 @@
                 <div class="col-6 col-sm-4 float-end">
                     <fieldset class="form-group">
                         <select class="form-select" id="pilihSatker">
-                            <option disabled selected>- Satker -</option>
-                            <option value="all">Semua</option>
+                            <option value="all" selected>Semua</option>
                             <?php if ($list_satker != null) : ?>
                                 <?php foreach ($list_satker as $satker) : ?>
                                     <option value="<?= $satker['id']; ?>"> <a href="/aa"><?= $satker['nama_satker']; ?></a></option>
@@ -36,7 +35,7 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="row">
+            <div class="row konten-dashboard">
                 <?php $ke = 1; ?>
                 <?php if ($list_akun != null) : ?>
                     <?php foreach ($list_akun as $akun) : ?>
