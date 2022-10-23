@@ -74,7 +74,6 @@ class masterDashboard extends BaseController
                 $data_akun['belum'][$ke] = 0;
                 $data_akun['sudah'][$ke] = 0;
             }
-
             $ke++;
         }
         // dd($data_akun);
@@ -106,7 +105,6 @@ class masterDashboard extends BaseController
                 $ke++;
             }
         }
-
         $ke = 1;
         foreach ($list_akun as $akun) {
             foreach ($list_bmn as $bmn) {
@@ -139,6 +137,12 @@ class masterDashboard extends BaseController
                         }
                     }
                 }
+            }
+            $check_null_akun = $this->masterBmnModel->getBmnByIdAkun($ke);
+            if ($check_null_akun == null) {
+                $data_akun['all'][$ke] = 0;
+                $data_akun['belum'][$ke] = 0;
+                $data_akun['sudah'][$ke] = 0;
             }
             $ke++;
         }
