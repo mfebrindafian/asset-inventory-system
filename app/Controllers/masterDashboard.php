@@ -147,8 +147,11 @@ class masterDashboard extends BaseController
             $ke++;
         }
         // dd($data_akun);
-
-        $nama_satker = $this->masterSatkerModel->getNamaSatker($satker_id);
+        if ($satker_id == 'all') {
+            $nama_satker['nama_satker'] = 'semua';
+        } else {
+            $nama_satker = $this->masterSatkerModel->getNamaSatker($satker_id);
+        }
 
 
         $data = [
