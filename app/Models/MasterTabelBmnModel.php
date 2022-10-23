@@ -17,6 +17,16 @@ class masterTabelBmnModel extends Model
             ->getResultArray();
     }
 
+
+    public function getBmnByIdAkun($akun_id)
+    {
+        return $this
+            ->table('tbl_bmn')
+            ->where('akun_id', $akun_id)
+            ->get()
+            ->getResultArray();
+    }
+
     public function getAllBmnBySatker($satker_id)
     {
         if ($satker_id == 'all') {
