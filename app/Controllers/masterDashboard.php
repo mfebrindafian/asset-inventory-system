@@ -28,13 +28,15 @@ class masterDashboard extends BaseController
     {
 
         $list_akun = $this->masterAkunModel->getAllAkun();
-        $list_bmn = $this->masterBmnModel->getAllBmn();
+        // if (session('level_id') == 3) {
+        //     $list_bmn = $this->masterBmnModel->getAllBmnBySatker(session('satker_id'));
+        // } else {
 
-        for ($i = 1; $i <= count($list_akun); $i++) {
-        }
+        $list_bmn = $this->masterBmnModel->getAllBmn();
+        // }
+
         $ke = 1;
         foreach ($list_akun as $akun) {
-
             foreach ($list_bmn as $bmn) {
                 if ($bmn['akun_id'] == $ke) {
                     $all[$ke][] = $bmn;
@@ -86,17 +88,25 @@ class masterDashboard extends BaseController
 
         $list_akun = $this->masterAkunModel->getAllAkun();
         $list_bmn = $this->masterBmnModel->getAllBmnBySatker($satker_id);
-
-        for ($i = 1; $i <= count($list_akun); $i++) {
+        if ($list_bmn == null) {
+            $ke = 1;
+            foreach ($list_akun as $akun) {
+                $data_akun['all'][$ke] = 0;
+                $data_akun['belum'][$ke] = 0;
+                $data_akun['sudah'][$ke] = 0;
+                $ke++;
+            }
         }
+
         $ke = 1;
         foreach ($list_akun as $akun) {
-
             foreach ($list_bmn as $bmn) {
                 if ($bmn['akun_id'] == $ke) {
                     $all[$ke][] = $bmn;
                     if ($all[$ke] != null) {
                         $data_akun['all'][$ke] = count($all[$ke]);
+                    } else {
+                        $data_akun['all'][$ke] = 0;
                     }
                     if ($bmn['kondisi_brg'] == null) {
                         $belum[$ke][] = $bmn;
@@ -124,8 +134,9 @@ class masterDashboard extends BaseController
             $ke++;
         }
         // dd($data_akun);
-        $list_satker = $this->masterSatkerModel->getAllSatker();
+
         $nama_satker = $this->masterSatkerModel->getNamaSatker($satker_id);
+
 
         $data = [
             'data_bmn' => $data_akun,
