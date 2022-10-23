@@ -27,6 +27,9 @@ class masterInventarisasi extends BaseController
             }
         }
         $data = [
+            'title' => 'PM NON TIK',
+            'menu' => 'Inventarisasi',
+            'subMenu' => 'PM NON TIK',
             'halaman' => 'pmnontik',
             'list_pmnontik' => $pmnontik
         ];
@@ -44,6 +47,9 @@ class masterInventarisasi extends BaseController
             }
         }
         $data = [
+            'title' => 'PM TIK',
+            'menu' => 'Inventarisasi',
+            'subMenu' => 'PM TIK',
             'halaman' => 'pmtik',
             'list_pmtik' => $pmtik
         ];
@@ -61,6 +67,9 @@ class masterInventarisasi extends BaseController
             }
         }
         $data = [
+            'title' => 'ATB',
+            'menu' => 'Inventarisasi',
+            'subMenu' => 'ATB',
             'halaman' => 'atb',
             'list_atb' => $atb
         ];
@@ -78,6 +87,9 @@ class masterInventarisasi extends BaseController
             }
         }
         $data = [
+            'title' => 'ATL',
+            'menu' => 'Inventarisasi',
+            'subMenu' => 'ATL',
             'halaman' => 'atl',
             'list_atl' => $atl
         ];
@@ -90,6 +102,9 @@ class masterInventarisasi extends BaseController
         $nama_satker = $this->masterSatkerModel->getNamaSatker($data_bmn['satker_id']);
 
         $data = [
+            'title' => 'Isi Kertas Kerja',
+            'menu' => 'Inventarisasi',
+            'subMenu' => '',
             'halaman' => 'isikertaskerja',
             'bmn' => $data_bmn,
             'nama_satker' => $nama_satker['nama_satker']

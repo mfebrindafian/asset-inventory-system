@@ -42,6 +42,9 @@ class masterKki extends BaseController
         }
 
         $data = [
+            'title' => 'Import KKI',
+            'menu' => 'Import KKI',
+            'subMenu' => '',
             'halaman' => 'kki',
             'list_kki' => $data_batch,
             'list_satker' => $list_satker
@@ -69,6 +72,9 @@ class masterKki extends BaseController
             }
         }
         $data = [
+            'title' => 'Detail KKI',
+            'menu' => 'Import KKI',
+            'subMenu' => '',
             'halaman' => 'kki',
             'kd_batch' => $kd_batch,
             'nama_satker' => $satker['nama_satker'],

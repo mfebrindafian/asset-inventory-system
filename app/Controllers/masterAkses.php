@@ -58,7 +58,6 @@ class masterAkses extends BaseController
                 'list_submenu' => $list_submenu,
                 'data_user' => $user
             ];
-
             session()->set($data);
             session()->setFlashdata('pesan', 'berhasil login');
             return redirect()->to('/dashboard-sibamira');

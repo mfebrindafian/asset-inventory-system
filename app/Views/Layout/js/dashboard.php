@@ -11,7 +11,7 @@
             success: function(data) {
                 $(".satker-apa").each(function(index) {
                     if (index == 0 && satker != 'all') {
-                        $(this).text('di ' + data['nama_satker']);
+                        $(this).text('pada ' + data['nama_satker']);
                     } else if (index == 0 && satker == 'all') {
                         $(this).text('');
                     } else {

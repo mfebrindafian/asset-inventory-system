@@ -80,6 +80,9 @@ class masterDashboard extends BaseController
         $list_satker = $this->masterSatkerModel->getAllSatker();
 
         $data = [
+            'title' => 'Dashboard',
+            'menu' => 'Dashboard',
+            'subMenu' => '',
             'halaman' => 'dashboard',
             'list_akun' => $list_akun,
             'list_bmn' => $list_bmn,
@@ -169,7 +172,7 @@ class masterDashboard extends BaseController
         } else {
             $list_bmn = $this->masterBmnModel->getBmnByIdAkunSatkerId($akun_id, $satker_id);
         }
-       
+
         $data_bmn = null;
         if ($list_bmn != null) {
             if ($tipe == 'semua') {
@@ -192,6 +195,9 @@ class masterDashboard extends BaseController
         }
 
         $data = [
+            'title' => 'List Barang',
+            'menu' => 'Dashboard',
+            'subMenu' => '',
             'halaman' => 'dashboard',
             'list_bmn' => $data_bmn
         ];
@@ -202,6 +208,9 @@ class masterDashboard extends BaseController
     {
         $data_bmn = $this->masterBmnModel->getDataBmnById($id_bmn);
         $data = [
+            'title' => 'Detail Barang',
+            'menu' => 'Dashboard',
+            'subMenu' => '',
             'halaman' => 'dashboard',
             'bmn' => $data_bmn
         ];

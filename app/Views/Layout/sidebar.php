@@ -12,90 +12,32 @@
     <div class="sidebar-menu">
         <ul class="menu">
             <li class="sidebar-title">Menu</li>
-
-            <li class="sidebar-item <?= ($halaman == 'dashboard') ? 'active' : ''; ?>">
-                <a href="<?= base_url('/dashboard-sibamira') ?>" class="sidebar-link">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item <?= ($halaman == 'kki') ? 'active' : ''; ?>">
-                <a href="<?= base_url('/list-kki'); ?>" class="sidebar-link">
-                    <i class="bi bi-file-earmark-arrow-up-fill"></i>
-                    <span>Import KKI</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item has-sub <?= ($halaman == 'pmnontik' || $halaman == 'pmtik' || $halaman == 'atl' || $halaman == 'atb' || $halaman == 'isikertaskerja') ? 'active' : ''; ?>">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-boxes"></i>
-                    <span>Inventarisasi</span>
-                </a>
-                <ul class="submenu <?= ($halaman == 'pmnontik' || $halaman == 'pmtik' || $halaman == 'atl' || $halaman == 'atb' || $halaman == 'isikertaskerja') ? 'active' : ''; ?>">
-                    <li class="submenu-item <?= ($halaman == 'pmnontik') ? 'active' : ''; ?>">
-                        <a href="<?= base_url('/inv-pmnontik') ?>">PM NON TIK</a>
+            <?php $list_menu = session('list_menu') ?>
+            <?php $angle = '#' ?>
+            <?php $list_submenu = session('list_submenu') ?>
+            <?php foreach ($list_menu as $list) : ?>
+                <?php if ($list['is_active'] == 'Y' && $list['view_level'] == 'Y') : ?>
+                    <li class="sidebar-item <?php if ($list['link'] == '#') {
+                                                echo 'has-sub';
+                                            } ?> <?= ($menu == $list['nama_menu']) ? 'active' : ''; ?>">
+                        <a href="<?= base_url($list['link']); ?>" class="sidebar-link">
+                            <i class="<?= $list['icon']; ?>"></i>
+                            <span><?= $list['nama_menu']; ?></span>
+                        </a>
+                        <?php if ($list['link'] == '#') : ?>
+                            <ul class="submenu <?= ($menu == $list['nama_menu']) ? 'active' : ''; ?>">
+                                <?php foreach ($list_submenu as $sub) : ?>
+                                    <?php if (($sub['menu_id'] == $list['id']) && $sub['is_active'] == 'Y' && $sub['view_level'] == 'Y') :  ?>
+                                        <li class="submenu-item <?= ($subMenu == $sub['nama_submenu']) ? 'active' : '' ?>">
+                                            <a href="<?= base_url($sub['link']); ?>"><?= $sub['nama_submenu']; ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
                     </li>
-                    <li class="submenu-item <?= ($halaman == 'pmtik') ? 'active' : ''; ?>">
-                        <a href="<?= base_url('/inv-pmtik') ?>">PM TIK</a>
-                    </li>
-                    <li class="submenu-item <?= ($halaman == 'atb') ? 'active' : ''; ?>">
-                        <a href="<?= base_url('/inv-atb') ?>">ATB</a>
-                    </li>
-                    <li class="submenu-item <?= ($halaman == 'atl') ? 'active' : ''; ?>">
-                        <a href="<?= base_url('/inv-atl') ?>">ATL</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-item has-sub <?= ($halaman == 'rekapitulasi' || $halaman == 'inventarisasi') ? 'active' : ''; ?>">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-envelope-paper-fill"></i>
-                    <span>Report</span>
-                </a>
-                <ul class="submenu <?= ($halaman == 'rekapitulasi' || $halaman == 'inventarisasi') ? 'active' : ''; ?>">
-                    <li class="submenu-item <?= ($halaman == 'rekapitulasi') ? 'active' : ''; ?>">
-                        <a href="<?= base_url('/report-rekapitulasi') ?>">Rekapitulasi</a>
-                    </li>
-                    <li class="submenu-item <?= ($halaman == 'inventarisasi') ? 'active' : ''; ?>">
-                        <a href="<?= base_url('/report-inventarisasi') ?>">Inventarisasi</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-item <?= ($halaman == 'detaillabel' || $halaman == 'carilabel') ? 'active' : ''; ?>">
-                <a href="<?= base_url('/label') ?>" class="sidebar-link">
-                    <i class="bi bi-printer-fill"></i>
-                    <span>Cetak Label</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item has-sub">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-stack"></i>
-                    <span>Master Data</span>
-                </a>
-                <ul class="submenu">
-                    <li class="submenu-item">
-                        <a href="#">Gedung</a>
-                    </li>
-                    <li class="submenu-item">
-                        <a href="#">Ruangan</a>
-                    </li>
-                    <li class="submenu-item">
-                        <a href="#">Satker</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-title">Sistem</li>
-
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-people-fill"></i>
-                    <span>Role User</span>
-                </a>
-            </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
         </ul>
     </div>
 </div>

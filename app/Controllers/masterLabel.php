@@ -20,6 +20,9 @@ class masterLabel extends BaseController
         $list_bmn = $this->masterBmnModel->getAllBmnBySatker(session('satker_id'));
 
         $data = [
+            'title' => 'Labelisasi',
+            'menu' => 'Cetak Label',
+            'subMenu' => '',
             'halaman' => 'carilabel',
             'list_bmn' => $list_bmn
         ];
@@ -30,6 +33,9 @@ class masterLabel extends BaseController
     {
         $data_bmn = $this->masterBmnModel->getDataBmnById($id_bmn);
         $data = [
+            'title' => 'Detail Label',
+            'menu' => 'Cetak Label',
+            'subMenu' => '',
             'halaman' => 'detaillabel',
             'bmn' => $data_bmn
         ];

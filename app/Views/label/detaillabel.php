@@ -169,7 +169,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td rowspan="5" class="text-center"><img src="assets/images/logo-unja.png" alt="logo unja" width="140" /></td>
+                            <td rowspan="5" class="text-center"><img src="/assets/images/logo-unja.png" alt="logo unja" width="140" /></td>
                         </tr>
                         <tr>
                             <td class="text-center">UNJA-023.17.1000.677565</td>

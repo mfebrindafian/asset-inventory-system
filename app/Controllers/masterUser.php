@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\MasterUserModel;
 use App\Models\MasterPegawaiModel;
 
