@@ -27,13 +27,21 @@
                     <div class="row">
                         <div class="col-md-6">
                             <p class="text-muted">Nama barang</p>
-                            <h4 class="card-title">Uninterruptible Power Supply (UPS)</h4>
-                            <span class="badge bg-light-danger float-start">Belum Dilabeli</span>
-                            <span class="badge bg-light-primary mx-2">PM NON TIK</span>
+                            <h4 class="card-title"><?= $bmn['nama_barang']; ?></h4>
+                            <span class="badge  <?php if ($bmn['label_kode'] == null || $bmn['label_kode'] == 'B') {
+                                                    echo 'bg-light-danger';
+                                                } else {
+                                                    echo 'bg-light-success';
+                                                } ?> float-start"><?php if ($bmn['label_kode'] == null || $bmn['label_kode'] == 'B') {
+                                                                        echo 'Belum';
+                                                                    } else {
+                                                                        echo 'Sudah';
+                                                                    } ?> Dilabeli</span>
+                            <span class="badge bg-light-primary mx-2"><?= $bmn['ur_akun']; ?></span>
                         </div>
                         <div class="col-md-6">
                             <div class="mt-3 mt-md-0 float-md-end">
-                                <button class="btn btn-outline-primary">Update Status Labelisasi</button>
+                                <a href="<?= base_url('/updateStatusLabel/' . $bmn['id']); ?>" class="btn btn-outline-primary">Update Status Labelisasi</a>
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-cetak">Cetak Label</button>
                             </div>
                         </div>
@@ -47,48 +55,92 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <h6>Kode Barang</h6>
-                                <p class="text-muted">3060101048</p>
+                                <p class="text-muted"><?= $bmn['kd_barang']; ?></p>
 
                                 <h6>Tahun Perolehan</h6>
-                                <p class="text-muted">2019</p>
+                                <p class="text-muted"><?= $bmn['thn_perolehan']; ?></p>
 
                                 <h6>Nomor Urut Pendaftaran</h6>
-                                <p class="text-muted">1</p>
+                                <p class="text-muted"><?= $bmn['nup']; ?></p>
 
                                 <h6>Merek/tipe</h6>
-                                <p class="text-muted">UPS 602B</p>
+                                <p class="text-muted"><?= $bmn['merk_tipe']; ?></p>
 
                                 <h6>Kuantitas</h6>
-                                <p class="text-muted">10</p>
+                                <p class="text-muted"><?= $bmn['kuantitas']; ?></p>
                             </div>
                             <div class="col-sm-4">
                                 <h6>Nilai BMN</h6>
-                                <p class="text-muted">Rp. 3.355.000</p>
+                                <p class="text-muted">Rp. <?= $bmn['nilai_bmn']; ?></p>
 
                                 <h6>Kondisi Barang</h6>
-                                <p class="text-muted"><span class="badge bg-light-warning">Rusak Ringan</span></p>
+
+                                <p class="text-muted"><span class="badge  <?php if ($bmn['kondisi_brg'] == 'B') {
+                                                                                echo 'bg-light-success';
+                                                                            } else if ($bmn['kondisi_brg'] == 'RR') {
+                                                                                echo 'bg-light-warning';
+                                                                            } else {
+                                                                                echo 'bg-light-danger';
+                                                                            } ?>"> <?php if ($bmn['kondisi_brg'] == 'B') {
+                                                                                        echo 'Baik';
+                                                                                    } else if ($bmn['kondisi_brg'] == 'RR') {
+                                                                                        echo 'Rusak Ringan';
+                                                                                    } else {
+                                                                                        echo 'Rusak Berat';
+                                                                                    } ?></span></p>
+
+                                <h6>Pelebelan Kodefikasi</h6>
+                                <p class="text-muted"><span class="badge  <?php if ($bmn['label_kode'] == 'S') {
+                                                                                echo 'bg-light-success';
+                                                                            } else {
+                                                                                echo 'bg-light-danger';
+                                                                            } ?>"><?php if ($bmn['label_kode'] == 'S') {
+                                                                                        echo 'Sudah Dilabeli';
+                                                                                    } else {
+                                                                                        echo 'Belum Dilabeli';
+                                                                                    } ?></span></p>
 
                                 <h6>Keberadaan Barang</h6>
-                                <p class="text-muted"><span class="badge bg-light-success">Barang Ditemukan</span></p>
+                                <p class="text-muted"><span class="badge <?php if ($bmn['kbrdn_brg'] == 'BD') {
+                                                                                echo 'bg-light-success';
+                                                                            } else if ($bmn['kbrdn_brg'] == 'BR') {
+                                                                                echo 'bg-light-warning';
+                                                                            } else {
+                                                                                echo 'bg-light-danger';
+                                                                            } ?>"><?php if ($bmn['kbrdn_brg'] == 'BD') {
+                                                                                        echo 'Barang Ditemukan';
+                                                                                    } else if ($bmn['kbrdn_brg'] == 'BR') {
+                                                                                        echo 'Barang Berlebih';
+                                                                                    } else {
+                                                                                        echo 'Barang Tidak Ditemukan';
+                                                                                    } ?></span></p>
 
                                 <h6>Nama Pegawai Pengguna Barang</h6>
-                                <p class="text-muted">Budiman</p>
-
-                                <h6>Nama Gedung</h6>
-                                <p class="text-muted">Fakultas Sains dan Teknologi</p>
+                                <p class="text-muted"><?= $bmn['pegawai_id']; ?></p>
                             </div>
                             <div class="col-sm-4">
+                                <h6>Nama Gedung</h6>
+                                <p class="text-muted"><?= $bmn['gedung_id']; ?></p>
+
                                 <h6>Nama Ruangan</h6>
-                                <p class="text-muted">Lab ICT 001</p>
+                                <p class="text-muted"><?= $bmn['ruangan_id']; ?></p>
 
                                 <h6>Status PSP</h6>
-                                <p class="text-muted"><span class="badge bg-light-success">Sudah</span></p>
+                                <p class="text-muted"><span class="badge  <?php if ($bmn['status_psp'] == 'S') {
+                                                                                echo 'bg-light-success';
+                                                                            } else {
+                                                                                echo 'bg-light-danger';
+                                                                            } ?>"> <?php if ($bmn['status_psp'] == 'S') {
+                                                                                        echo 'Sudah';
+                                                                                    } else {
+                                                                                        echo 'Belum';
+                                                                                    } ?></span></p>
 
                                 <h6>Nama Sub Satuan Kerja</h6>
-                                <p class="text-muted">Tata Usaha</p>
+                                <p class="text-muted"><?= $bmn['subsatker_id']; ?></p>
 
                                 <h6>Keterangan</h6>
-                                <p class="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut provident vel magni, fuga nulla nihil!</p>
+                                <p class="text-muted"><?= $bmn['ket']; ?></p>
                             </div>
                         </div>
                     </div>

@@ -60,13 +60,46 @@
                                 <p class="text-muted">Rp. <?= $bmn['nilai_bmn']; ?></p>
 
                                 <h6>Kondisi Barang</h6>
-                                <p class="text-muted"><span class="badge bg-light-warning"><?= $bmn['kondisi_brg']; ?></span></p>
+
+                                <p class="text-muted"><span class="badge  <?php if ($bmn['kondisi_brg'] == 'B') {
+                                                                                echo 'bg-light-success';
+                                                                            } else if ($bmn['kondisi_brg'] == 'RR') {
+                                                                                echo 'bg-light-warning';
+                                                                            } else {
+                                                                                echo 'bg-light-danger';
+                                                                            } ?>"> <?php if ($bmn['kondisi_brg'] == 'B') {
+                                                                                        echo 'Baik';
+                                                                                    } else if ($bmn['kondisi_brg'] == 'RR') {
+                                                                                        echo 'Rusak Ringan';
+                                                                                    } else {
+                                                                                        echo 'Rusak Berat';
+                                                                                    } ?></span></p>
 
                                 <h6>Pelebelan Kodefikasi</h6>
-                                <p class="text-muted"><span class="badge bg-light-danger"><?= $bmn['label_kode']; ?></span></p>
+                                <p class="text-muted"><span class="badge  <?php if ($bmn['label_kode'] == 'S') {
+                                                                                echo 'bg-light-success';
+                                                                            } else {
+                                                                                echo 'bg-light-danger';
+                                                                            } ?>"><?php if ($bmn['label_kode'] == 'S') {
+                                                                                        echo 'Sudah Dilabeli';
+                                                                                    } else {
+                                                                                        echo 'Belum Dilabeli';
+                                                                                    } ?></span></p>
 
                                 <h6>Keberadaan Barang</h6>
-                                <p class="text-muted"><span class="badge bg-light-success"><?= $bmn['kbrdn_brg']; ?></span></p>
+                                <p class="text-muted"><span class="badge <?php if ($bmn['kbrdn_brg'] == 'BD') {
+                                                                                echo 'bg-light-success';
+                                                                            } else if ($bmn['kbrdn_brg'] == 'BR') {
+                                                                                echo 'bg-light-warning';
+                                                                            } else {
+                                                                                echo 'bg-light-danger';
+                                                                            } ?>"><?php if ($bmn['kbrdn_brg'] == 'BD') {
+                                                                                        echo 'Barang Ditemukan';
+                                                                                    } else if ($bmn['kbrdn_brg'] == 'BR') {
+                                                                                        echo 'Barang Berlebih';
+                                                                                    } else {
+                                                                                        echo 'Barang Tidak Ditemukan';
+                                                                                    } ?></span></p>
 
                                 <h6>Nama Pegawai Pengguna Barang</h6>
                                 <p class="text-muted"><?= $bmn['pegawai_id']; ?></p>
@@ -79,7 +112,15 @@
                                 <p class="text-muted"><?= $bmn['ruangan_id']; ?></p>
 
                                 <h6>Status PSP</h6>
-                                <p class="text-muted"><span class="badge bg-light-success"><?= $bmn['status_psp']; ?></span></p>
+                                <p class="text-muted"><span class="badge  <?php if ($bmn['label_kode'] == 'S') {
+                                                                                echo 'bg-light-success';
+                                                                            } else {
+                                                                                echo 'bg-light-danger';
+                                                                            } ?>"> <?php if ($bmn['label_kode'] == 'S') {
+                                                                                        echo 'Sudah';
+                                                                                    } else {
+                                                                                        echo 'Belum';
+                                                                                    } ?></span></p>
 
                                 <h6>Nama Sub Satuan Kerja</h6>
                                 <p class="text-muted"><?= $bmn['subsatker_id']; ?></p>

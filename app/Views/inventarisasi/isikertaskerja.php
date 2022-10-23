@@ -1,8 +1,8 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<?php if ($data_bmn != null) : ?>
-    <?php if ($data_bmn['satker_id'] == session('satker_id')) : ?>
+<?php if ($bmn != null) : ?>
+    <?php if ($bmn['satker_id'] == session('satker_id')) : ?>
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
@@ -28,8 +28,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <p class="text-muted">Nama barang</p>
-                                    <h4 class="card-title"><?= $data_bmn['nama_barang']; ?></h4>
-                                    <span class="badge bg-light-primary"><?= $data_bmn['ur_akun']; ?></span>
+                                    <h4 class="card-title"><?= $bmn['nama_barang']; ?></h4>
+                                    <span class="badge bg-light-primary"><?= $bmn['ur_akun']; ?></span>
                                     <span>Nama Unit Satker: <?= $nama_satker; ?></span>
                                 </div>
                                 <div class="col-md-6 d-none d-md-block">
@@ -45,24 +45,24 @@
                                     <p class="text-muted">Detail</p>
                                     <div class="col-sm-4">
                                         <h6>Kode Barang</h6>
-                                        <p class="text-muted"><?= $data_bmn['kd_barang']; ?></p>
+                                        <p class="text-muted"><?= $bmn['kd_barang']; ?></p>
 
                                         <h6>Tahun Perolehan</h6>
-                                        <p class="text-muted"><?= $data_bmn['thn_perolehan']; ?></p>
+                                        <p class="text-muted"><?= $bmn['thn_perolehan']; ?></p>
                                     </div>
                                     <div class="col-sm-4">
                                         <h6>Nomor Urut Pendaftaran</h6>
-                                        <p class="text-muted"><?= $data_bmn['nup']; ?></p>
+                                        <p class="text-muted"><?= $bmn['nup']; ?></p>
 
                                         <h6>Merek/tipe</h6>
-                                        <p class="text-muted"><?= $data_bmn['merk_tipe']; ?></p>
+                                        <p class="text-muted"><?= $bmn['merk_tipe']; ?></p>
                                     </div>
                                     <div class="col-sm-4">
                                         <h6>Kuantitas</h6>
-                                        <p class="text-muted"><?= $data_bmn['kuantitas']; ?></p>
+                                        <p class="text-muted"><?= $bmn['kuantitas']; ?></p>
 
                                         <h6>Nilai BMN</h6>
-                                        <p class="text-muted">Rp. <?= $data_bmn['nilai_bmn']; ?></p>
+                                        <p class="text-muted">Rp. <?= $bmn['nilai_bmn']; ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -74,47 +74,66 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <p class="text-muted">Isi Data</p>
-                                    <h4 class="card-title"><?= $data_bmn['nama_barang']; ?></h4>
+                                    <h4 class="card-title"><?= $bmn['nama_barang']; ?></h4>
                                 </div>
                             </div>
                         </div>
 
                         <div class="card-content">
-                            <form action="" method="" class="card-body">
+                            <form action="<?= base_url('/isikertaskerja-add'); ?>" method="post" class="card-body" enctype="multipart/form-data">
+                                <input type="hidden" name="id_bmn" value="<?= $bmn['id']; ?>">
+                                <input type="hidden" name="tipe_akun" value="<?= $bmn['ur_akun'];  ?>">
+
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="mb-5">
                                             <h6>Kondisi Barang <span class="text-danger">*</span></h6>
-                                            <input type="radio" class="btn-check" name="kondisi-barang" id="baik" autocomplete="off" />
+                                            <input type="radio" class="btn-check" name="kondisi-barang" id="baik" value="B" <?php if ($bmn['kondisi_brg'] == 'B') {
+                                                                                                                                echo 'checked';
+                                                                                                                            } ?> autocomplete="off" />
                                             <label class="btn btn-sm btn-outline-success" for="baik">Baik</label>
 
-                                            <input type="radio" class="btn-check" name="kondisi-barang" id="rusak-ringan" autocomplete="off" />
+                                            <input type="radio" class="btn-check" name="kondisi-barang" id="rusak-ringan" value="RR" <?php if ($bmn['kondisi_brg'] == 'RR') {
+                                                                                                                                            echo 'checked';
+                                                                                                                                        } ?> autocomplete="off" />
                                             <label class="btn btn-sm btn-outline-warning" for="rusak-ringan">Rusak Ringan</label>
 
-                                            <input type="radio" class="btn-check" name="kondisi-barang" id="rusak-berat" autocomplete="off" />
+                                            <input type="radio" class="btn-check" name="kondisi-barang" id="rusak-berat" value="RB" <?php if ($bmn['kondisi_brg'] == 'RB') {
+                                                                                                                                        echo 'checked';
+                                                                                                                                    } ?> autocomplete="off" />
                                             <label class="btn btn-sm btn-outline-danger" for="rusak-berat">Rusak Berat</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="mb-5">
                                             <h6>Keberadaan Barang <span class="text-danger">*</span></h6>
-                                            <input type="radio" class="btn-check" name="keberadaan-barang" id="ditemukan" autocomplete="off" />
+                                            <input type="radio" class="btn-check" name="keberadaan-barang" id="ditemukan" value="BD" <?php if ($bmn['kbrdn_brg'] == 'BD') {
+                                                                                                                                            echo 'checked';
+                                                                                                                                        } ?> autocomplete="off" />
                                             <label class="btn btn-sm btn-outline-success" for="ditemukan">Ditemukan</label>
+                                            <input type="radio" class="btn-check" name="keberadaan-barang" id="berlebih" value="BR" <?php if ($bmn['kbrdn_brg'] == 'BR') {
+                                                                                                                                        echo 'checked';
+                                                                                                                                    } ?> autocomplete="off" />
+                                            <label class="btn btn-sm btn-outline-warning" for="berlebih">Berlebih</label>
+                                            <input type="radio" class="btn-check" name="keberadaan-barang" id="tidak-ditemukan" value="BTD" <?php if ($bmn['kbrdn_brg'] == 'BTD') {
+                                                                                                                                                echo 'checked';
+                                                                                                                                            } ?> autocomplete="off" />
+                                            <label class="btn btn-sm btn-outline-danger" for="tidak-ditemukan">Tidak Ditemukan</label>
 
-                                            <input type="radio" class="btn-check" name="keberadaan-barang" id="tidak-ditemukan" autocomplete="off" />
-                                            <label class="btn btn-sm btn-outline-warning" for="tidak-ditemukan">Tidak Ditemukan</label>
 
-                                            <input type="radio" class="btn-check" name="keberadaan-barang" id="berlebih" autocomplete="off" />
-                                            <label class="btn btn-sm btn-outline-danger" for="berlebih">Berlebih</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="mb-5">
                                             <h6>Pelabelan Kodefikasi <span class="text-danger">*</span></h6>
-                                            <input type="radio" class="btn-check" name="pelabelan" id="sudah" autocomplete="off" />
+                                            <input type="radio" class="btn-check" name="pelabelan" id="sudah" value="S" <?php if ($bmn['label_kode'] == 'S') {
+                                                                                                                            echo 'checked';
+                                                                                                                        } ?> autocomplete="off" />
                                             <label class="btn btn-sm btn-outline-success" for="sudah">Sudah</label>
 
-                                            <input type="radio" class="btn-check" name="pelabelan" id="belum" autocomplete="off" />
+                                            <input type="radio" class="btn-check" name="pelabelan" id="belum" value="B" <?php if ($bmn['label_kode'] == 'B') {
+                                                                                                                            echo 'checked';
+                                                                                                                        } ?> autocomplete="off" />
                                             <label class="btn btn-sm btn-outline-danger" for="belum">Belum</label>
                                         </div>
                                     </div>
@@ -122,7 +141,7 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6 class="form-label">Nama Pegawai Pengguna Barang <span class="text-danger">*</span></h6>
+                                            <h6 class="form-label">Nama Pegawai Pengguna Barang (BELUM BISA)<span class="text-danger">*</span></h6>
                                             <div class="form-group">
                                                 <input type="text" name="" class="form-control" id="" placeholder="Cari pegawai ..." />
                                             </div>
@@ -130,7 +149,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Nama Gedung <span class="text-danger">*</span></h6>
+                                            <h6>Nama Gedung (BELUM BISA)<span class="text-danger">*</span></h6>
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="nama-gedung">
                                                     <option>- Satker -</option>
@@ -143,7 +162,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Nama Ruangan <span class="text-danger">*</span></h6>
+                                            <h6>Nama Ruangan (BELUM BISA)<span class="text-danger">*</span></h6>
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="nama-ruangan">
                                                     <option>- Ruangan -</option>
@@ -159,17 +178,21 @@
                                     <div class="col-sm-4">
                                         <div class="mb-5">
                                             <h6>Status PSP <span class="text-danger">*</span></h6>
-                                            <input type="radio" class="btn-check" name="status-psp" id="sudah-psp" autocomplete="off" />
+                                            <input type="radio" class="btn-check" name="status-psp" id="sudah-psp" value="S" <?php if ($bmn['status_psp'] == 'S') {
+                                                                                                                                    echo 'checked';
+                                                                                                                                } ?> autocomplete="off" />
                                             <label class="btn btn-sm btn-outline-success" for="sudah-psp">Sudah</label>
 
-                                            <input type="radio" class="btn-check" name="status-psp" id="belum-psp" autocomplete="off" />
+                                            <input type="radio" class="btn-check" name="status-psp" id="belum-psp" value="B" <?php if ($bmn['status_psp'] == 'B') {
+                                                                                                                                    echo 'checked';
+                                                                                                                                } ?> autocomplete=" off" />
                                             <label class="btn btn-sm btn-outline-danger" for="belum-psp">Belum</label>
                                         </div>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Nama Sub Satker <span class="text-danger">*</span></h6>
+                                            <h6>Nama Sub Satker (BELUM BISA)<span class="text-danger">*</span></h6>
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="nama-sub-satker">
                                                     <option>- Sub Satker -</option>
@@ -187,7 +210,7 @@
                                         <div class="mb-5">
                                             <h6>Keterangan</h6>
                                             <div class="form-group">
-                                                <textarea class="form-control" placeholder="Isi Keterangan" rows="7"></textarea>
+                                                <textarea class="form-control" name="ket" placeholder="Isi Keterangan" rows="7"><?= $bmn['ket']; ?></textarea>
                                             </div>
                                         </div>
                                     </div>

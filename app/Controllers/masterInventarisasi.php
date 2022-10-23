@@ -20,7 +20,7 @@ class masterInventarisasi extends BaseController
     {
         $satker_id = session('satker_id');
         $list_bmn = $this->masterBmnModel->getListBmnBySatkerId($satker_id);
-
+        $pmnontik = null;
         foreach ($list_bmn as $bmn) {
             if ($bmn['akun_id'] == 1) {
                 $pmnontik[] = $bmn;
@@ -37,7 +37,7 @@ class masterInventarisasi extends BaseController
     {
         $satker_id = session('satker_id');
         $list_bmn = $this->masterBmnModel->getListBmnBySatkerId($satker_id);
-
+        $pmtik = null;
         foreach ($list_bmn as $bmn) {
             if ($bmn['akun_id'] == 2) {
                 $pmtik[] = $bmn;
@@ -54,7 +54,7 @@ class masterInventarisasi extends BaseController
     {
         $satker_id = session('satker_id');
         $list_bmn = $this->masterBmnModel->getListBmnBySatkerId($satker_id);
-
+        $atb = null;
         foreach ($list_bmn as $bmn) {
             if ($bmn['akun_id'] == 3) {
                 $atb[] = $bmn;
@@ -71,7 +71,7 @@ class masterInventarisasi extends BaseController
     {
         $satker_id = session('satker_id');
         $list_bmn = $this->masterBmnModel->getListBmnBySatkerId($satker_id);
-
+        $atl = null;
         foreach ($list_bmn as $bmn) {
             if ($bmn['akun_id'] == 2) {
                 $atl[] = $bmn;
@@ -91,9 +91,33 @@ class masterInventarisasi extends BaseController
 
         $data = [
             'halaman' => 'isikertaskerja',
-            'data_bmn' => $data_bmn,
+            'bmn' => $data_bmn,
             'nama_satker' => $nama_satker['nama_satker']
         ];
         return view('inventarisasi/isikertaskerja', $data);
+    }
+
+    public function editkertaskerja()
+    {
+        $id_bmn = $this->request->getVar('id_bmn');
+        $tipe_akun = preg_replace('/[^A-Za-z0-9\-\(\) ]/', '', strtolower($this->request->getVar('tipe_akun')));
+
+        $kondisi_brg = $this->request->getVar('kondisi-barang');
+        $kbrdn_brg = $this->request->getVar('keberadaan-barang');
+        $pelabelan = $this->request->getVar('pelabelan');
+        $status_psp = $this->request->getVar('status-psp');
+
+        $ket = $this->request->getVar('ket');
+
+        $this->masterBmnModel->save([
+            'id' => $id_bmn,
+            'kondisi_brg' => $kondisi_brg,
+            'kbrdn_brg' => $kbrdn_brg,
+            'label_kode' => $pelabelan,
+            'status_psp' => $status_psp,
+            'ket' => $ket
+        ]);
+
+        return redirect()->to('/inv-' . $tipe_akun);
     }
 }

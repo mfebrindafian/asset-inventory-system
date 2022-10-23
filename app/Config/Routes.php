@@ -60,13 +60,16 @@ $routes->get('/inv-pmtik', 'masterInventarisasi::pmtik');
 $routes->get('/inv-atb', 'masterInventarisasi::atb');
 $routes->get('/inv-atl', 'masterInventarisasi::atl');
 $routes->get('/kertas-kerja/(:segment)', 'masterInventarisasi::kertaskerja/$1');
+$routes->post('/isikertaskerja-add', 'masterinventarisasi::editkertaskerja');
 
 
 $routes->get('/report-rekapitulasi', 'masterReport::rekapitulasi');
 $routes->get('/report-inventarisasi', 'masterReport::inventarisasi');
 
 $routes->get('/label', 'masterLabel::label');
-$routes->get('/detail-label', 'masterLabel::detaillabel');
+$routes->get('/detail-label/(:segment)', 'masterLabel::detaillabel/$1');
+
+$routes->get('/updateStatusLabel/(:segment)', 'masterLabel::updateStatusLabel/$1');
 
 
 

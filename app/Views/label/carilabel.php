@@ -42,96 +42,7 @@
                     <button class="btn btn-primary"><i class="bi bi-search"></i></button>
                 </div>
             </div>
-            <!-- <div class="row">
-                                             <div class="col-12">
-                                                  <div class="row">
-                                                       <div class="col-12 col-md-6">
-                                                            <div class="card">
-                                                                 <div class="row px-4 pt-4">
-                                                                      <div class="col-6">
-                                                                           <h4 class="card-title">Rak-Rak Penyimpan</h4>
-                                                                           <span>Nomor Urut Pendaftaran : 1</span>
-                                                                      </div>
-                                                                      <div class="col-6">
-                                                                           <span class="badge bg-light-danger float-end">Belum Dilabeli</span>
-                                                                      </div>
-                                                                 </div>
-                                                                 <div class="row px-4 pt-2 pb-4">
-                                                                      <div class="col-md-10 d-flex align-items-end">
-                                                                           <span class="badge bg-light-primary">PM NON TIK</span>
-                                                                      </div>
-                                                                      <div class="col-md-2 mt-3 mt-md-0 d-flex justify-content-end align-items-end">
-                                                                           <a href="<?= base_url('/detail-label') ?>" class="btn btn-outline-primary">Cetak</a>
-                                                                      </div>
-                                                                 </div>
-                                                            </div>
-                                                       </div>
-                                                       <div class="col-12 col-md-6">
-                                                            <div class="card">
-                                                                 <div class="row px-4 pt-4">
-                                                                      <div class="col-6">
-                                                                           <h4 class="card-title">Uninterruptible Power Supply (UPS)</h4>
-                                                                           <span>Nomor Urut Pendaftaran : 1</span>
-                                                                      </div>
-                                                                      <div class="col-6">
-                                                                           <span class="badge bg-light-danger float-end">Belum Dilabeli</span>
-                                                                      </div>
-                                                                 </div>
-                                                                 <div class="row px-4 pt-2 pb-4">
-                                                                      <div class="col-md-10 d-flex align-items-end">
-                                                                           <span class="badge bg-light-primary">PM NON TIK</span>
-                                                                      </div>
-                                                                      <div class="col-md-2 mt-3 mt-md-0 d-flex justify-content-end align-items-end">
-                                                                           <a href="<?= base_url('/detail-label') ?>" class="btn btn-outline-primary">Cetak</a>
-                                                                      </div>
-                                                                 </div>
-                                                            </div>
-                                                       </div>
-                                                       <div class="col-12 col-md-6">
-                                                            <div class="card">
-                                                                 <div class="row px-4 pt-4">
-                                                                      <div class="col-6">
-                                                                           <h4 class="card-title">Rak-Rak Penyimpan</h4>
-                                                                           <span>Nomor Urut Pendaftaran : 3</span>
-                                                                      </div>
-                                                                      <div class="col-6">
-                                                                           <span class="badge bg-light-success float-end"><i class="bi bi-check-lg"></i> Sudah Dilabeli</span>
-                                                                      </div>
-                                                                 </div>
-                                                                 <div class="row px-4 pt-2 pb-4">
-                                                                      <div class="col-md-10 d-flex align-items-end">
-                                                                           <span class="badge bg-light-primary">PM TIK</span>
-                                                                      </div>
-                                                                      <div class="col-md-2 mt-3 mt-md-0 d-flex justify-content-end align-items-end">
-                                                                           <a href="<?= base_url('/detail-label') ?>" class="btn btn-outline-primary">Cetak</a>
-                                                                      </div>
-                                                                 </div>
-                                                            </div>
-                                                       </div>
-                                                       <div class="col-12 col-md-6">
-                                                            <div class="card card-text placeholder-glow">
-                                                                 <div class="row px-4 pt-4">
-                                                                      <div class="col-6">
-                                                                           <span class="placeholder rounded col-12"></span><br />
-                                                                           <span class="placeholder rounded col-8"></span>
-                                                                      </div>
-                                                                      <div class="col-6">
-                                                                           <span class="float-end placeholder rounded col-4"></span>
-                                                                      </div>
-                                                                 </div>
-                                                                 <div class="row px-4 pt-4 pb-4">
-                                                                      <div class="col-md-10 d-flex align-items-end">
-                                                                           <span class="placeholder rounded col-2"></span>
-                                                                      </div>
-                                                                      <div class="col-md-2 mt-3 mt-md-0 d-flex justify-content-end align-items-end">
-                                                                           <span class="placeholder rounded col-2 col-md-12 py-3"></span>
-                                                                      </div>
-                                                                 </div>
-                                                            </div>
-                                                       </div>
-                                                  </div>
-                                             </div>
-                                        </div> -->
+
 
             <div class="row">
                 <div class="col-12">
@@ -152,24 +63,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="text-bold-500">1</td>
-                                                <td class="text-bold-500">Cermin Besar</td>
-                                                <td class="text-bold-500">1</td>
-                                                <td class="text-bold-500"><span class="badge bg-light-primary">PM NON TIK</span></td>
-                                                <td class="text-bold-500"><span class="badge bg-light-danger">Belum</span></td>
-                                                <td class="text-bold-500"><a href="<?= base_url('/detail-label') ?>" class="btn btn-sm btn-primary">Cetak</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-bold-500">2</td>
-                                                <td class="text-bold-500">Uninterruptible Power Supply (UPS)</td>
-                                                <td class="text-bold-500">2</td>
-                                                <td class="text-bold-500"><span class="badge bg-light-primary">PM TIK</span></td>
-                                                <td class="text-bold-500">
-                                                    <span class="badge bg-light-success">Sudah <i class="bi bi-check-lg p-0 m-0"></i> </span>
-                                                </td>
-                                                <td class="text-bold-500"><a href="<?= base_url('/detail-label') ?>" class="btn btn-sm btn-primary">Cetak</a></td>
-                                            </tr>
+                                            <?php $ke = 1 ?>
+                                            <?php if ($list_bmn != null) : ?>
+                                                <?php foreach ($list_bmn as $bmn) : ?>
+                                                    <tr>
+                                                        <td class="text-bold-500"><?= $ke++; ?></td>
+                                                        <td class="text-bold-500"><?= $bmn['nama_barang']; ?></td>
+                                                        <td class="text-bold-500"><?= $bmn['nup']; ?></td>
+                                                        <td class="text-bold-500"><span class="badge bg-light-primary"><?= $bmn['ur_akun']; ?></span></td>
+                                                        <td class="text-bold-500"><span class="badge <?php if ($bmn['label_kode'] == null || $bmn['label_kode'] == 'B') {
+                                                                                                            echo 'bg-light-danger';
+                                                                                                        } else {
+                                                                                                            echo 'bg-light-success';
+                                                                                                        } ?>"><?php if ($bmn['label_kode'] == null || $bmn['label_kode'] == 'B') {
+                                                                                                                    echo 'Belum';
+                                                                                                                } else {
+                                                                                                                    echo 'Sudah';
+                                                                                                                } ?></span></td>
+                                                        <td class="text-bold-500"><a href="<?= base_url('/detail-label/' . $bmn['id']) ?>" class="btn btn-sm btn-primary">Cetak</a></td>
+                                                    </tr>
+                                                <?php endforeach;  ?>
+                                            <?php endif;  ?>
+
                                         </tbody>
                                     </table>
                                 </div>

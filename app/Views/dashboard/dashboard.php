@@ -45,7 +45,7 @@
                                 <div class="card-body px-4 py-4-5">
                                     <div class="row">
                                         <div class="col-6">
-                                            <p class="text-muted">Unit Satker: <span class="font-bold satker-apa"></span></p>
+                                            <p class="text-muted">Unit Satker: <span class="font-bold satker-apa"><?= $nama_satker; ?></span></p>
                                             <p class="text-muted">Total barang: <span class="font-bold all"><?= $data_bmn['all'][$ke]; ?></span></p>
                                         </div>
                                         <div class="col-6">

@@ -109,7 +109,7 @@
                         </select>
                     </fieldset>
                     <!-- class="basic-filepond" -->
-                    <input class="with-validation-filepond" type="file" name="filekki" />
+                    <input type="file" name="filekki" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
