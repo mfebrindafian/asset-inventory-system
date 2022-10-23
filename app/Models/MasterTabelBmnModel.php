@@ -34,9 +34,11 @@ class masterTabelBmnModel extends Model
     public function getBmnByIdAkunSatkerId($akun_id, $satker_id)
     {
         return $this
-            ->table('tbl_bmn')
+            ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
             ->where('akun_id', $akun_id)
             ->where('satker_id', $satker_id)
+            ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+            ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
             ->get()
             ->getResultArray();
     }

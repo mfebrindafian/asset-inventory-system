@@ -169,6 +169,7 @@ class masterDashboard extends BaseController
         } else {
             $list_bmn = $this->masterBmnModel->getBmnByIdAkunSatkerId($akun_id, $satker_id);
         }
+       
         $data_bmn = null;
         if ($list_bmn != null) {
             if ($tipe == 'semua') {
