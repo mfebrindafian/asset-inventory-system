@@ -42,6 +42,8 @@ class masterDashboard extends BaseController
                     $all[$ke][] = $bmn;
                     if ($all[$ke] != null) {
                         $data_akun['all'][$ke] = count($all[$ke]);
+                    } else {
+                        $data_akun['all'][$ke] = 0;
                     }
                     if ($bmn['kondisi_brg'] == null) {
                         $belum[$ke][] = $bmn;
