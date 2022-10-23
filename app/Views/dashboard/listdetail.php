@@ -61,36 +61,29 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="text-bold-500">1</td>
-                                                <td>3030211008</td>
-                                                <td class="text-bold-500">Cermin Besar</td>
-                                                <td class="text-bold-500">2015</td>
-                                                <td class="text-bold-500">1</td>
-                                                <td class="text-bold-500">1</td>
-                                                <td class="text-bold-500"><span class="badge bg-light-danger">Belum diproses</span></td>
-                                                <td class="text-bold-500"><a href="<?= base_url('/detail-bmn-dashboard') ?>" class="btn btn-sm btn-primary">Detail</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-bold-500">2</td>
-                                                <td>3030211002</td>
-                                                <td class="text-bold-500">Rak-Rak Penyimpan</td>
-                                                <td class="text-bold-500">2015</td>
-                                                <td class="text-bold-500">2</td>
-                                                <td class="text-bold-500">1</td>
-                                                <td class="text-bold-500"><span class="badge bg-light-danger">Belum diproses</span></td>
-                                                <td class="text-bold-500"><a href="<?= base_url('/detail-bmn-dashboard') ?>" class="btn btn-sm btn-primary">Detail</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-bold-500">3</td>
-                                                <td>3030211001</td>
-                                                <td class="text-bold-500">Stopwatch</td>
-                                                <td class="text-bold-500">2015</td>
-                                                <td class="text-bold-500">3</td>
-                                                <td class="text-bold-500">10</td>
-                                                <td class="text-bold-500"><span class="badge bg-light-danger">Belum diproses</span></td>
-                                                <td class="text-bold-500"><a href="<?= base_url('/detail-bmn-dashboard') ?>" class="btn btn-sm btn-primary">Detail</a></td>
-                                            </tr>
+                                            <?php $ke = 1 ?>
+                                            <?php if ($list_bmn != null) : ?>
+                                                <?php foreach ($list_bmn as $bmn) : ?>
+                                                    <tr>
+                                                        <td class="text-bold-500"><?= $ke++; ?></td>
+                                                        <td><?= $bmn['kd_barang']; ?></td>
+                                                        <td class="text-bold-500"><?= $bmn['nama_barang']; ?></td>
+                                                        <td class="text-bold-500"><?= $bmn['thn_perolehan']; ?></td>
+                                                        <td class="text-bold-500"><?= $bmn['nup']; ?></td>
+                                                        <td class="text-bold-500"><?= $bmn['kuantitas']; ?></td>
+                                                        <td class="text-bold-500"><span class="badge <?php if ($bmn['kondisi_brg'] == null) {
+                                                                                                            echo 'bg-light-danger';
+                                                                                                        } else {
+                                                                                                            echo 'bg-light-success';
+                                                                                                        } ?>"><?php if ($bmn['kondisi_brg'] == null) {
+                                                                                                                    echo 'belum';
+                                                                                                                } else {
+                                                                                                                    echo 'sudah';
+                                                                                                                } ?> diproses</span></td>
+                                                        <td class="text-bold-500"><a href="<?= base_url('/detail-bmn-dashboard/' . $bmn['id']) ?>" class="btn btn-sm btn-primary">Detail</a></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
                                         </tbody>
                                     </table>
                                 </div>

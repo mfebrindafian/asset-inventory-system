@@ -45,8 +45,8 @@ $routes->get('/logout', 'masterAkses::logout');
 $routes->get('/dashboard-sibamira', 'masterDashboard::index');
 $routes->get('/APISatkerOnDashboard/(:segment)', 'masterDashboard::APISatkerOnDashboard/$1');
 
-$routes->get('/list-bmn-dashboard', 'masterDashboard::listBmnOnDashboard');
-$routes->get('/detail-bmn-dashboard', 'masterDashboard::detailBmnOnDashboard');
+$routes->get('/list-bmn-dashboard/(:segment)/(:segment)/(:segment)', 'masterDashboard::listBmnOnDashboard/$1/$2/$3');
+$routes->get('/detail-bmn-dashboard/(:segment)', 'masterDashboard::detailBmnOnDashboard/$1');
 
 $routes->get('/list-kki', 'masterKki::listkki');
 $routes->get('/detail-kki/(:segment)', 'masterKki::detailkki/$1');

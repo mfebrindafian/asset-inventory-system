@@ -161,17 +161,48 @@ class masterDashboard extends BaseController
         echo json_encode($data);
     }
 
-    public function listBmnOnDashboard()
+    public function listBmnOnDashboard($tipe, $akun_id, $satker_id)
     {
+
+        if ($satker_id == 'Semua') {
+            $list_bmn = $this->masterBmnModel->getBmnByIdAkun($akun_id);
+        } else {
+            $list_bmn = $this->masterBmnModel->getBmnByIdAkunSatkerId($akun_id, $satker_id);
+        }
+        $data_bmn = null;
+        if ($list_bmn != null) {
+            if ($tipe == 'semua') {
+                $data_bmn = $list_bmn;
+            } else if ($tipe == 'belum') {
+                foreach ($list_bmn as $bmn) {
+                    if ($bmn['kondisi_brg'] == null) {
+                        $data_bmn[] = $bmn;
+                    }
+                }
+            } else if ($tipe == 'sudah') {
+                foreach ($list_bmn as $bmn) {
+                    if ($bmn['kondisi_brg'] != null) {
+                        $data_bmn[] = $bmn;
+                    }
+                }
+            }
+        } else {
+            $data_bmn = null;
+        }
+
         $data = [
-            'halaman' => 'dashboard'
+            'halaman' => 'dashboard',
+            'list_bmn' => $data_bmn
         ];
+
         return view('dashboard/listdetail', $data);
     }
-    public function detailBmnOnDashboard()
+    public function detailBmnOnDashboard($id_bmn)
     {
+        $data_bmn = $this->masterBmnModel->getDataBmnById($id_bmn);
         $data = [
-            'halaman' => 'dashboard'
+            'halaman' => 'dashboard',
+            'bmn' => $data_bmn
         ];
         return view('dashboard/detail', $data);
     }
