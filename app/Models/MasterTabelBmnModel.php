@@ -17,6 +17,14 @@ class masterTabelBmnModel extends Model
             ->getResultArray();
     }
 
+    public function getAllBmnBySatker($satker_id)
+    {
+        return $this
+            ->table('tbl_bmn')
+            ->where('satker_id', $satker_id)
+            ->get()
+            ->getResultArray();
+    }
 
     public function getKodeBatch()
     {

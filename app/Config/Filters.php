@@ -42,7 +42,7 @@ class Filters extends BaseConfig
 
         'after' => [
             //'toolbar',
-            'authFilter'  => ['except' => ['/dashboard-sibamira', '/dashboard-sibamira/*', '/list-bmn-dashboard', '/list-bmn-dashboard/*', '/detail-bmn-dashboard', '/detail-bmn-dashboard/*', '/list-kki', '/detail-kki/*', '/import-kki', '/import-update-kki', '/hapus-batch/*', '/inv-pmnontik', '/inv-pmtik', '/inv-atb', '/inv-atl', '/kertas-kerja/*', '/report-rekapitulasi', '/report-inventarisasi', '/label', '/detail-label']],
+            'authFilter'  => ['except' => ['/dashboard-sibamira', '/dashboard-sibamira/*', '/list-bmn-dashboard', '/list-bmn-dashboard/*', '/detail-bmn-dashboard', '/detail-bmn-dashboard/*', '/list-kki', '/detail-kki/*', '/import-kki', '/import-update-kki', '/hapus-batch/*', '/inv-pmnontik', '/inv-pmtik', '/inv-atb', '/inv-atl', '/kertas-kerja/*', '/report-rekapitulasi', '/report-inventarisasi', '/label', '/detail-label', 'APISatkerOnDashboard/*']],
             // 'honeypot', 
             // 'secureheaders',
         ],

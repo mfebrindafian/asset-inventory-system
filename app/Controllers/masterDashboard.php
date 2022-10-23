@@ -26,8 +26,7 @@ class masterDashboard extends BaseController
 
     public function index()
     {
-        $satker_choose = $this->request->getVar('satker_choose');
-        d($satker_choose);
+
         $list_akun = $this->masterAkunModel->getAllAkun();
         $list_bmn = $this->masterBmnModel->getAllBmn();
 
@@ -75,10 +74,64 @@ class masterDashboard extends BaseController
             'list_akun' => $list_akun,
             'list_bmn' => $list_bmn,
             'data_bmn' => $data_akun,
-            'list_satker' => $list_satker
+            'list_satker' => $list_satker,
+            'nama_satker' => 'Semua'
         ];
 
         return view('dashboard/dashboard', $data);
+    }
+
+    public function APISatkerOnDashboard($satker_id)
+    {
+
+        $list_akun = $this->masterAkunModel->getAllAkun();
+        $list_bmn = $this->masterBmnModel->getAllBmnBySatker($satker_id);
+
+        for ($i = 1; $i <= count($list_akun); $i++) {
+        }
+        $ke = 1;
+        foreach ($list_akun as $akun) {
+
+            foreach ($list_bmn as $bmn) {
+                if ($bmn['akun_id'] == $ke) {
+                    $all[$ke][] = $bmn;
+                    if ($all[$ke] != null) {
+                        $data_akun['all'][$ke] = count($all[$ke]);
+                    }
+                    if ($bmn['kondisi_brg'] == null) {
+                        $belum[$ke][] = $bmn;
+                        if ($belum[$ke] != null) {
+                            $data_akun['belum'][$ke] = count($belum[$ke]);
+                            if ($data_akun['belum'][$ke] == $data_akun['all'][$ke]) {
+                                $data_akun['sudah'][$ke] = 0;
+                            }
+                        } else {
+                            $data_akun['belum'][$ke] = 0;
+                        }
+                    } else {
+                        $sudah[$ke][] = $bmn;
+                        if ($sudah[$ke] != null) {
+                            $data_akun['sudah'][$ke] = count($sudah[$ke]);
+                            if ($data_akun['sudah'][$ke] == $data_akun['all'][$ke]) {
+                                $data_akun['belum'][$ke] = 0;
+                            }
+                        } else {
+                            $data_akun['sudah'][$ke] = 0;
+                        }
+                    }
+                }
+            }
+            $ke++;
+        }
+        // dd($data_akun);
+        $list_satker = $this->masterSatkerModel->getAllSatker();
+        $nama_satker = $this->masterSatkerModel->getNamaSatker($satker_id);
+
+        $data = [
+            'data_bmn' => $data_akun,
+            'nama_satker' => $nama_satker['nama_satker']
+        ];
+        echo json_encode($data);
     }
 
     public function listBmnOnDashboard()
