@@ -30,7 +30,7 @@
                         <form method="" action="" class="col-md-5 py-1">
                             <div class="float-left">
                                 <div class="input-group">
-                                    <button type="button" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus mr-2"></i> Tambah</button>
+                                    <button type="button" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;" data-bs-toggle="modal" data-bs-target="#modal-tambah"><i class="fas fa-plus mr-2"></i> Tambah</button>
                                 </div>
                             </div>
                         </form>
@@ -71,7 +71,7 @@
                                             <td><?= $level['nama_level']; ?>
                                             <td><a href="<?= base_url('/editKelolaLevel/' . $level['id']) ?>" type="button" class="btn btn-info btn-xs tombol" style="background-color: #3c4b64; border:none;">Edit Hak Akses</a></td>
                                             <td>
-                                                <button id="btn-edit" type="button" class="btn btn-info btn-xs tombol" style="background-color: #2D95C9; border:none;" data-toggle="modal" data-id="<?= $level["id"] ?>" data-nama_level="<?= $level["nama_level"] ?>" data-target="#modal-edit"><i class="fas fa-pen"></i></button>
+                                                <button id="btn-edit" type="button" class="btn btn-info btn-xs tombol" style="background-color: #2D95C9; border:none;" data-toggle="modal" data-id="<?= $level["id"] ?>" data-nama_level="<?= $level["nama_level"] ?>" data-bs-toggle="modal" data-bs-target="#modal-edit"><i class="fas fa-pen"></i></button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -128,7 +128,7 @@
                                             <td class="sel">
                                                 <label for="view<?= $i; ?>" class="ikon-sel">
                                                     <input class="d-none" type="checkbox" name="view<?= $i; ?>" id="view<?= $i; ?>" <?= $list_menu[$i]['view_level'] == 'Y' ? 'checked' : ''; ?> />
-                                                    <i class="far <?= $list_menu[$i]['view_level'] == 'Y' ? 'fa-check-circle text-green' : 'fa-times-circle text-red'; ?>"></i>
+                                                    <i class="bi <?= $list_menu[$i]['view_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
                                                 </label>
                                             </td>
                                             <td class="sel sel-disabled">
@@ -154,44 +154,43 @@
                                                 <?php if ($list_submenu[$j]['is_active'] == 'N') {
                                                     $hiddenSubmenu = 'sembunyi';
                                                 } ?>
-
                                                 <tr class="<?= $hiddenSubmenu; ?>">
                                                     <td></td>
                                                     <td><?= $list_submenu[$j]['nama_submenu']; ?></td>
                                                     <td class="sel">
                                                         <label for="view_submenu<?= $j; ?>" class="ikon-sel">
                                                             <input class="d-none" type="checkbox" name="view_submenu<?= $j; ?>" id="view_submenu<?= $j; ?>" <?= $list_submenu[$j]['view_level'] == 'Y' ? 'checked' : ''; ?> />
-                                                            <i class="far <?= $list_submenu[$j]['view_level'] == 'Y' ? 'fa-check-circle text-green' : 'fa-times-circle text-red'; ?>"></i>
+                                                            <i class="bi <?= $list_submenu[$j]['view_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
                                                         </label>
                                                     </td>
                                                     <td class="sel">
                                                         <label for="add_submenu<?= $j; ?>" class="ikon-sel">
                                                             <input class="d-none" type="checkbox" name="add_submenu<?= $j; ?>" id="add_submenu<?= $j; ?>" <?= $list_submenu[$j]['add_level'] == 'Y' ? 'checked' : ''; ?> />
-                                                            <i class="far <?= $list_submenu[$j]['add_level'] == 'Y' ? 'fa-check-circle text-green' : 'fa-times-circle text-red'; ?>"></i>
+                                                            <i class="bi <?= $list_submenu[$j]['add_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
                                                         </label>
                                                     </td>
                                                     <td class="sel">
                                                         <label for="edit_submenu<?= $j; ?>" class="ikon-sel">
                                                             <input class="d-none" type="checkbox" name="edit_submenu<?= $j; ?>" id="edit_submenu<?= $j; ?>" <?= $list_submenu[$j]['edit_level'] == 'Y' ? 'checked' : ''; ?> />
-                                                            <i class="far <?= $list_submenu[$j]['edit_level'] == 'Y' ? 'fa-check-circle text-green' : 'fa-times-circle text-red'; ?>"></i>
+                                                            <i class="bi <?= $list_submenu[$j]['edit_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
                                                         </label>
                                                     </td>
                                                     <td class="sel">
                                                         <label for="delete_submenu<?= $j; ?>" class="ikon-sel">
                                                             <input class="d-none" type="checkbox" name="delete_submenu<?= $j; ?>" id="delete_submenu<?= $j; ?>" <?= $list_submenu[$j]['delete_level'] == 'Y' ? 'checked' : ''; ?> />
-                                                            <i class="far <?= $list_submenu[$j]['delete_level'] == 'Y' ? 'fa-check-circle text-green' : 'fa-times-circle text-red'; ?>"></i>
+                                                            <i class="bi <?= $list_submenu[$j]['delete_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
                                                         </label>
                                                     </td>
                                                     <td class="sel">
                                                         <label for="print_submenu<?= $j; ?>" class="ikon-sel">
                                                             <input class="d-none" type="checkbox" name="print_submenu<?= $j; ?>" id="print_submenu<?= $j; ?>" <?= $list_submenu[$j]['print_level'] == 'Y' ? 'checked' : ''; ?> />
-                                                            <i class="far <?= $list_submenu[$j]['print_level'] == 'Y' ? 'fa-check-circle text-green' : 'fa-times-circle text-red'; ?>"></i>
+                                                            <i class="bi <?= $list_submenu[$j]['print_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
                                                         </label>
                                                     </td>
                                                     <td class="sel">
                                                         <label for="upload_submenu<?= $j; ?>" class="ikon-sel">
                                                             <input class="d-none" type="checkbox" name="upload_submenu<?= $j; ?>" id="upload_submenu<?= $j; ?>" <?= $list_submenu[$j]['upload_level'] == 'Y' ? 'checked' : ''; ?> />
-                                                            <i class="far <?= $list_submenu[$j]['upload_level'] == 'Y' ? 'fa-check-circle text-green' : 'fa-times-circle text-red'; ?>"></i>
+                                                            <i class="bi <?= $list_submenu[$j]['upload_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
                                                         </label>
                                                     </td>
                                                 </tr>
@@ -228,7 +227,7 @@
             <form action="<?= base_url('/saveLevel') ?>" method="POST" class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Tambah Level</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -239,7 +238,7 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;">Simpan</button>
                 </div>
             </form>
@@ -256,8 +255,8 @@
                 <input type="text" name="id_level" id="id_level" class="d-none">
                 <div class="modal-header">
                     <h4 class="modal-title">Edit Level</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -267,7 +266,7 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;">Simpan</button>
                 </div>
             </form>
@@ -276,57 +275,44 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
+
+
+
+    <div class="modal fade text-left modal-borderless" id="modal-editt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Import KKI</h5>
+                    <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <form action="<?= base_url('/import-kki'); ?>" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <fieldset class="form-group">
+                            <select class="form-select" id="basicSelect" name="satker">
+                                <option>- Satker -</option>
+
+                            </select>
+                        </fieldset>
+                        <!-- class="basic-filepond" -->
+                        <input type="file" name="filekki" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
+                            <span>Batal</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary ml-1">
+                            <span>Import</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('input[type="checkbox"]').change(function() {
-            if ($(this).prop('checked') == true) {
-                $(this).siblings().addClass('fa-check-circle text-green').removeClass('fa-times-circle text-red')
-            } else if ($(this).prop('checked') == false) {
-                $(this).siblings().removeClass('fa-check-circle text-green').addClass('fa-times-circle text-red')
-            }
-        })
-    })
-</script>
 
-<script>
-    //Mengambil Data edit dengan menggunakan Jquery
-    $(document).on('click', '#btn-edit', function() {
-        $('#id_level').val($(this).data('id'));
-        $('#nama_level').val($(this).data('nama_level'));
-    })
-</script>
-
-<script>
-    $(document).ready(function() {
-        $('#modal-hakAkses').modal('show');
-    })
-</script>
-
-<script type="text/javascript">
-    $('#tabelData').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": true,
-        'ordering': false,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-        "pageLength": 10
-
-    });
-
-    $('#tabelData_wrapper').children().first().addClass('d-none')
-    $('.dataTables_paginate').addClass('Pager2').addClass('float-right')
-    $('.dataTables_info').addClass('text-sm text-gray py-2')
-    $('.dataTables_paginate').parent().parent().addClass('card-footer clearfix')
-
-    $(document).on('keyup', '#pencarian', function() {
-        $('#tabelData').DataTable().search(
-            $(this).val()
-        ).draw();
-    })
-</script>
 
 
 

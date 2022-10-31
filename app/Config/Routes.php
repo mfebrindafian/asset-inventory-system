@@ -72,6 +72,32 @@ $routes->get('/detail-label/(:segment)', 'masterLabel::detaillabel/$1');
 $routes->get('/updateStatusLabel/(:segment)', 'masterLabel::updateStatusLabel/$1');
 
 
+//Routes Ke views dan controller Sistem
+$routes->get('/kelolaLevel', 'masterSistem::kelolaLevel');
+//routes ke editKelolaMenu bagi level tertentu
+$routes->get('/editKelolaLevel/(:segment)', 'masterSistem::editKelolaLevel/$1');
+$routes->post('/updateKelolaLevel/(:segment)', 'masterSistem::updateKelolaLevel/$1');
+//routes ke save level baru yang dibuat
+$routes->post('/saveLevel', 'masterSistem::saveLevel');
+//routes ke update nama level yang ada di list
+$routes->post('/updateNamaLevel', 'masterSistem::updateNamaLevel');
+
+$routes->get('/kelolaMenu', 'masterSistem::kelolaMenu');
+$routes->get('/kelolaSubMenu', 'masterSistem::kelolaSubMenu');
+
+//Routes ke update dan controller sistem
+$routes->post('/updateMenu', 'masterSistem::updateMenu');
+$routes->post('/updateSubmenu', 'masterSistem::updateSubmenu');
+
+//Routes ke save dan controller sistem
+$routes->post('/saveMenu', 'masterSistem::saveMenu');
+$routes->post('/saveSubmenu', 'masterSistem::saveSubmenu');
+
+//routes ke switch level akun dan controller master akses
+$routes->post('/switchLevel', 'masterAkses::switchLevel');
+
+
+
 
 // $routes->post('/gantiPasswordDefault', 'masterAkses::gantiPasswordDefault');
 

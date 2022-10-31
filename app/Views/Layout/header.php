@@ -58,6 +58,21 @@
                         <li>
                             <hr class="dropdown-divider" />
                         </li>
+
+                        <li>
+                            <h6 class="dropdown-header">Level</h6>
+                        </li>
+                        <?php $list_level = session('list_user_level') ?>
+                        <?php foreach ($list_level as $list) : ?>
+                            <form action="<?= base_url('/switchLevel') ?>" method="POST">
+                                <li class="w-100 px-3 mb-2 text-center">
+                                    <input type="text" name="id" id="id" value="<?= $list['level_id']; ?>" class="d-none">
+                                    <button class="btn btn-sm btn-<?= ($list['level_id'] == session('level_id')) ? '' : 'outline-' ?>primary w-100"><?= $list['nama_level']; ?></button>
+                                </li>
+                            </form>
+                        <?php endforeach; ?>
+                        <hr class="dropdown-divider" />
+                        </li>
                         <li>
                             <a class="dropdown-item" href="<?= base_url('/logout') ?>"><i class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</a>
                         </li>

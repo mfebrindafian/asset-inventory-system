@@ -89,7 +89,7 @@ class masterAkses extends BaseController
         session()->set($data1);
 
 
-        return redirect()->to('/dashboard');
+        return redirect()->to('/dashboard-sibamira');
     }
 
     public function logout()

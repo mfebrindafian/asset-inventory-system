@@ -6,8 +6,6 @@ use CodeIgniter\Model;
 
 class MasterUserLevelModel extends Model
 {
-    protected $useTimestamps = true;
-    protected $useSoftDeletes = true;
     protected $table = 'user_level';
     protected $allowedFields = ['nama_level'];
 

@@ -35,6 +35,7 @@ class masterSistem extends BaseController
     public function kelolaLevel()
     {
         $data = [
+            'halaman' => 'sistem',
             'title' => 'Kelola Level',
             'menu' => 'Sistem',
             'subMenu' => 'Kelola Level',
@@ -57,6 +58,7 @@ class masterSistem extends BaseController
 
 
         $data = [
+            'halaman' => 'sistem',
             'title' => 'Kelola Level',
             'menu' => 'Sistem',
             'subMenu' => 'Kelola Level',
