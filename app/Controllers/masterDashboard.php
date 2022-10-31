@@ -28,12 +28,12 @@ class masterDashboard extends BaseController
     {
 
         $list_akun = $this->masterAkunModel->getAllAkun();
-        // if (session('level_id') == 3) {
-        //     $list_bmn = $this->masterBmnModel->getAllBmnBySatker(session('satker_id'));
-        // } else {
+        if (session('level_id') == 3) {
+            $list_bmn = $this->masterBmnModel->getAllBmnBySatker(session('satker_id'));
+        } else {
+            $list_bmn = $this->masterBmnModel->getAllBmn();
+        }
 
-        $list_bmn = $this->masterBmnModel->getAllBmn();
-        // }
 
         $ke = 1;
         foreach ($list_akun as $akun) {
@@ -68,7 +68,13 @@ class masterDashboard extends BaseController
                     }
                 }
             }
-            $check_null_akun = $this->masterBmnModel->getBmnByIdAkun($ke);
+            if (session('level_id') == 3) {
+                $check_null_akun = $this->masterBmnModel->getBmnByIdAkunBySatker($ke, session('satker_id'));
+            } else {
+                $check_null_akun = $this->masterBmnModel->getBmnByIdAkun($ke);
+            }
+
+
             if ($check_null_akun == null) {
                 $data_akun['all'][$ke] = 0;
                 $data_akun['belum'][$ke] = 0;
@@ -76,8 +82,16 @@ class masterDashboard extends BaseController
             }
             $ke++;
         }
-        // dd($data_akun);
+
+        $ke = 1;
+
         $list_satker = $this->masterSatkerModel->getAllSatker();
+
+        if (session('level_id') == 3) {
+            $nama_satker = $this->masterSatkerModel->getNamaSatker(session('satker_id'));
+        } else {
+            $nama_satker['nama_satker'] = 'Semua';
+        }
 
         $data = [
             'title' => 'Dashboard',
@@ -88,8 +102,9 @@ class masterDashboard extends BaseController
             'list_bmn' => $list_bmn,
             'data_bmn' => $data_akun,
             'list_satker' => $list_satker,
-            'nama_satker' => 'Semua'
+            'nama_satker' => $nama_satker['nama_satker']
         ];
+        // dd($data_akun);
 
         return view('dashboard/dashboard', $data);
     }
@@ -108,6 +123,7 @@ class masterDashboard extends BaseController
                 $ke++;
             }
         }
+
         $ke = 1;
         foreach ($list_akun as $akun) {
             foreach ($list_bmn as $bmn) {
@@ -141,7 +157,9 @@ class masterDashboard extends BaseController
                     }
                 }
             }
-            $check_null_akun = $this->masterBmnModel->getBmnByIdAkun($ke);
+
+            $check_null_akun = $this->masterBmnModel->getBmnByIdAkunBySatker($ke, session('satker_id'));
+
             if ($check_null_akun == null) {
                 $data_akun['all'][$ke] = 0;
                 $data_akun['belum'][$ke] = 0;
@@ -199,7 +217,8 @@ class masterDashboard extends BaseController
             'menu' => 'Dashboard',
             'subMenu' => '',
             'halaman' => 'dashboard',
-            'list_bmn' => $data_bmn
+            'list_bmn' => $data_bmn,
+            'satker_id' => $satker_id
         ];
 
         return view('dashboard/listdetail', $data);
@@ -214,6 +233,7 @@ class masterDashboard extends BaseController
             'halaman' => 'dashboard',
             'bmn' => $data_bmn
         ];
+   
         return view('dashboard/detail', $data);
     }
 }
