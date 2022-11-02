@@ -79,9 +79,10 @@ class masterReport extends BaseController
             $data_akun[$akun['id']]['nilai'] = 0;
             $data_akun[$akun['id']]['nama_akun'] = $akun['ur_akun'];
         }
-        $data_akun['total']['nama_jenis'] = $nama_jenis_rekapitulasi['jenis_rekapitulasi'];
+
         $data_akun['total']['jumlah'] = 0;
         $data_akun['total']['nilai'] = 0;
+        $data_akun['nama_jenis'] = $nama_jenis_rekapitulasi['jenis_rekapitulasi'];
 
         if ($list_bmn != null) {
             foreach ($list_akun as $akun) {
@@ -114,9 +115,10 @@ class masterReport extends BaseController
                 $data_akun[$akun['id']]['nilai'] = 0;
                 $data_akun[$akun['id']]['nama_akun'] = $akun['ur_akun'];
             }
-            $data_akun['total']['nama_jenis'] = $nama_jenis_rekapitulasi['jenis_rekapitulasi'];
+
             $data_akun['total']['jumlah'] = 0;
             $data_akun['total']['nilai'] = 0;
+            $data_akun['nama_jenis'] = $nama_jenis_rekapitulasi['jenis_rekapitulasi'];
         }
 
 
