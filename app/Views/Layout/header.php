@@ -1,10 +1,10 @@
+<?php $list_level = session('list_user_level') ?>
 <header class="mb-3">
     <nav class="navbar navbar-expand navbar-light navbar-top">
         <div class="container-fluid">
             <a href="#" class="burger-btn d-block">
                 <i class="bi bi-justify fs-3"></i>
             </a>
-
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -14,7 +14,14 @@
                         <div class="user-menu d-flex">
                             <div class="user-name text-end me-3">
                                 <h6 class="mb-0 text-gray-600">Muhammad Rizki</h6>
-                                <p class="mb-0 text-sm text-gray-600">Operator Unit Kerja</p>
+                                <p class="mb-0 text-sm text-gray-600">
+                                    <?php foreach ($list_level as $list) : ?>
+                                        <?php if ($list['level_id'] == session('level_id')) {
+                                            echo  ucwords($list['nama_level']);
+                                        }
+                                        ?>
+                                    <?php endforeach; ?>
+                                </p>
                             </div>
 
                             <div class="user-img d-flex align-items-center">
@@ -62,12 +69,11 @@
                         <li>
                             <h6 class="dropdown-header">Level</h6>
                         </li>
-                        <?php $list_level = session('list_user_level') ?>
                         <?php foreach ($list_level as $list) : ?>
                             <form action="<?= base_url('/switchLevel') ?>" method="POST">
                                 <li class="w-100 px-3 mb-2 text-center">
                                     <input type="text" name="id" id="id" value="<?= $list['level_id']; ?>" class="d-none">
-                                    <button class="btn btn-sm btn-<?= ($list['level_id'] == session('level_id')) ? '' : 'outline-' ?>primary w-100"><?= $list['nama_level']; ?></button>
+                                    <button class="btn btn-sm btn-<?= ($list['level_id'] == session('level_id')) ? '' : 'outline-' ?>primary w-100"><?= ucwords($list['nama_level']); ?></button>
                                 </li>
                             </form>
                         <?php endforeach; ?>
