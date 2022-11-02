@@ -1,6 +1,9 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
+<script src="<?= base_url('/assets/js/pages/jquery.min.js') ?>"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 <div class="page-title">
     <div class="row">
@@ -161,7 +164,7 @@
                 </button>
             </div>
             <div class="modal-body d-flex justify-content-center">
-                <table class="table table-bordered mb-0" style="width: 550px; min-width: 550px">
+                <table id="myTable" class="table table-bordered mb-0" style="width: 550px; min-width: 550px">
                     <thead>
                         <tr>
                             <th colspan="2" class="text-center">KEMENTERIAN PENDIDIKAN, KEBUDAYAAN, RISET DAN TEKNOLOGI</th>
@@ -172,19 +175,19 @@
                             <td rowspan="5" class="text-center"><img src="/assets/images/logo-unja.png" alt="logo unja" width="140" /></td>
                         </tr>
                         <tr>
-                            <td class="text-center">UNJA-023.17.1000.677565</td>
+                            <td class="text-center">UNJA-023.17.1000.677565.<?= $bmn['satker_id']; ?> << <?= $bmn['kd_barang']; ?></td>
                         </tr>
                         <tr>
-                            <td class="text-center">LABEL SEMENTARA INVENTARISASI 2022-2023</td>
+                            <td class="text-center">LABEL SEMENTARA INVENTARISASI <?= $bmn['thn_perolehan']; ?></td>
                         </tr>
                         <tr>
                             <td class="text-sm">
-                                <span class="text-left">Fakultas: Sains dan Teknologi</span>
-                                <span class="float-end">PM NON TIK</span>
+                                <span class="text-left">Fakultas: <?= $nama_satker; ?></span>
+                                <span class="float-end"><?= $bmn['ur_akun']; ?></span>
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-sm">No. Urut Inventarisasi BMN: 44</td>
+                            <td class="text-sm">No. Urut Inventarisasi BMN: <?= $bmn['nup']; ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -200,4 +203,15 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>
+
 <?= $this->endSection(); ?>

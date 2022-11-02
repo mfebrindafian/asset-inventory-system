@@ -4,15 +4,18 @@ namespace App\Controllers;
 
 use App\Models\masterTabelBmnModel;
 use App\Models\masterTabelAkunModel;
+use App\Models\masterSatkerModel;
 
 class masterLabel extends BaseController
 {
     protected $masterBmnModel;
     protected $masterAkunModel;
+    protected $masterSatkerModel;
     public function __construct()
     {
         $this->masterBmnModel = new MasterTabelBmnModel();
         $this->masterAkunModel = new MasterTabelAkunModel();
+        $this->masterSatkerModel = new MasterSatkerModel();
     }
 
     public function label()
@@ -32,14 +35,17 @@ class masterLabel extends BaseController
     public function detaillabel($id_bmn)
     {
         $data_bmn = $this->masterBmnModel->getDataBmnById($id_bmn);
+        $satker = $this->masterSatkerModel->getNamaSatker($data_bmn['satker_id']);
+
         $data = [
             'title' => 'Detail Label',
             'menu' => 'Cetak Label',
             'subMenu' => '',
             'halaman' => 'detaillabel',
-            'bmn' => $data_bmn
+            'bmn' => $data_bmn,
+            'nama_satker' => $satker['nama_satker']
         ];
-
+        // dd($data);
         return view('label/detaillabel', $data);
     }
     public function updateStatusLabel($id_bmn)
