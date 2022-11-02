@@ -50,6 +50,7 @@ class masterReport extends BaseController
     public function APIrekapitulasi($jenis_rekapitulasi_id, $satker_id)
     {
         $list_akun = $this->masterAkunModel->getAllAkun();
+        $nama_jenis_rekapitulasi = $this->masterTabelJenisRekapitulasiModel->getJenisRekapitulasiById($jenis_rekapitulasi_id);
 
 
         if ($jenis_rekapitulasi_id == 4) {
@@ -78,6 +79,7 @@ class masterReport extends BaseController
             $data_akun[$akun['id']]['nilai'] = 0;
             $data_akun[$akun['id']]['nama_akun'] = $akun['ur_akun'];
         }
+        $data_akun['total']['nama_jenis'] = $nama_jenis_rekapitulasi['jenis_rekapitulasi'];
         $data_akun['total']['jumlah'] = 0;
         $data_akun['total']['nilai'] = 0;
 
@@ -112,14 +114,15 @@ class masterReport extends BaseController
                 $data_akun[$akun['id']]['nilai'] = 0;
                 $data_akun[$akun['id']]['nama_akun'] = $akun['ur_akun'];
             }
+            $data_akun['total']['nama_jenis'] = $nama_jenis_rekapitulasi['jenis_rekapitulasi'];
             $data_akun['total']['jumlah'] = 0;
             $data_akun['total']['nilai'] = 0;
         }
 
 
 
-        $nama_jenis_rekapitulasi = $this->masterTabelJenisRekapitulasiModel->getJenisRekapitulasiById($jenis_rekapitulasi_id);
-        $akun_data[$nama_jenis_rekapitulasi['jenis_rekapitulasi']] = $data_akun;
-        echo json_encode($akun_data);
+
+
+        echo json_encode($data_akun);
     }
 }
