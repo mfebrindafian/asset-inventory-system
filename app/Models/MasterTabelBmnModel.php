@@ -144,4 +144,24 @@ class masterTabelBmnModel extends Model
             ->get()
             ->getRowArray();
     }
+
+    public function getAllBmnByKeberadaan($satker_id, $kbrdn_brg)
+    {
+        return $this
+            ->table('tbl_bmn')
+            ->where('satker_id', $satker_id)
+            ->where('kbrdn_brg', $kbrdn_brg)
+            ->get()
+            ->getResultArray();
+    }
+
+    public function getAllBmnByKondisi($satker_id, $kondisi_brg)
+    {
+        return $this
+            ->table('tbl_bmn')
+            ->where('satker_id', $satker_id)
+            ->where('kondisi_brg', $kondisi_brg)
+            ->get()
+            ->getResultArray();
+    }
 }

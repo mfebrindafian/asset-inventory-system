@@ -54,9 +54,7 @@ class masterKki extends BaseController
     public function detailkki($kd_batch)
     {
         $data_batch = $this->masterTabelBmnModel->getDataBatch($kd_batch);
-
         $list_akun = $this->masterTabelAkunModel->getAllAkun();
-
         $urBatch = 0;
         if ($data_batch != null) {
             $satker = $this->masterSatkerModel->getNamaSatker($data_batch[0]['satker_id']);
@@ -131,9 +129,6 @@ class masterKki extends BaseController
 
     public  function hapuskki($kd_batch)
     {
-        // $list_batch = $this->masterTabelBmnModel->getDataBatch($kd_batch);
-
-
         $this->masterTabelBmnModel->deleteBatch($kd_batch);
         return redirect()->to('/list-kki');
     }

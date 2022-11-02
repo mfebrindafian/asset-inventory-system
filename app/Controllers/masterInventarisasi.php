@@ -82,7 +82,7 @@ class masterInventarisasi extends BaseController
         $list_bmn = $this->masterBmnModel->getListBmnBySatkerId($satker_id);
         $atl = null;
         foreach ($list_bmn as $bmn) {
-            if ($bmn['akun_id'] == 2) {
+            if ($bmn['akun_id'] == 4) {
                 $atl[] = $bmn;
             }
         }
