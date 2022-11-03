@@ -66,24 +66,24 @@
                                                                                     echo 'bg-light-success';
                                                                                 } else if ($bmn['kondisi_brg'] == 'RR') {
                                                                                     echo 'bg-light-warning';
-                                                                                } else {
+                                                                                } else if ($bmn['kondisi_brg'] == 'RB') {
                                                                                     echo 'bg-light-danger';
                                                                                 } ?>"> <?php if ($bmn['kondisi_brg'] == 'B') {
                                                                                             echo 'Baik';
                                                                                         } else if ($bmn['kondisi_brg'] == 'RR') {
                                                                                             echo 'Rusak Ringan';
-                                                                                        } else {
+                                                                                        } else if ($bmn['kondisi_brg'] == 'RB') {
                                                                                             echo 'Rusak Berat';
                                                                                         } ?></span></p>
 
                                     <h6>Pelebelan Kodefikasi</h6>
                                     <p class="text-muted"><span class="badge  <?php if ($bmn['label_kode'] == 'S') {
                                                                                     echo 'bg-light-success';
-                                                                                } else {
+                                                                                } else if ($bmn['label_kode'] == 'B') {
                                                                                     echo 'bg-light-danger';
                                                                                 } ?>"><?php if ($bmn['label_kode'] == 'S') {
                                                                                             echo 'Sudah Dilabeli';
-                                                                                        } else {
+                                                                                        } else  if ($bmn['label_kode'] == 'B') {
                                                                                             echo 'Belum Dilabeli';
                                                                                         } ?></span></p>
 
@@ -92,14 +92,14 @@
                                                                                     echo 'bg-light-success';
                                                                                 } else if ($bmn['kbrdn_brg'] == 'BR') {
                                                                                     echo 'bg-light-warning';
-                                                                                } else {
+                                                                                } else if ($bmn['kbrdn_brg'] == 'BTD') {
                                                                                     echo 'bg-light-danger';
                                                                                 } ?>"><?php if ($bmn['kbrdn_brg'] == 'BD') {
                                                                                             echo 'Barang Ditemukan';
                                                                                         } else if ($bmn['kbrdn_brg'] == 'BR') {
                                                                                             echo 'Barang Berlebih';
-                                                                                        } else {
-                                                                                            echo 'Barang Tidak Ditemukan';
+                                                                                        } else if ($bmn['kbrdn_brg'] == 'BTD') {
+                                                                                            echo 'Barang Tidak Diketemukan';
                                                                                         } ?></span></p>
 
                                     <h6>Nama Pegawai Pengguna Barang</h6>
@@ -115,11 +115,11 @@
                                     <h6>Status PSP</h6>
                                     <p class="text-muted"><span class="badge  <?php if ($bmn['label_kode'] == 'S') {
                                                                                     echo 'bg-light-success';
-                                                                                } else {
+                                                                                } else if ($bmn['label_kode'] == 'B') {
                                                                                     echo 'bg-light-danger';
                                                                                 } ?>"> <?php if ($bmn['label_kode'] == 'S') {
                                                                                             echo 'Sudah';
-                                                                                        } else {
+                                                                                        } else if ($bmn['label_kode'] == 'B') {
                                                                                             echo 'Belum';
                                                                                         } ?></span></p>
 
