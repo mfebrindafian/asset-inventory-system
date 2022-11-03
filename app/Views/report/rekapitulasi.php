@@ -60,20 +60,28 @@
                         </div>
                     </div>
                     <div class="row mt-4">
-                        <div class="col-5">
+                        <div class=" <?= (session('level_id') == 3) ? 'position-absolute d-none' : 'col-sm-5' ?>">
                             <fieldset class="form-group">
                                 <select class="form-select" id="satker">
-                                    <option>- Satker -</option>
-                                    <option value="all"> Seluruh Satker</option>
                                     <?php if ($list_satker != null) : ?>
-                                        <?php foreach ($list_satker as $satker) : ?>
-                                            <option value="<?= $satker['id']; ?>"> <a href="/aa"><?= $satker['nama_satker']; ?></a></option>
-                                        <?php endforeach; ?>
+                                        <?php if (session('level_id') == 3) : ?>
+                                            <?php foreach ($list_satker as $satker) : ?>
+                                                <?php if ($satker['id'] == session('satker_id')) : ?>
+                                                    <option selected value="<?= $satker['id']; ?>"> <a href="/aa"><?= $satker['nama_satker']; ?></a></option>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php else : ?>
+                                            <option>- Satker -</option>
+                                            <option value="all"> Seluruh Satker</option>
+                                            <?php foreach ($list_satker as $satker) : ?>
+                                                <option value="<?= $satker['id']; ?>"> <a href="/aa"><?= $satker['nama_satker']; ?></a></option>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     <?php endif; ?>
                                 </select>
                             </fieldset>
                         </div>
-                        <div class="col-5">
+                        <div class="col-sm-5">
                             <fieldset class="form-group">
                                 <select class="form-select" id="jenis-rekapitulasi">
                                     <option value="" selected disabled>- Jenis Rekapitulasi -</option>

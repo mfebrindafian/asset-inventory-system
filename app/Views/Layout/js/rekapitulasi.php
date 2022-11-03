@@ -7,9 +7,11 @@
             $('#loaders').removeClass('d-none');
         }).ajaxStop(function() {
             $('#loaders').addClass('d-none')
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            })
         });
-
-
         tableRender()
     })
 
