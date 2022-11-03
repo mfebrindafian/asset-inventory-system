@@ -64,7 +64,7 @@
                             <fieldset class="form-group">
                                 <select class="form-select" id="satker">
                                     <option>- Satker -</option>
-                                    <option value="all"> Seluruh Satker</option>
+                                    <option value="all"><a href="/aa">Seluruh Satker</a></option>
                                     <?php if ($list_satker != null) : ?>
                                         <?php foreach ($list_satker as $satker) : ?>
                                             <option value="<?= $satker['id']; ?>"> <a href="/aa"><?= $satker['nama_satker']; ?></a></option>
