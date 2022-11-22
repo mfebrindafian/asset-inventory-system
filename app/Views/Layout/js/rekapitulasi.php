@@ -50,15 +50,15 @@
                     var trIsi = '';
                     if (tipe == 'simple') {
                         for (i = 1; i <= 4; i++) {
-                            trIsi += '<tr><td class="text-start">' + data[i]['nama_akun'] + '</td><td>' + data[i]['jumlah'] + '</td><td>' + rupiah(data[i]['nilai']) + '</td><td></td></tr>'
+                            trIsi += '<tr><td class="text-start">' + data[i]['nama_akun'] + '</td><td>' + data[i]['inv_jumlah'] + '</td><td>' + rupiah(data[i]['inv_nilai']) + '</td><td></td></tr>'
                         }
-                        var trTotal = '<tr><th>Total</th><th>' + data['total']['jumlah'] + '</th><th>' + rupiah(data['total']['nilai']) + '</th><th></th></tr>'
+                        var trTotal = '<tr><th>Total</th><th>' + data['total']['inv_jumlah'] + '</th><th>' + rupiah(data['total']['inv_nilai']) + '</th><th></th></tr>'
 
                     } else if (tipe == 'complex') {
                         for (i = 1; i <= 4; i++) {
-                            trIsi += '<tr><td class="text-start">' + data[i]['nama_akun'] + '</td><td></td><td></td><td>' + data[i]['jumlah'] + '</td><td>' + rupiah(data[i]['nilai']) + '</td><td></td><td></td><td></td></tr>'
+                            trIsi += '<tr><td class="text-start">' + data[i]['nama_akun'] + '</td><td>' + data[i]['adm_jumlah'] + '</td><td>' + rupiah(data[i]['adm_nilai']) + '</td><td>' + data[i]['inv_jumlah'] + '</td><td>' + rupiah(data[i]['inv_nilai']) + '</td><td>' + data[i]['selisih_jumlah'] + '</td><td>' + rupiah(data[i]['selisih_nilai']) + '</td><td></td></tr>'
                         }
-                        var trTotal = '<tr><th>Total</th><th></th><th></th><th>' + data['total']['jumlah'] + '</th><th>' + rupiah(data['total']['nilai']) + '<th></th><th></th><th></th></tr>'
+                        var trTotal = '<tr><th>Total</th><th>' + data['total']['adm_jumlah'] + '</th><th>' + rupiah(data['total']['adm_nilai']) + '</th><th>' + data['total']['inv_jumlah'] + '</th><th>' + rupiah(data['total']['inv_nilai']) + '</th><th>' + data['total']['selisih_jumlah'] + '</th><th>' + rupiah(data['total']['selisih_nilai']) + '</th><th></th></tr>'
 
                     }
                     if (tipe == 'simple') {

@@ -1,6 +1,13 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
+<style>
+    td,
+    th {
+        border: 1px solid black;
+        padding: 8px 10px 8px 10px;
+    }
+</style>
 
 <div class="page-title">
     <div class="row">
@@ -161,7 +168,7 @@
                 </button>
             </div>
             <div class="modal-body d-flex justify-content-center">
-                <table id="label" class="table table-bordered mb-0" style="width: 550px; min-width: 550px">
+                <table id="label" class=" mb-0 border-0" style="width: 550px; min-width: 550px; border: 1px solid black;">
                     <thead>
                         <tr>
                             <th colspan="2" class="text-center">KEMENTERIAN PENDIDIKAN, KEBUDAYAAN, RISET DAN TEKNOLOGI</th>
@@ -169,7 +176,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td rowspan="5" style="z-index: 1200;" class="text-center"><img src="/assets/images/logo-unja.png" alt="logo unja" width="140" /></td>
+                            <td rowspan="5" class="text-center"><img src="/assets/images/logo-unja.png" alt="logo unja" width="140" /></td>
                         </tr>
                         <tr>
                             <td class="text-center">UNJA-023.17.1000.677565.<?= $bmn['satker_id']; ?> <?= $bmn['kd_barang']; ?></td>
@@ -193,7 +200,7 @@
                 <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
                     <span>Batal</span>
                 </button>
-                <button type="submit" id="cetak" onclick="Export()" class="btn btn-primary ml-1">
+                <button type="submit" id="cetak" class="btn btn-primary ml-1">
                     <span>Cetak</span>
                 </button>
             </div>
