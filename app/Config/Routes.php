@@ -64,6 +64,7 @@ $routes->post('/isikertaskerja-add', 'masterinventarisasi::editkertaskerja');
 
 
 $routes->get('/report-rekapitulasi', 'masterReport::rekapitulasi');
+$routes->post('/cetak-rekapitulasi', 'masterReport::cetakRekapitulasi');
 
 
 $routes->get('/APIrekapitulasi/(:segment)/(:segment)', 'masterReport::APIrekapitulasi/$1/$2');

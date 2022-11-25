@@ -76,6 +76,28 @@ class masterTabelBmnModel extends Model
         }
     }
 
+    public function getAllBmnByDoneInven($satker_id)
+    {
+        if ($satker_id == 'all') {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('tbl_bmn.kondisi_brg !=', null)
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        } else {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('satker_id', $satker_id)
+                ->where('tbl_bmn.kondisi_brg !=', null)
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        }
+    }
+
     public function getKodeBatch()
     {
         do {

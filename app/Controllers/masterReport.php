@@ -6,6 +6,8 @@ use App\Models\masterSatkerModel;
 use App\Models\masterTabelBmnModel;
 use App\Models\masterTabelJenisRekapitulasiModel;
 use App\Models\masterTabelAkunModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class masterReport extends BaseController
 {
@@ -123,7 +125,7 @@ class masterReport extends BaseController
 
         //pengkondisian untuk tipe barang sebelum dan sesudah inventarisasi
         if ($jenis_rekapitulasi_id == 1) {
-            $list_bmn = $this->masterBmnModel->getAllBmnBySatker($satker_id);
+            $list_bmn = $this->masterBmnModel->getAllBmnByDoneInven($satker_id);
         }
         //batas pengkondisian untuk tipe barang ditemukan, barang tidak ditemukan, barang berlebih
 
@@ -190,5 +192,56 @@ class masterReport extends BaseController
         //batas pengecekan selisih
 
         echo json_encode($data_akun);
+    }
+
+
+    public function cetakRekapitulasi()
+    {
+        // $satker_id = $this->request->getVar('satker');
+        $satker_id = session('satker_id');
+        $all_bmn = $this->masterBmnModel->getAllBmnBySatker($satker_id);
+        if ($all_bmn != null) {
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+
+            $sheet->setCellValue('A1', 'Lampiran Berita Acara Hasil Inventarisasi BMN');
+            $sheet->setCellValue('A2', 'Nomor');
+            $sheet->setCellValue('B2', ':');
+            $sheet->setCellValue('A3', 'Tanggal');
+            $sheet->setCellValue('B3', ':');
+            $sheet->setCellValue('C3', date('d-m-Y'));
+
+            $sheet->setCellValue('A5', 'A. REKAPITULASI LAPORAN ASIL INVENTARISASI BMN');
+            $sheet->setCellValue('A6', '1. rEKAPITULASI HASIL IVENTARISASI SEBELUM DAN SESUDAH INVENTARISASI');
+            //untuk tabel sesudah dan sebelum 
+            $sbsd_bmn = $this->masterBmnModel->getAllBmnByDoneInven($satker_id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // Set judul file excel nya
+            $sheet->setTitle("Laporan Pegawai");
+            $nama_file = 'Laporan';
+            // Proses file excel
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment; filename="' . $nama_file . '.xlsx"'); // Set nama file excel nya
+            header('Cache-Control: max-age=0');
+            $writer = new Xlsx($spreadsheet);
+            ob_end_clean();
+            $writer->save('php://output');
+            exit();
+        }
     }
 }

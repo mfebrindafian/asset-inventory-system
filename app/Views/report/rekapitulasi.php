@@ -24,7 +24,7 @@
                 <div class="card-content">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12">
+                            <form action="<?= base_url('/cetak-rekapitulasi'); ?>" method="POST" class="col-12">
                                 <h5 class="mb-3">Cetak rekapitulasi laporan hasil inventarisasi BMN</h5>
                                 <?php if (session('level_id') == 2) :  ?>
                                     <fieldset class="form-group">
@@ -45,7 +45,7 @@
                                     </span>
                                 <?php endif; ?>
                                 <button class="btn btn-primary w-100">Download</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
