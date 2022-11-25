@@ -34,7 +34,7 @@ class masterKki extends BaseController
                 $data_batch[] = [
                     'kd_batch' => $bmn['kd_batch'],
                     'jml_perKdBatch' => count($this->masterTabelBmnModel->getJmlBatch($bmn['kd_batch'])),
-                    'nama_satker' => $satker['nama_satker']
+                    'nama_satker' => $satker['nama_ref_unit_kerja_lengkap']
                 ];
             }
         } else {
@@ -75,7 +75,7 @@ class masterKki extends BaseController
             'subMenu' => '',
             'halaman' => 'kki',
             'kd_batch' => $kd_batch,
-            'nama_satker' => $satker['nama_satker'],
+            'nama_satker' => $satker['nama_ref_unit_kerja_lengkap'],
             'data_bmn' => $bmn
 
         ];
@@ -86,6 +86,7 @@ class masterKki extends BaseController
     {
         $file = $this->request->getFile('filekki');
         $satker = $this->request->getVar('satker');
+        dd($satker);
         $kd_batch = $this->masterTabelBmnModel->getKodeBatch();
         $extension = $file->getClientExtension();
         if ($extension == 'xlsx' || $extension == 'xls') {

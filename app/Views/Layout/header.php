@@ -13,7 +13,7 @@
                     <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="user-menu d-flex">
                             <div class="user-name text-end me-3">
-                                <h6 class="mb-0 text-gray-600">Muhammad Rizki</h6>
+                                <h6 class="mb-0 text-gray-600"><?= session('nama_pegawai'); ?></h6>
                                 <p class="mb-0 text-sm text-gray-600">
                                     <?php foreach ($list_level as $list) : ?>
                                         <?php if ($list['level_id'] == session('level_id')) {

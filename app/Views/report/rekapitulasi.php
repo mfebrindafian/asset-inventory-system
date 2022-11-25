@@ -33,7 +33,7 @@
                                             <option>Seluruh Satker</option>
                                             <?php if ($list_satker != null) : ?>
                                                 <?php foreach ($list_satker as $satker) : ?>
-                                                    <option value="<?= $satker['id']; ?>"> <a href="/aa"><?= $satker['nama_satker']; ?></a></option>
+                                                    <option value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </select>
@@ -66,15 +66,15 @@
                                     <?php if ($list_satker != null) : ?>
                                         <?php if (session('level_id') == 3) : ?>
                                             <?php foreach ($list_satker as $satker) : ?>
-                                                <?php if ($satker['id'] == session('satker_id')) : ?>
-                                                    <option selected value="<?= $satker['id']; ?>"> <a href="/aa"><?= $satker['nama_satker']; ?></a></option>
+                                                <?php if ($satker['id_ref_unit_kerja'] == session('satker_id')) : ?>
+                                                    <option selected value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
                                         <?php else : ?>
                                             <option>- Satker -</option>
                                             <option value="all"> Seluruh Satker</option>
                                             <?php foreach ($list_satker as $satker) : ?>
-                                                <option value="<?= $satker['id']; ?>"> <a href="/aa"><?= $satker['nama_satker']; ?></a></option>
+                                                <option value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     <?php endif; ?>

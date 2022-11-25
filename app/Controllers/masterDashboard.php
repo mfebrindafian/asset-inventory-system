@@ -90,7 +90,7 @@ class masterDashboard extends BaseController
         if (session('level_id') == 3) {
             $nama_satker = $this->masterSatkerModel->getNamaSatker(session('satker_id'));
         } else {
-            $nama_satker['nama_satker'] = 'Semua';
+            $nama_satker['nama_ref_unit_kerja_lengkap'] = 'Semua';
         }
 
         $data = [
@@ -102,7 +102,7 @@ class masterDashboard extends BaseController
             'list_bmn' => $list_bmn,
             'data_bmn' => $data_akun,
             'list_satker' => $list_satker,
-            'nama_satker' => $nama_satker['nama_satker']
+            'nama_satker' => $nama_satker['nama_ref_unit_kerja_lengkap']
         ];
         // dd($data_akun);
 
@@ -114,6 +114,7 @@ class masterDashboard extends BaseController
 
         $list_akun = $this->masterAkunModel->getAllAkun();
         $list_bmn = $this->masterBmnModel->getAllBmnBySatker($satker_id);
+
         if ($list_bmn == null) {
             $ke = 1;
             foreach ($list_akun as $akun) {
@@ -123,6 +124,7 @@ class masterDashboard extends BaseController
                 $ke++;
             }
         }
+
 
         $ke = 1;
         foreach ($list_akun as $akun) {
@@ -158,18 +160,22 @@ class masterDashboard extends BaseController
                 }
             }
 
-            $check_null_akun = $this->masterBmnModel->getBmnByIdAkunBySatker($ke, session('satker_id'));
 
-            if ($check_null_akun == null) {
-                $data_akun['all'][$ke] = 0;
-                $data_akun['belum'][$ke] = 0;
-                $data_akun['sudah'][$ke] = 0;
+
+            if (session('level_id') == '3') {
+                $check_null_akun = $this->masterBmnModel->getBmnByIdAkunBySatker($ke, session('satker_id'));
+                if ($check_null_akun == null) {
+                    $data_akun['all'][$ke] = 0;
+                    $data_akun['belum'][$ke] = 0;
+                    $data_akun['sudah'][$ke] = 0;
+                }
             }
+
             $ke++;
         }
         // dd($data_akun);
         if ($satker_id == 'all') {
-            $nama_satker['nama_satker'] = 'semua';
+            $nama_satker['nama_ref_unit_kerja_lengkap'] = 'semua';
         } else {
             $nama_satker = $this->masterSatkerModel->getNamaSatker($satker_id);
         }
@@ -177,7 +183,7 @@ class masterDashboard extends BaseController
 
         $data = [
             'data_bmn' => $data_akun,
-            'nama_satker' => $nama_satker['nama_satker']
+            'nama_satker' => $nama_satker['nama_ref_unit_kerja_lengkap']
         ];
         echo json_encode($data);
     }
@@ -233,7 +239,7 @@ class masterDashboard extends BaseController
             'halaman' => 'dashboard',
             'bmn' => $data_bmn
         ];
-   
+
         return view('dashboard/detail', $data);
     }
 }

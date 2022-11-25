@@ -6,8 +6,36 @@ use CodeIgniter\Model;
 
 class MasterPegawaiModel extends Model
 {
-    protected $table = 'mst_pegawai';
-    protected $allowedFields = ['nip_lama', 'nip_baru', 'nama_pegawai', 'gol_kd', 'tmt', 'jabatan_kd', 'ket_jabatan', 'pendidikan_kd',  'tahun_pdd',  'jk', 'tgl_lahir', 'satker_kd', 'es3_kd', 'es4_kd', 'fungsional_kd'];
+    protected $DBGroup = 'kepeg';
+    protected $table = 'pegawai';
+    // protected $allowedFields = ['nip_lama', 'nip_baru', 'nama_pegawai', 'gol_kd', 'tmt', 'jabatan_kd', 'ket_jabatan', 'pendidikan_kd',  'tahun_pdd',  'jk', 'tgl_lahir', 'satker_kd', 'es3_kd', 'es4_kd', 'fungsional_kd'];
+
+
+    public function getDataPegawai($nip)
+    {
+        return $this
+            ->table('pegawai')
+            ->where('nip', $nip)
+            ->get()
+            ->getRowArray();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /////BATAS FUNCTION DIGUNAKAN
+
 
     public function getProfilPegawai($nip_lama_user)
     {

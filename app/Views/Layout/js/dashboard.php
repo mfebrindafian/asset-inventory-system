@@ -5,6 +5,8 @@
     $('#pilihSatker').change(function() {
         var jenis = ['all', 'sudah', 'belum'];
         let satker = $(this).val();
+
+        console.log(satker)
         $.ajax({
             dataType: "json",
             url: "<?= base_url('/APISatkerOnDashboard') ?>/" + satker,

@@ -3,17 +3,20 @@
 namespace App\Controllers;
 
 use App\Models\MasterUserModel;
+use App\Models\MasterPegawaiModel;
 use App\Models\MasterAksesUserLevelModel;
 
 
 class masterAkses extends BaseController
 {
     protected $masterUserModel;
+    protected $masterPegawaiModel;
     protected $masterAksesUserLevelModel;
 
     public function __construct()
     {
         $this->masterUserModel = new masterUserModel();
+        $this->masterPegawaiModel = new masterPegawaiModel();
         $this->masterAksesUserLevelModel = new masterAksesUserLevelModel();
     }
 
@@ -30,6 +33,9 @@ class masterAkses extends BaseController
         $user = $this->masterUserModel->getUser($username);
 
 
+
+
+
         if ($user == NULL) {
             session()->setFlashdata('pesan', 'Username Anda Salah');
             session()->setFlashdata('icon', 'error');
@@ -38,6 +44,7 @@ class masterAkses extends BaseController
 
         $list_user_level = $this->masterAksesUserLevelModel->getUserLevel($user['id']);
 
+
         $level_id = $list_user_level[count($list_user_level) - 1]['level_id'];
         if ($level_id == 3) {
             $satker_id = $this->masterAksesUserLevelModel->getSatkerId($user['id']);
@@ -45,8 +52,21 @@ class masterAkses extends BaseController
             $satker_id['satker_id'] = 0;
         }
 
+
         $list_menu = $this->masterAksesUserLevelModel->getAksesMenu($level_id, $user['id']);
         $list_submenu = $this->masterAksesUserLevelModel->getAksesSubmenu($level_id, $user['id']);
+
+        $data_pegawai = $this->masterPegawaiModel->getDataPegawai($user['nip']);
+        $nama_pegawai = $data_pegawai['gelar_depan'];
+        if ($data_pegawai['gelar_depan'] != null) {
+            $nama_pegawai .= ' ';
+        }
+        $nama_pegawai .= $data_pegawai['nama_pegawai'];
+        if ($data_pegawai['gelar_belakang'] != null) {
+            $nama_pegawai .= ' ';
+        }
+        $nama_pegawai .= $data_pegawai['gelar_belakang'];
+
         if (password_verify($password, $user['password'])) {
             $data = [
                 'log' => TRUE,
@@ -56,8 +76,10 @@ class masterAkses extends BaseController
                 'satker_id' => $satker_id['satker_id'],
                 'list_menu'  => $list_menu,
                 'list_submenu' => $list_submenu,
-                'data_user' => $user
+                'data_user' => $user,
+                'nama_pegawai' => $nama_pegawai
             ];
+
             session()->set($data);
             session()->setFlashdata('pesan', 'berhasil login');
             return redirect()->to('/dashboard-sibamira');

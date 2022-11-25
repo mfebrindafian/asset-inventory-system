@@ -16,7 +16,6 @@ class MasterAksesUserLevelModel extends Model
             ->table($this->table)
             ->select('tbl_akses_user_level.*,user_level.nama_level')
             ->where('tbl_akses_user_level.user_id', $user_id)
-
             ->join('user_level', 'tbl_akses_user_level.level_id = user_level.id')
             ->get()
             ->getResultArray();
@@ -31,6 +30,11 @@ class MasterAksesUserLevelModel extends Model
             ->get()
             ->getRowArray();
     }
+
+
+
+
+    
     public function getAksesMenu($level_id, $user_id)
     {
         return $this

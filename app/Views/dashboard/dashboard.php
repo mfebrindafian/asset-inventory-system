@@ -31,7 +31,7 @@
                                 <option value="all" selected>Semua</option>
                                 <?php if ($list_satker != null) : ?>
                                     <?php foreach ($list_satker as $satker) : ?>
-                                        <option value="<?= $satker['id']; ?>"> <a href="/aa"><?= $satker['nama_satker']; ?></a></option>
+                                        <option value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                             </select>

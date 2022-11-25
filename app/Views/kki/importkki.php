@@ -32,7 +32,7 @@
                             <option>- Satker -</option>
                             <?php if ($list_satker != null) : ?>
                                 <?php foreach ($list_satker as $satker) : ?>
-                                    <option value="<?= $satker['id']; ?>"><?= $satker['nama_satker']; ?></option>
+                                    <option value="<?= $satker['id_ref_unit_kerja']; ?>"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></option>
                                 <?php endforeach; ?>
                             <?php endif; ?>
 
@@ -102,7 +102,7 @@
                             <option>- Satker -</option>
                             <?php if ($list_satker != null) : ?>
                                 <?php foreach ($list_satker as $satker) : ?>
-                                    <option value="<?= $satker['id']; ?>"><?= $satker['nama_satker']; ?></option>
+                                    <option value="<?= $satker['id_ref_unit_kerja']; ?>"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></option>
                                 <?php endforeach; ?>
                             <?php endif; ?>
 
