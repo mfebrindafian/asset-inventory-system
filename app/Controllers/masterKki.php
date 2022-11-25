@@ -86,7 +86,8 @@ class masterKki extends BaseController
     {
         $file = $this->request->getFile('filekki');
         $satker = $this->request->getVar('satker');
-        dd($satker);
+        $data_user = session('data_user');
+
         $kd_batch = $this->masterTabelBmnModel->getKodeBatch();
         $extension = $file->getClientExtension();
         if ($extension == 'xlsx' || $extension == 'xls') {
@@ -120,6 +121,7 @@ class masterKki extends BaseController
                     'nilai_bmn' => $value['6'],
                     'satker_id' => $satker,
                     'kd_batch' => $kd_batch,
+                    'opUniv_nip' => $data_user['nip']
                 ]);
             }
         } else {
@@ -139,7 +141,7 @@ class masterKki extends BaseController
         $nama_satker = $this->request->getVar('nama_satker');
         $id_satker = $this->masterSatkerModel->getIdSatker($nama_satker);
         $kd_batch = $this->request->getVar('kd_batch_update');
-
+        $data_user = session('data_user');
         $file = $this->request->getFile('filekki');
 
         $extension = $file->getClientExtension();
@@ -174,6 +176,7 @@ class masterKki extends BaseController
                     'nilai_bmn' => $value['6'],
                     'satker_id' => $id_satker['id'],
                     'kd_batch' => $kd_batch,
+                    'opUniv_nip' => $data_user['nip']
                 ]);
             }
         } else {

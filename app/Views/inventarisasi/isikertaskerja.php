@@ -141,21 +141,62 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6 class="form-label">Nama Pegawai Pengguna Barang (BELUM BISA)<span class="text-danger">*</span></h6>
+                                            <h6 class="form-label">Nama Pegawai Pengguna Barang<span class="text-danger">*</span></h6>
                                             <div class="form-group">
-                                                <input type="text" name="" class="form-control" id="" placeholder="Cari pegawai ..." />
+                                                <fieldset class="form-group">
+                                                    <select class="form-select" name="pegawai">
+                                                        <?php if ($list_pegawai != null) : ?>
+                                                            <?php foreach ($list_pegawai as $pegawai) : ?>
+                                                                <?php $nama_pegawai = $pegawai['gelar_depan'];
+                                                                if ($pegawai['gelar_depan'] != null) {
+                                                                    $nama_pegawai .= ' ';
+                                                                }
+                                                                $nama_pegawai .= $pegawai['nama_pegawai'];
+                                                                if ($pegawai['gelar_belakang'] != null) {
+                                                                    $nama_pegawai .= ' ';
+                                                                }
+                                                                $nama_pegawai .= $pegawai['gelar_belakang']; ?>
+                                                                <?php if ($bmn['pegawai_id'] != null) : ?>
+                                                                    <?php if ($bmn['pegawai_id'] == $pegawai['id_pegawai']) : ?>
+                                                                        <option value="<?= $bmn['pegawai_id']; ?>"><?= $nama_pegawai; ?></option>
+                                                                    <?php endif; ?>
+                                                                <?php endif; ?>
+                                                            <?php endforeach; ?>
+                                                            <?php foreach ($list_pegawai as $pegawai) : ?>
+                                                                <?php $nama_pegawai = $pegawai['gelar_depan'];
+                                                                if ($pegawai['gelar_depan'] != null) {
+                                                                    $nama_pegawai .= ' ';
+                                                                }
+                                                                $nama_pegawai .= $pegawai['nama_pegawai'];
+                                                                if ($pegawai['gelar_belakang'] != null) {
+                                                                    $nama_pegawai .= ' ';
+                                                                }
+                                                                $nama_pegawai .= $pegawai['gelar_belakang']; ?>
+                                                                <option value="<?= $pegawai['id_pegawai']; ?>"><?= $nama_pegawai; ?></option>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                    </select>
+                                                </fieldset>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Nama Gedung (BELUM BISA)<span class="text-danger">*</span></h6>
+                                            <h6>Nama Gedung<span class="text-danger">*</span></h6>
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="nama-gedung">
-                                                    <option>- Satker -</option>
-                                                    <option>Fakultas Sains dan Teknologi</option>
-                                                    <option>Fakultas Hukum</option>
-                                                    <option>Fakultas Peternakan</option>
+                                                    <?php if ($list_gedung != null) : ?>
+                                                        <?php foreach ($list_gedung as $gedung) : ?>
+                                                            <?php if ($bmn['gedung_id'] != null) : ?>
+                                                                <?php if ($bmn['gedung_id'] == $gedung['id_gedung']) : ?>
+                                                                    <option value="<?= $gedung['id_gedung']; ?>"><?= $gedung['nama_gedung']; ?></option>
+                                                                <?php endif; ?>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                        <?php foreach ($list_gedung as $gedung) : ?>
+                                                            <option value="<?= $gedung['id_gedung']; ?>"><?= $gedung['nama_gedung']; ?></option>
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
                                                 </select>
                                             </fieldset>
                                         </div>
@@ -166,8 +207,6 @@
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="nama-ruangan">
                                                     <option>- Ruangan -</option>
-                                                    <option>Lab ICT</option>
-                                                    <option>Ruang Dekanat</option>
                                                 </select>
                                             </fieldset>
                                         </div>

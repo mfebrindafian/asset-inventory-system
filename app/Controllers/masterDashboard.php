@@ -6,6 +6,9 @@ use App\Models\MasterUserModel;
 use App\Models\MasterSatkerModel;
 use App\Models\masterTabelBmnModel;
 use App\Models\masterTabelAkunModel;
+use App\Models\masterPegawaiModel;
+use App\Models\masterGedungModel;
+
 use CodeIgniter\I18n\Time;
 
 class masterDashboard extends BaseController
@@ -14,6 +17,8 @@ class masterDashboard extends BaseController
     protected $masterSatkerModel;
     protected $masterBmnModel;
     protected $masterAkunModel;
+    protected $masterPegawaiModel;
+    protected $masterGedungModel;
 
     public function __construct()
     {
@@ -22,6 +27,8 @@ class masterDashboard extends BaseController
         $this->masterSatkerModel = new MasterSatkerModel();
         $this->masterBmnModel = new MasterTabelBmnModel();
         $this->masterAkunModel = new MasterTabelAkunModel();
+        $this->masterPegawaiModel = new MasterPegawaiModel();
+        $this->masterGedungModel = new MasterGedungModel();
     }
 
     public function index()
@@ -232,12 +239,17 @@ class masterDashboard extends BaseController
     public function detailBmnOnDashboard($id_bmn)
     {
         $data_bmn = $this->masterBmnModel->getDataBmnById($id_bmn);
+
+        $list_pegawai = $this->masterPegawaiModel->getAllPegawai();
+        $list_gedung = $this->masterGedungModel->getAllGedung();
         $data = [
             'title' => 'Detail Barang',
             'menu' => 'Dashboard',
             'subMenu' => '',
             'halaman' => 'dashboard',
-            'bmn' => $data_bmn
+            'bmn' => $data_bmn,
+            'list_pegawai' => $list_pegawai,
+            'list_gedung' => $list_gedung
         ];
 
         return view('dashboard/detail', $data);

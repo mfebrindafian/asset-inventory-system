@@ -20,6 +20,14 @@ class MasterPegawaiModel extends Model
             ->getRowArray();
     }
 
+    public function getAllPegawai()
+    {
+        return $this
+            ->table('pegawai')
+            ->get()
+            ->getResultArray();
+    }
+
 
 
 
@@ -84,13 +92,7 @@ class MasterPegawaiModel extends Model
             ->getRowArray();
     }
 
-    public function getAllPegawai()
-    {
-        return $this
-            ->table('mst_pegawai')
-            ->get()
-            ->getResultArray();
-    }
+
 
     public function getAllPegawaiOnDashboard()
     {

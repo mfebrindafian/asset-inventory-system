@@ -103,11 +103,36 @@
                                                                                         } ?></span></p>
 
                                     <h6>Nama Pegawai Pengguna Barang</h6>
-                                    <p class="text-muted"><?= $bmn['pegawai_id']; ?></p>
+                                    <p class="text-muted">
+                                        <?php if ($list_pegawai != null) : ?>
+                                            <?php foreach ($list_pegawai as $pegawai) : ?>
+                                                <?php if ($bmn['pegawai_id'] == $pegawai['id_pegawai']) : ?>
+                                                    <?php
+                                                    $nama_pegawai = $pegawai['gelar_depan'];
+                                                    if ($pegawai['gelar_depan'] != null) {
+                                                        $nama_pegawai .= ' ';
+                                                    }
+                                                    $nama_pegawai .= $pegawai['nama_pegawai'];
+                                                    if ($pegawai['gelar_belakang'] != null) {
+                                                        $nama_pegawai .= ' ';
+                                                    }
+                                                    $nama_pegawai .= $pegawai['gelar_belakang']; ?>
+                                                    <?= $nama_pegawai; ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </p>
                                 </div>
                                 <div class="col-sm-4">
                                     <h6>Nama Gedung</h6>
-                                    <p class="text-muted"><?= $bmn['gedung_id']; ?></p>
+                                    <p class="text-muted"><?php if ($list_gedung != null) : ?>
+                                            <?php foreach ($list_gedung as $gedung) : ?>
+                                                <?php if ($bmn['gedung_id'] == $gedung['id_gedung']) : ?>
+
+                                                    <?= $gedung['nama_gedung']; ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?></p>
 
                                     <h6>Nama Ruangan</h6>
                                     <p class="text-muted"><?= $bmn['ruangan_id']; ?></p>

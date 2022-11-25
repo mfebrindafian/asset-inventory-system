@@ -4,16 +4,24 @@ namespace App\Controllers;
 
 use App\Models\masterTabelBmnModel;
 use App\Models\masterSatkerModel;
+use App\Models\masterPegawaiModel;
+use App\Models\masterGedungModel;
+
+
 
 class masterInventarisasi extends BaseController
 {
     protected $masterBmnModel;
     protected $masterSatkerModel;
+    protected $masterPegawaiModel;
+    protected $masterGedungModel;
 
     public function __construct()
     {
         $this->masterBmnModel = new MasterTabelBmnModel();
         $this->masterSatkerModel = new MasterSatkerModel();
+        $this->masterPegawaiModel = new MasterPegawaiModel();
+        $this->masterGedungModel = new MasterGedungModel();
     }
 
     public function pmNonTik()
@@ -100,14 +108,17 @@ class masterInventarisasi extends BaseController
 
         $data_bmn = $this->masterBmnModel->getDataBmnById($id_bmn);
         $nama_satker = $this->masterSatkerModel->getNamaSatker($data_bmn['satker_id']);
-
+        $list_pegawai = $this->masterPegawaiModel->getAllPegawai();
+        $list_gedung = $this->masterGedungModel->getAllGedung();
         $data = [
             'title' => 'Isi Kertas Kerja',
             'menu' => 'Inventarisasi',
             'subMenu' => '',
             'halaman' => 'isikertaskerja',
             'bmn' => $data_bmn,
-            'nama_satker' => $nama_satker['nama_satker']
+            'nama_satker' => $nama_satker['nama_ref_unit_kerja_lengkap'],
+            'list_pegawai' => $list_pegawai,
+            'list_gedung' => $list_gedung
         ];
         return view('inventarisasi/isikertaskerja', $data);
     }
@@ -115,6 +126,12 @@ class masterInventarisasi extends BaseController
     public function editkertaskerja()
     {
         $id_bmn = $this->request->getVar('id_bmn');
+        $id_pegawai = $this->request->getVar('pegawai');
+        $id_gedung =  $this->request->getVar('nama-gedung');
+
+        $data_user = session('data_user');
+
+
         $tipe_akun = preg_replace('/[^A-Za-z0-9\-\(\) ]/', '', strtolower($this->request->getVar('tipe_akun')));
 
         $kondisi_brg = $this->request->getVar('kondisi-barang');
@@ -129,8 +146,11 @@ class masterInventarisasi extends BaseController
             'kondisi_brg' => $kondisi_brg,
             'kbrdn_brg' => $kbrdn_brg,
             'label_kode' => $pelabelan,
+            'pegawai_id' => $id_pegawai,
+            'gedung_id' => $id_gedung,
             'status_psp' => $status_psp,
-            'ket' => $ket
+            'ket' => $ket,
+            'opUniv_nip' => $data_user['nip']
         ]);
 
         return redirect()->to('/inv-' . $tipe_akun);

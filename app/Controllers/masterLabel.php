@@ -43,7 +43,7 @@ class masterLabel extends BaseController
             'subMenu' => '',
             'halaman' => 'detaillabel',
             'bmn' => $data_bmn,
-            'nama_satker' => $satker['nama_satker']
+            'nama_satker' => $satker['nama_ref_unit_kerja_lengkap']
         ];
         // dd($data);
         return view('label/detaillabel', $data);
