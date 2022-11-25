@@ -73,7 +73,7 @@
                                                         <td class="text-bold-500"><?= $bmn['nup']; ?></td>
                                                         <td class="text-bold-500"><?= $bmn['merk_tipe']; ?></td>
                                                         <td class="text-bold-500"><?= $bmn['kuantitas']; ?></td>
-                                                        <td class="text-bold-500"><?= $bmn['nilai_bmn']; ?></td>
+                                                        <td class="text-bold-500 text-nowrap"><?= "Rp " . number_format($bmn['nilai_bmn'], 0, '', '.') ?></td>
                                                         <td class="text-bold-500"><a href="<?= base_url('/kertas-kerja/' . $bmn['id']) ?>" class="btn btn-sm <?php if ($bmn['kondisi_brg'] == null) {
                                                                                                                                                                     echo 'btn-danger';
                                                                                                                                                                 } else {
