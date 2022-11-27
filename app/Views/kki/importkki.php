@@ -28,7 +28,7 @@
                 <div class="col-3 col-md-5"></div>
                 <div class="col-6 col-md-4">
                     <fieldset class="form-group">
-                        <select class="form-select" id="basicSelect">
+                        <select class="form-select" name="satker">
                             <option>- Satker -</option>
                             <?php if ($list_satker != null) : ?>
                                 <?php foreach ($list_satker as $satker) : ?>

@@ -1,6 +1,14 @@
 <script src="/assets/extensions/apexcharts/apexcharts.min.js"></script>
 <script src="/assets/js/pages/dashboard.js"></script>
 <script src="<?= base_url('/assets/js/pages/jquery.min.js') ?>"></script>
+<script src="<?= base_url('/assets/js/add/select2.min.js') ?>"></script>
+<script>
+    $(document).ready(function() {
+        $('.form-select').select2({
+            theme: "bootstrap"
+        });
+    });
+</script>
 <script>
     $('#pilihSatker').change(function() {
         var jenis = ['all', 'sudah', 'belum'];
