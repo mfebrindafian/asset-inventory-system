@@ -81,7 +81,7 @@
                                 </select>
                             </fieldset>
                         </div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-5 col-12">
                             <fieldset class="form-group">
                                 <select class="form-select" id="jenis-rekapitulasi">
                                     <option value="" selected disabled>- Jenis Rekapitulasi -</option>

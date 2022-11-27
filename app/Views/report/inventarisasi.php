@@ -39,7 +39,7 @@
                                                                                 </select>
                                                                            </fieldset> -->
                                         <span class="badge bg-light-secondary w-100 mb-3">
-                                            <h6 class="m-0 py-1">Fakultas Sains dan Teknologi</h6>
+                                            <h6 class="m-0 py-1 text-truncate">Fakultas Sains dan Teknologi</h6>
                                         </span>
                                     </div>
                                     <div class="col-6">
