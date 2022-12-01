@@ -28,9 +28,9 @@
                                 <h5 class="mb-3">Cetak rekapitulasi laporan hasil inventarisasi BMN</h5>
                                 <?php if (session('level_id') == 2) :  ?>
                                     <fieldset class="form-group">
-                                        <select class="form-select">
+                                        <select name="satker" class="form-select">
                                             <option>- Satker -</option>
-                                            <option>Seluruh Satker</option>
+                                            <option value="all">Seluruh Satker</option>
                                             <?php if ($list_satker != null) : ?>
                                                 <?php foreach ($list_satker as $satker) : ?>
                                                     <option value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>
@@ -62,7 +62,7 @@
                     <div class="row mt-4">
                         <div class=" <?= (session('level_id') == 3) ? 'position-absolute d-none' : 'col-sm-5' ?>">
                             <fieldset class="form-group">
-                                <select class="form-select" id="satker">
+                                <select class="form-select" name="satker" id="satker">
                                     <?php if ($list_satker != null) : ?>
                                         <?php if (session('level_id') == 3) : ?>
                                             <?php foreach ($list_satker as $satker) : ?>
