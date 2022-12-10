@@ -101,7 +101,33 @@
                                                                                         } else if ($bmn['kbrdn_brg'] == 'BTD') {
                                                                                             echo 'Barang Tidak Diketemukan';
                                                                                         } ?></span></p>
+                                    <?php if ($bmn['kbrdn_brg'] == 'BTD') : ?>
+                                        <h6>Kategori Barang Tidak Ditemukan</h6>
+                                        <p class="text-muted"><span class="badge bg-light-danger"><?php if ($bmn['kategori_btd'] == '1') {
+                                                                                                        echo 'Hilang';
+                                                                                                    } else if ($bmn['kategori_btd'] == '2') {
+                                                                                                        echo 'Salah kodefikasi';
+                                                                                                    } else if ($bmn['kategori_btd'] == '3') {
+                                                                                                        echo 'Pekerjaan renovasi/pengembangan dicatat sebagai NUP baru';
+                                                                                                    } else if ($bmn['kategori_btd'] == '4') {
+                                                                                                        echo 'pencatatatan ganda/ fiktif';
+                                                                                                    } ?></span></p>
+                                    <?php endif; ?>
 
+                                    <?php if ($bmn['kbrdn_brg'] == 'BR') : ?>
+                                        <h6>Kategori Berlebih</h6>
+                                        <p class="text-muted"><span class="badge bg-light-warning"><?php if ($bmn['kategori_br'] == '1') {
+                                                                                                        echo 'Belum tercatat dalam laporan BMN';
+                                                                                                    } else if ($bmn['kategori_br'] == '2') {
+                                                                                                        echo 'Salah kodefikasi';
+                                                                                                    } else if ($bmn['kategori_br'] == '3') {
+                                                                                                        echo 'Pencatatan gelondongan';
+                                                                                                    } ?></span></p>
+                                    <?php endif; ?>
+
+
+                                </div>
+                                <div class="col-sm-4">
                                     <h6>Nama Pegawai Pengguna Barang</h6>
                                     <p class="text-muted">
                                         <?php if ($list_pegawai != null) : ?>
@@ -122,8 +148,6 @@
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </p>
-                                </div>
-                                <div class="col-sm-4">
                                     <h6>Nama Gedung</h6>
                                     <p class="text-muted"><?php if ($list_gedung != null) : ?>
                                             <?php foreach ($list_gedung as $gedung) : ?>

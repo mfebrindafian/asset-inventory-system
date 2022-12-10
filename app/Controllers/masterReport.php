@@ -40,11 +40,16 @@ class masterReport extends BaseController
     }
     public function inventarisasi()
     {
+
+        $list_satker = $this->masterSatkerModel->getAllSatker();
+        $list_rekapitulasi = $this->masterTabelJenisRekapitulasiModel->getAllJenisRekapitulasi();
         $data = [
             'title' => 'Inventarisasi',
             'menu' => 'Report',
             'subMenu' => 'Inventarisasi',
-            'halaman' => 'inventarisasi'
+            'halaman' => 'inventarisasi',
+            'list_satker' => $list_satker,
+            'list_jenis_rekapitulasi' => $list_rekapitulasi
         ];
         return view('report/inventarisasi', $data);
     }
@@ -896,6 +901,40 @@ class masterReport extends BaseController
             ob_end_clean();
             $writer->save('php://output');
             exit();
+        } else {
+            session()->setFlashdata('pesan', 'Rekapitulasi' . $nama_satker['nama_ref_unit_kerja_lengkap'] . ' Tidak Tersedia!');
+            session()->setFlashdata('icon', 'error');
+            return redirect()->to('/report-rekapitulasi');
+        }
+    }
+
+    public function cetakInventarisasi()
+    {
+        $list_akun = $this->masterAkunModel->getAllAkun();
+
+
+        if (session('level_id') != 3) {
+            $satker_id = $this->request->getVar('satker');
+        } else {
+            $satker_id = session('satker_id');
+        }
+
+        if ($satker_id == 'all') {
+            $nama_satker['nama_ref_unit_kerja_lengkap'] = 'Seluruh Unit Kerja';
+        } else {
+            $nama_satker = $this->masterSatkerModel->getNamaSatker($satker_id);
+        }
+
+        $all_bmn = $this->masterBmnModel->getAllBmnBySatker($satker_id);
+        if ($all_bmn != null) {
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+
+            //BARANG TIDAK DITEMUKAN
+            
+
+
+            //BATAS BARANG TIDAK DITEMUKAN
         } else {
             session()->setFlashdata('pesan', 'Rekapitulasi' . $nama_satker['nama_ref_unit_kerja_lengkap'] . ' Tidak Tersedia!');
             session()->setFlashdata('icon', 'error');

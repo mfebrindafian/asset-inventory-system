@@ -25,41 +25,47 @@
                 <div class="card-content">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12">
+                            <form action="/cetakInventarisasi" method="POST" class="col-12">
                                 <h5 class="mb-3">Cetak daftar barang hasil inventarisasi BMN</h5>
                                 <div class="row">
                                     <div class="col-6">
-                                        <!-- <fieldset class="form-group">
-                                                                                <select class="form-select" id="basicSelect">
-                                                                                     <option>- Satker -</option>
-                                                                                     <option>Seluruh Satker</option>
-                                                                                     <option>Fakultas Sains dan Teknologi</option>
-                                                                                     <option>Fakultas Hukum</option>
-                                                                                     <option>Fakultas Peternakan</option>
-                                                                                </select>
-                                                                           </fieldset> -->
-                                        <span class="badge bg-light-secondary w-100 mb-3">
+                                        <fieldset class="form-group">
+                                            <select class="form-select" name="satker" id="satker">
+                                                <?php if ($list_satker != null) : ?>
+                                                    <?php if (session('level_id') == 3) : ?>
+                                                        <?php foreach ($list_satker as $satker) : ?>
+                                                            <?php if ($satker['id_ref_unit_kerja'] == session('satker_id')) : ?>
+                                                                <option selected value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    <?php else : ?>
+                                                        <option>- Satker -</option>
+                                                        <option value="all"> Seluruh Satker</option>
+                                                        <?php foreach ($list_satker as $satker) : ?>
+                                                            <option value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </select>
+                                        </fieldset>
+                                        <!-- <span class="badge bg-light-secondary w-100 mb-3">
                                             <h6 class="m-0 py-1 text-truncate">Fakultas Sains dan Teknologi</h6>
-                                        </span>
+                                        </span> -->
                                     </div>
                                     <div class="col-6">
                                         <fieldset class="form-group">
-                                            <select class="form-select" id="basicSelect">
-                                                <option>- Jenis Daftar -</option>
-                                                <option>Seluruh</option>
-                                                <option>Barang ditemukan</option>
-                                                <option>Barang tidak diketemukan</option>
-                                                <option>Barang baik</option>
-                                                <option>Barang rusak ringan</option>
-                                                <option>Barang rusak berat</option>
-                                                <option>Barang berlebih</option>
+                                            <select class="form-select" id="jenis-rekapitulasi">
+                                                <option value="" selected disabled>- Jenis Rekapitulasi -</option>
+                                                <?php foreach ($list_jenis_rekapitulasi as $list) : ?>
+                                                    <option value="<?= $list['id']; ?>"><?= $list['jenis_rekapitulasi']; ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </fieldset>
                                     </div>
                                 </div>
 
                                 <button class="btn btn-primary w-100">Download</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

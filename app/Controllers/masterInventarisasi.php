@@ -136,6 +136,18 @@ class masterInventarisasi extends BaseController
 
         $kondisi_brg = $this->request->getVar('kondisi-barang');
         $kbrdn_brg = $this->request->getVar('keberadaan-barang');
+
+        if ($kbrdn_brg == "BR") {
+            $kategori_br = $this->request->getVar('kategori_br');
+            $kategori_btd = null;
+        } else if ($kbrdn_brg == "BTD") {
+            $kategori_br = null;
+            $kategori_btd =  $this->request->getVar('kategori_btd');
+        } else {
+            $kategori_br = null;
+            $kategori_btd = null;
+        }
+        
         $pelabelan = $this->request->getVar('pelabelan');
         $status_psp = $this->request->getVar('status-psp');
 
@@ -145,6 +157,8 @@ class masterInventarisasi extends BaseController
             'id' => $id_bmn,
             'kondisi_brg' => $kondisi_brg,
             'kbrdn_brg' => $kbrdn_brg,
+            'kategori_btd' => $kategori_btd,
+            'kategori_br' => $kategori_br,
             'label_kode' => $pelabelan,
             'pegawai_id' => $id_pegawai,
             'gedung_id' => $id_gedung,
