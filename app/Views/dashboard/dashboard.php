@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-8"></div>
                 <?php if (session('level_id') != 3) : ?>
-                    <div class="col-6 col-sm-4 float-end">
+                    <div class="col-12 col-sm-4 float-end">
                         <fieldset class="form-group">
                             <select class="form-select" id="pilihSatker">
                                 <option value="all" selected>Semua</option>

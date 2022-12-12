@@ -95,7 +95,11 @@ class masterAkses extends BaseController
 
         $list_menu = $this->masterAksesUserLevelModel->getAksesMenu($id, session('user_id'));
         $list_submenu = $this->masterAksesUserLevelModel->getAksesSubmenu($id, session('user_id'));
-
+        if ($id == 3) {
+            $satker_id = $this->masterAksesUserLevelModel->getSatkerId(session('user_id'));
+        } else {
+            $satker_id['satker_id'] = 0;
+        }
         $data1 = [
             'log' => TRUE,
             'user_id' => session('user_id'),
@@ -104,7 +108,8 @@ class masterAkses extends BaseController
             'list_menu'  => $list_menu,
             'list_submenu' => $list_submenu,
             'fullname' => session('fullname'),
-            'data_user' => session('data_user')
+            'data_user' => session('data_user'),
+            'satker_id' => $satker_id['satker_id'],
 
         ];
 

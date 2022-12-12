@@ -252,6 +252,7 @@ class masterSistem extends BaseController
     public function kelolaMenu()
     {
         $data = [
+            'halaman' => 'sistem',
             'title' => 'Kelola Menu',
             'menu' => 'Sistem',
             'subMenu' => 'Kelola Menu',
@@ -348,6 +349,7 @@ class masterSistem extends BaseController
         $itemsCount = 20;
 
         $data = [
+            'halaman' => 'sistem',
             'title' => 'Kelola Sub Menu',
             'menu' => 'Sistem',
             'total' => count($totalSubmenu),

@@ -19,3 +19,33 @@
 .select2-selection__arrow {
      height: 38px !important;
 }
+
+/* level */
+
+.pilih-level {
+     margin-right: 10px;
+}
+
+.pilih-level .checkbox-level {
+     border: 2px solid #4867bd;
+     font-weight: normal !important;
+     font-size: 14px;
+     background-color: #4867bd;
+     color: white;
+     border-radius: 4px;
+     padding: 4px 10px 4px 10px;
+     cursor: pointer;
+}
+
+.pilih-level .active {
+     color: #757575;
+     background-color: #ebebeb;
+     border: 2px solid #c4c4c4;
+}
+
+.checkbox-level:hover {
+     opacity: 0.9;
+}
+.checkbox-level i {
+     margin-right: 7px;
+}

@@ -62,10 +62,8 @@ $routes->get('/inv-atl', 'masterInventarisasi::atl');
 $routes->get('/kertas-kerja/(:segment)', 'masterInventarisasi::kertaskerja/$1');
 $routes->post('/isikertaskerja-add', 'masterinventarisasi::editkertaskerja');
 
-
 $routes->get('/report-rekapitulasi', 'masterReport::rekapitulasi');
 $routes->post('/cetak-rekapitulasi', 'masterReport::cetakRekapitulasi');
-
 
 $routes->get('/APIrekapitulasi/(:segment)/(:segment)', 'masterReport::APIrekapitulasi/$1/$2');
 
@@ -101,6 +99,10 @@ $routes->post('/saveSubmenu', 'masterSistem::saveSubmenu');
 //routes ke switch level akun dan controller master akses
 $routes->post('/switchLevel', 'masterAkses::switchLevel');
 
+$routes->get('/user', 'masterUser::masterUser');
+$routes->get('/gedung', 'masterData::gedung');
+$routes->get('/ruangan', 'masterData::ruangan');
+$routes->get('/satker', 'masterData::satker');
 
 
 

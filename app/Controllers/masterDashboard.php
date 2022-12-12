@@ -99,7 +99,7 @@ class masterDashboard extends BaseController
         } else {
             $nama_satker['nama_ref_unit_kerja_lengkap'] = 'Semua';
         }
-
+        // dd(session('satker_id'));
         $data = [
             'title' => 'Dashboard',
             'menu' => 'Dashboard',
