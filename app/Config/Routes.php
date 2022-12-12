@@ -68,6 +68,8 @@ $routes->post('/cetak-rekapitulasi', 'masterReport::cetakRekapitulasi');
 $routes->get('/APIrekapitulasi/(:segment)/(:segment)', 'masterReport::APIrekapitulasi/$1/$2');
 
 $routes->get('/report-inventarisasi', 'masterReport::inventarisasi');
+$routes->post('/cetakInventarisasi', 'masterReport::cetakInventarisasi');
+
 
 $routes->get('/label', 'masterLabel::label');
 $routes->get('/detail-label/(:segment)', 'masterLabel::detaillabel/$1');

@@ -119,22 +119,35 @@
                                                                                                                                                 echo 'checked';
                                                                                                                                             } ?> autocomplete="off" />
                                             <label class="btn btn-sm btn-outline-danger" for="tidak-ditemukan">Tidak Ditemukan</label>
-
-
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="mb-5">
-                                            <h6>Pelabelan Kodefikasi <span class="text-danger">*</span></h6>
-                                            <input type="radio" class="btn-check" name="pelabelan" id="sudah" value="S" <?php if ($bmn['label_kode'] == 'S') {
-                                                                                                                            echo 'checked';
-                                                                                                                        } ?> autocomplete="off" />
-                                            <label class="btn btn-sm btn-outline-success" for="sudah">Sudah</label>
 
-                                            <input type="radio" class="btn-check" name="pelabelan" id="belum" value="B" <?php if ($bmn['label_kode'] == 'B') {
-                                                                                                                            echo 'checked';
-                                                                                                                        } ?> autocomplete="off" />
-                                            <label class="btn btn-sm btn-outline-danger" for="belum">Belum</label>
+                                    <div class="col-sm-4">
+                                        <div class="mb-5 d-none" id="kategori_btd">
+                                            <h6 class="form-label">kategori barang tidak ditemukan<span class="text-danger">*</span></h6>
+                                            <div class="form-group">
+                                                <fieldset class="form-group">
+                                                    <select class="form-select" name="kategori_btd">
+                                                        <option value="1">Hilang</option>
+                                                        <option value="2">Salah Kodefikasi</option>
+                                                        <option value="3">pekerjaan renovasi/pengembangan BMN dicatat sebagai NUP baru</option>
+                                                        <option value="4">pencatatanganda/fiktif</option>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-5 d-none" id="kategori_bb">
+                                            <h6 class="form-label">kategori barang berlebih<span class="text-danger">*</span></h6>
+                                            <div class="form-group">
+                                                <fieldset class="form-group">
+                                                    <select class="form-select" name="kategori_br">
+                                                        <option value="1">belum tercatat dalam laporan BMN</option>
+                                                        <option value="2">salah kodefikasi</option>
+                                                        <option value="3">pencatatan gelondongan</option>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -214,6 +227,20 @@
                                 </div>
 
                                 <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="mb-5">
+                                            <h6>Pelabelan Kodefikasi <span class="text-danger">*</span></h6>
+                                            <input type="radio" class="btn-check" name="pelabelan" id="sudah" value="S" <?php if ($bmn['label_kode'] == 'S') {
+                                                                                                                            echo 'checked';
+                                                                                                                        } ?> autocomplete="off" />
+                                            <label class="btn btn-sm btn-outline-success" for="sudah">Sudah</label>
+
+                                            <input type="radio" class="btn-check" name="pelabelan" id="belum" value="B" <?php if ($bmn['label_kode'] == 'B') {
+                                                                                                                            echo 'checked';
+                                                                                                                        } ?> autocomplete="off" />
+                                            <label class="btn btn-sm btn-outline-danger" for="belum">Belum</label>
+                                        </div>
+                                    </div>
                                     <div class="col-sm-4">
                                         <div class="mb-5">
                                             <h6>Status PSP <span class="text-danger">*</span></h6>
