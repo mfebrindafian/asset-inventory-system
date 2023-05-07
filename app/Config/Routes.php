@@ -104,7 +104,7 @@ $routes->post('/switchLevel', 'masterAkses::switchLevel');
 $routes->get('/user', 'masterUser::masterUser');
 $routes->get('/kelola-gedung', 'masterData::gedung');
 $routes->get('/kelola-ruangan', 'masterData::ruangan');
-$routes->get('/kelola-subsatker', 'masterData::satker');
+$routes->get('/kelola-subsatker', 'masterData::subsatker');
 
 $routes->post('/APIUser', 'masterUser::APIUser');
 $routes->get('/APIEditUser/(:segment)', 'masterUser::APIEditUser/$1');
@@ -116,6 +116,14 @@ $routes->post('/hapusUser', 'masterUser::hapusUser');
 $routes->post('/tambahGedung', 'masterData::tambahGedung');
 $routes->post('/editGedung', 'masterData::editGedung');
 $routes->post('/hapusGedung', 'masterData::hapusGedung');
+
+$routes->post('/tambahRuangan', 'masterData::tambahRuangan');
+$routes->post('/editRuangan', 'masterData::editRuangan');
+$routes->post('/hapusRuangan', 'masterData::hapusRuangan');
+
+$routes->post('/tambahSubsatker', 'masterData::tambahSubsatker');
+$routes->post('/editSubsatker', 'masterData::editSubsatker');
+$routes->post('/hapusSubsatker', 'masterData::hapusSubsatker');
 
 
 // $routes->post('/gantiPasswordDefault', 'masterAkses::gantiPasswordDefault');

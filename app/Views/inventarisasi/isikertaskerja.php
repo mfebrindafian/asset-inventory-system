@@ -201,13 +201,13 @@
                                                     <?php if ($list_gedung != null) : ?>
                                                         <?php foreach ($list_gedung as $gedung) : ?>
                                                             <?php if ($bmn['gedung_id'] != null) : ?>
-                                                                <?php if ($bmn['gedung_id'] == $gedung['id_gedung']) : ?>
-                                                                    <option value="<?= $gedung['id_gedung']; ?>"><?= $gedung['nama_gedung']; ?></option>
+                                                                <?php if ($bmn['gedung_id'] == $gedung['id']) : ?>
+                                                                    <option value="<?= $gedung['id']; ?>"><?= $gedung['nama_gedung']; ?></option>
                                                                 <?php endif; ?>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
                                                         <?php foreach ($list_gedung as $gedung) : ?>
-                                                            <option value="<?= $gedung['id_gedung']; ?>"><?= $gedung['nama_gedung']; ?></option>
+                                                            <option value="<?= $gedung['id']; ?>"><?= $gedung['nama_gedung']; ?></option>
                                                         <?php endforeach; ?>
                                                     <?php endif; ?>
                                                 </select>
@@ -216,10 +216,22 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Nama Ruangan (BELUM BISA)<span class="text-danger">*</span></h6>
+                                            <h6>Nama Ruangan<span class="text-danger">*</span></h6>
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="nama-ruangan">
-                                                    <option>- Ruangan -</option>
+
+                                                    <?php if ($list_ruangan != null) : ?>
+                                                        <?php foreach ($list_ruangan as $ruangan) : ?>
+                                                            <?php if ($bmn['ruangan_id'] != null) : ?>
+                                                                <?php if ($bmn['ruangan_id'] == $ruangan['id']) : ?>
+                                                                    <option value="<?= $ruangan['id']; ?>"><?= $ruangan['nama_ruang']; ?></option>
+                                                                <?php endif; ?>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                        <?php foreach ($list_ruangan as $ruangan) : ?>
+                                                            <option value="<?= $ruangan['id']; ?>"><?= $ruangan['nama_ruang']; ?></option>
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
                                                 </select>
                                             </fieldset>
                                         </div>
@@ -258,13 +270,22 @@
 
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Nama Sub Satker (BELUM BISA)<span class="text-danger">*</span></h6>
+                                            <h6>Nama Sub Satker<span class="text-danger">*</span></h6>
                                             <fieldset class="form-group">
-                                                <select class="form-select" name="nama-sub-satker">
-                                                    <option>- Sub Satker -</option>
-                                                    <option>Sub Satker 1</option>
-                                                    <option>Sub Satker 2</option>
-                                                    <option>Sub Satker 3</option>
+                                                <select class="form-select" name="nama-subsatker">
+
+                                                    <?php if ($list_subsatker != null) : ?>
+                                                        <?php foreach ($list_subsatker as $subsatker) : ?>
+                                                            <?php if ($bmn['subsatker_id'] != null) : ?>
+                                                                <?php if ($bmn['subsatker_id'] == $subsatker['id']) : ?>
+                                                                    <option value="<?= $subsatker['id']; ?>"><?= $subsatker['nama_subsatker']; ?></option>
+                                                                <?php endif; ?>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                        <?php foreach ($list_subsatker as $subsatker) : ?>
+                                                            <option value="<?= $subsatker['id']; ?>"><?= $subsatker['nama_subsatker']; ?></option>
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
                                                 </select>
                                             </fieldset>
                                         </div>

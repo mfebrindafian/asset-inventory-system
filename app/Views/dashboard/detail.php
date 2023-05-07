@@ -151,7 +151,7 @@
                                     <h6>Nama Gedung</h6>
                                     <p class="text-muted"><?php if ($list_gedung != null) : ?>
                                             <?php foreach ($list_gedung as $gedung) : ?>
-                                                <?php if ($bmn['gedung_id'] == $gedung['id_gedung']) : ?>
+                                                <?php if ($bmn['gedung_id'] == $gedung['id']) : ?>
 
                                                     <?= $gedung['nama_gedung']; ?>
                                                 <?php endif; ?>
@@ -159,7 +159,14 @@
                                         <?php endif; ?></p>
 
                                     <h6>Nama Ruangan</h6>
-                                    <p class="text-muted"><?= $bmn['ruangan_id']; ?></p>
+                                    <p class="text-muted"><?php if ($list_ruangan != null) : ?>
+                                            <?php foreach ($list_ruangan as $ruangan) : ?>
+                                                <?php if ($bmn['ruangan_id'] == $ruangan['id']) : ?>
+
+                                                    <?= $ruangan['nama_ruang']; ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?></p>
 
                                     <h6>Status PSP</h6>
                                     <p class="text-muted"><span class="badge  <?php if ($bmn['label_kode'] == 'S') {
@@ -173,7 +180,14 @@
                                                                                         } ?></span></p>
 
                                     <h6>Nama Sub Satuan Kerja</h6>
-                                    <p class="text-muted"><?= $bmn['subsatker_id']; ?></p>
+                                    <p class="text-muted"><?php if ($list_subsatker != null) : ?>
+                                            <?php foreach ($list_subsatker as $subsatker) : ?>
+                                                <?php if ($bmn['subsatker_id'] == $subsatker['id']) : ?>
+
+                                                    <?= $subsatker['nama_subsatker']; ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?></p>
 
                                     <h6>Keterangan</h6>
                                     <p class="text-muted"><?= $bmn['ket']; ?></p>

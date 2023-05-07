@@ -6,6 +6,8 @@ use App\Models\masterTabelBmnModel;
 use App\Models\masterSatkerModel;
 use App\Models\masterPegawaiModel;
 use App\Models\masterGedungModel;
+use App\Models\masterRuanganModel;
+use App\Models\masterSubsatkerModel;
 
 
 
@@ -15,6 +17,9 @@ class masterInventarisasi extends BaseController
     protected $masterSatkerModel;
     protected $masterPegawaiModel;
     protected $masterGedungModel;
+    protected $masterRuanganModel;
+    protected $masterSubsatkerModel;
+
 
     public function __construct()
     {
@@ -22,6 +27,8 @@ class masterInventarisasi extends BaseController
         $this->masterSatkerModel = new MasterSatkerModel();
         $this->masterPegawaiModel = new MasterPegawaiModel();
         $this->masterGedungModel = new MasterGedungModel();
+        $this->masterRuanganModel = new MasterRuanganModel();
+        $this->masterSubsatkerModel = new MasterSubsatkerModel();
     }
 
     public function pmNonTik()
@@ -110,6 +117,8 @@ class masterInventarisasi extends BaseController
         $nama_satker = $this->masterSatkerModel->getNamaSatker($data_bmn['satker_id']);
         $list_pegawai = $this->masterPegawaiModel->getAllPegawai();
         $list_gedung = $this->masterGedungModel->getAllGedung();
+        $list_ruangan = $this->masterRuanganModel->getAllRuangan();
+        $list_subsatker = $this->masterSubsatkerModel->getAllSubsatker();
         $data = [
             'title' => 'Isi Kertas Kerja',
             'menu' => 'Inventarisasi',
@@ -118,7 +127,9 @@ class masterInventarisasi extends BaseController
             'bmn' => $data_bmn,
             'nama_satker' => $nama_satker['nama_ref_unit_kerja_lengkap'],
             'list_pegawai' => $list_pegawai,
-            'list_gedung' => $list_gedung
+            'list_gedung' => $list_gedung,
+            'list_ruangan' => $list_ruangan,
+            'list_subsatker' => $list_subsatker
         ];
         return view('inventarisasi/isikertaskerja', $data);
     }
@@ -128,6 +139,8 @@ class masterInventarisasi extends BaseController
         $id_bmn = $this->request->getVar('id_bmn');
         $id_pegawai = $this->request->getVar('pegawai');
         $id_gedung =  $this->request->getVar('nama-gedung');
+        $id_ruangan =  $this->request->getVar('nama-ruangan');
+        $id_subsatker =  $this->request->getVar('nama-subsatker');
 
         $data_user = session('data_user');
 
@@ -147,7 +160,7 @@ class masterInventarisasi extends BaseController
             $kategori_br = null;
             $kategori_btd = null;
         }
-        
+
         $pelabelan = $this->request->getVar('pelabelan');
         $status_psp = $this->request->getVar('status-psp');
 
@@ -162,6 +175,8 @@ class masterInventarisasi extends BaseController
             'label_kode' => $pelabelan,
             'pegawai_id' => $id_pegawai,
             'gedung_id' => $id_gedung,
+            'ruangan_id' => $id_ruangan,
+            'subsatker_id' => $id_subsatker,
             'status_psp' => $status_psp,
             'ket' => $ket,
             'opUniv_nip' => $data_user['nip']

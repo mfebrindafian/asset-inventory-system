@@ -60,8 +60,8 @@
                                                                 <?php endforeach; ?>
                                                             <?php endif; ?></td>
                                                         <td>
-                                                            <button data-bs-target="#modal-tambah" data-bs-toggle="modal" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
-                                                            <button data-bs-target="#modal-hapus" data-bs-toggle="modal" id="btn-hapus" data-id="<?= $list["id"] ?>" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                                            <button data-bs-target="#modal-edit-gedung" data-bs-toggle="modal" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
+                                                            <button data-bs-target="#modal-hapus-gedung" data-bs-toggle="modal" id="btn-hapus-gedung" data-id="<?= $list["id"] ?>" data-nama-gedung="<?= $list["nama_gedung"] ?>" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                                                         </td>
                                                     </tr>
 
@@ -83,8 +83,8 @@
 <!-- MODAL HAPUS-->
 <div class="modal fade text-left modal-borderless" id="modal-hapus-gedung" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-        <form action="" method="" class="modal-content">
-            <input type="text" name="id_gedung" id="id_gedung">
+        <form action="<?= base_url('/hapusGedung'); ?>" method="post" class="modal-content" enctype="multipart/form-data">
+            <!-- <input type="text" name="id_gedung_hapus" id="id-gedung-hapus" class="d-none"> -->
             <div class="modal-header">
                 <h5 class="modal-title text-danger">Hapus gedung?</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -92,7 +92,7 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                <input type="hidden" name="id_gedung_hapus" id="id-gedung-hapus">
+                <input name="id_gedung_hapus" id="id-gedung-hapus" class="d-none">
                 <h5 id="nama-gedung-hapus"></h5>
             </div>
             <div class="modal-footer">
@@ -148,8 +148,6 @@
 </div>
 
 
-
-
 <!-- MODAL EDIT-->
 <div class="modal fade text-left modal-borderless" id="modal-edit-gedung" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
@@ -195,10 +193,5 @@
     </div>
 </div>
 
-<script>
-    //Mengambil Data edit dengan menggunakan Jquery
-    $(document).on('click', '#btn-hapus', function() {
-        $('#id_gedung').val($(this).data('id'));
-    })
-</script>
+
 <?= $this->endSection(); ?>
