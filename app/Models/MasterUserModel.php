@@ -21,6 +21,16 @@ class MasterUserModel extends Model
             ->getRowArray();
     }
 
+    public function getUserByUserId($user_id)
+    {
+        return $this
+            ->table('users.*,pegawai.*')
+            ->where('users.id', $user_id)
+            ->join('pegawai', 'pegawai.user_id = users.id')
+            ->get()
+            ->getRowArray();
+    }
+
 
 
     // public function get_data_login($username, $tbl)

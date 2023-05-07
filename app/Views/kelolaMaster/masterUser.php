@@ -47,13 +47,35 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Budiman</td>
-                                                <td><span class="badge bg-light-info">Operator Univ</span></td>
-                                                <td>Sains dan Teknologi</td>
-                                                <td><button data-bs-target="#modal-edit" data-bs-toggle="modal" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button></td>
-                                            </tr>
+                                            <?php $list_cek = []; ?>
+                                            <?php $no = 1; ?>
+                                            <?php if ($list_user != null) : ?>
+                                                <?php foreach ($list_user as $user) : ?>
+                                                    <?php if (in_array($user['nama_pegawai'], $list_cek) == false) : ?>
+                                                        <tr>
+                                                            <td><?= $no; ?></td>
+                                                            <td><?= $user['gelar_depan'] . ' ' . $user['nama_pegawai'] . ' ' . $user['gelar_belakang'] ?></td>
+                                                            <td>
+                                                                <?php foreach ($list_akses as $akses) : ?>
+                                                                    <?php if ($akses['user_id'] == $user['user_id']) : ?>
+                                                                        <span class="badge bg-light-info"><?php if ($akses['level_id'] == '1') {
+                                                                                                                echo 'Super Admin';
+                                                                                                            } elseif ($akses['level_id'] == '2') {
+                                                                                                                echo 'Operator Universitas';
+                                                                                                            } else {
+                                                                                                                echo 'Operator Unit Kerja';
+                                                                                                            } ?></span>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
+                                                            </td>
+                                                            <td><?= $list_unit_kerja[($no - 1)]; ?></td>
+                                                            <td><button data-bs-target="#modal-edit" data-bs-toggle="modal" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button></td>
+                                                        </tr>
+                                                        <?php $no++; ?>
+                                                    <?php endif; ?>
+                                                    <?php $list_cek[] = $user['nama_pegawai']; ?>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -96,9 +118,12 @@
                 <fieldset class="form-group">
                     <select class="form-select" name="pegawai">
                         <option disabled selected value="null">- Cari Pegawai -</option>
-                        <option value="1">Budiman</option>
-                        <option value="2">Joko</option>
-                        <option value="3">Widodo</option>
+                        <?php if ($list_user != null) : ?>
+                            <?php foreach ($list_user as $user) : ?>
+
+                                <option value="<?= $user['user_id']; ?>"><?= $user['gelar_depan'] . ' ' . $user['nama_pegawai'] . ' ' . $user['gelar_belakang'] ?></option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </select>
                 </fieldset>
                 <div class="hasil">

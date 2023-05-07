@@ -7,8 +7,21 @@ use CodeIgniter\Model;
 class MasterAksesUserLevelModel extends Model
 {
     protected $table = 'tbl_akses_user_level';
-    protected $allowedFields = ['user_id', 'level_id'];
+    protected $allowedFields = ['user_id', 'level_id', 'satker_id'];
 
+    public function getAllAkses()
+    {
+        return $this
+            ->table($this->table)
+            ->get()
+            ->getResultArray();
+    }
+
+    // public function getAllAkses()
+    // {
+    //     $query = ('SELECT * FROM dbsibamira.tbl_akses_user_level tn join kepeg.referensi_unit_kerja tn1 where tn.satker_id = tn1.id_ref_unit_kerja');
+    //     return $this->db->query($query)->getResultArray();
+    // }
 
     public function getUserLevel($user_id)
     {
@@ -34,7 +47,7 @@ class MasterAksesUserLevelModel extends Model
 
 
 
-    
+
     public function getAksesMenu($level_id, $user_id)
     {
         return $this

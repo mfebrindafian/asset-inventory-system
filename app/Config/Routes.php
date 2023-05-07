@@ -106,7 +106,7 @@ $routes->get('/kelola-gedung', 'masterData::gedung');
 $routes->get('/kelola-ruangan', 'masterData::ruangan');
 $routes->get('/kelola-subsatker', 'masterData::satker');
 
-
+$routes->post('/APIUser', 'masterUser::APIUser');
 
 // $routes->post('/gantiPasswordDefault', 'masterAkses::gantiPasswordDefault');
 
