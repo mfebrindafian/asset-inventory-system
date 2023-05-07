@@ -47,18 +47,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Lab ICT</td>
-                                                <td>40</td>
-                                                <td>Sains dan Teknologi</td>
-                                                <td>
-                                                    <button id="btn-edit-ruangan" data-bs-target="#modal-edit-ruangan" data-bs-toggle="modal" data-id="1" data-nama-ruangan="Lab ICT" data-kapasitas="40" data-pilih-gedung="1" class="btn btn-sm btn-outline-primary">
-                                                        <i class="bi bi-pencil-fill"></i>
-                                                    </button>
-                                                    <button id="btn-hapus-ruangan" data-bs-target="#modal-hapus-ruangan" data-bs-toggle="modal" data-id="1" data-nama-ruangan="Lab ICT" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
-                                                </td>
-                                            </tr>
+                                            <?php $no = 1; ?>
+                                            <?php if ($list_ruangan != null) : ?>
+                                                <?php foreach ($list_ruangan as $list) : ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= $list['nama_ruang']; ?></td>
+                                                        <td><?= $list['kapasitas']; ?></td>
+                                                        <td><?php if ($list_gedung != null) : ?>
+                                                                <?php foreach ($list_gedung as $gedung) : ?>
+                                                                    <?php if ($gedung['id'] == $list['id_gedung']) {
+                                                                        echo $gedung['nama_gedung'];
+                                                                    } ?>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?></td>
+                                                        <td>
+                                                            <button id="btn-edit-ruangan" data-bs-target="#modal-edit-ruangan" data-bs-toggle="modal" data-id="1" data-nama-ruangan="Lab ICT" data-kapasitas="40" data-pilih-gedung="1" class="btn btn-sm btn-outline-primary">
+                                                                <i class="bi bi-pencil-fill"></i>
+                                                            </button>
+                                                            <button id="btn-hapus-ruangan" data-bs-target="#modal-hapus-ruangan" data-bs-toggle="modal" data-id="<?= $list["id"] ?>" data-nama-ruangan="<?= $list["nama_ruang"] ?>"" class=" btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                                        </td>
+                                                    </tr>
+
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -74,7 +86,7 @@
 <!-- MODAL TAMBAH-->
 <div class="modal fade text-left modal-borderless" id="modal-tambah-ruangan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-        <form action="" method="" class="modal-content">
+        <form action="<?= basename('/tambahRuangan'); ?>" method="post" class="modal-content" enctype="multipart/form-data">
             <div class="modal-header">
                 <h5 class="modal-title">Tambah Ruangan</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -93,11 +105,14 @@
                 </div>
 
                 <label for="pilih-gedung" class="mb-2"><strong>Pilih Gedung</strong></label>
-                <select class="form-select mb-4" name="gedung">
+                <select class="form-select mb-4" name="id_gedung">
                     <option disabled selected value="null">- Pilih Gedung -</option>
-                    <option value="1">Fakultas Sains dan Teknologi</option>
-                    <option value="2">Fakultas Hukum</option>
-                    <option value="3">Fakultas Pertanian</option>
+                    <?php if ($list_gedung != null) : ?>
+                        <?php foreach ($list_gedung as $gedung) : ?>
+                            <option value="<?= $gedung['id']; ?>"><?= $gedung['nama_gedung']; ?></option>
+                        <?php endforeach; ?>
+                    <?php endif; ?></td>
+
                 </select>
 
             </div>
@@ -161,7 +176,8 @@
 <!-- MODAL HAPUS-->
 <div class="modal fade text-left modal-borderless" id="modal-hapus-ruangan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-        <form action="" method="" class="modal-content">
+        <form action="<?= base_url('/hapusRuangan'); ?>" method="post" class="modal-content" enctype="multipart/form-data">
+            <!-- <input type="text" name="id_ruangan_hapus" id="id-ruangan-hapus" class="d-none"> -->
             <div class="modal-header">
                 <h5 class="modal-title text-danger">Hapus Ruangan?</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -169,7 +185,7 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                <input type="hidden" name="id_ruangan_hapus" id="id-ruangan-hapus">
+                <input name="id_ruangan_hapus" id="id-ruangan-hapus" class="d-none">
                 <h5 id="nama-ruangan-hapus"></h5>
             </div>
             <div class="modal-footer">

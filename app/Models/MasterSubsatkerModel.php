@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MasterGedungModel extends Model
+class MasterSubsatkerModel extends Model
 {
     // protected $DBGroup = 'siakad';
-    protected $table = 'tbl_gedung';
-    protected $allowedFields = ['nama_gedung', 'id_lokasi'];
+    protected $table = 'tbl_subsatker';
+    protected $allowedFields = ['nama_subsatker', 'id_ref_unit_kerja'];
 
 
-    public function getAllGedung()
+    public function getAllSubsatker()
     {
         return $this
             ->table($this->table)

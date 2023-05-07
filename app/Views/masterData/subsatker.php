@@ -47,17 +47,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Kemahasiswaan</td>
-                                                <td>Akademik dan Kemahasiswaan</td>
-                                                <td>
-                                                    <button id="btn-edit-satker" data-bs-target="#modal-edit-satker" data-bs-toggle="modal" data-id="1" data-nama-satker="Kemahasiswaan" data-ref-satker="1" class="btn btn-sm btn-outline-primary">
-                                                        <i class="bi bi-pencil-fill"></i>
-                                                    </button>
-                                                    <button id="btn-hapus-satker" data-bs-target="#modal-hapus-satker" data-bs-toggle="modal" data-id="1" data-nama-satker="Kemahasiswaan" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
-                                                </td>
-                                            </tr>
+                                            <?php $no = 1; ?>
+                                            <?php if ($list_subsatker != null) : ?>
+                                                <?php foreach ($list_subsatker as $list) : ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= $list['nama_subsatker']; ?></td>
+                                                        <td><?php if ($list_satker != null) : ?>
+                                                                <?php foreach ($list_satker as $satker) : ?>
+                                                                    <?php if ($satker['id_ref_unit_kerja'] == $list['id_ref_unit_kerja']) {
+                                                                        echo $satker['nama_ref_unit_kerja_lengkap'];
+                                                                    } ?>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?></td>
+                                                        <td>
+                                                            <button id="btn-edit-satker" data-bs-target="#modal-edit-satker" data-bs-toggle="modal" data-id="1" data-nama-satker="Kemahasiswaan" data-ref-satker="1" class="btn btn-sm btn-outline-primary">
+                                                                <i class="bi bi-pencil-fill"></i>
+                                                            </button>
+                                                            <button id="btn-hapus-subsatker" data-bs-target="#modal-hapus-subsatker" data-bs-toggle="modal" data-id="<?= $list['id']; ?>" data-nama-subsatker="<?= $list['nama_subsatker']; ?>" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                                        </td>
+                                                    </tr>
+
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -75,7 +88,7 @@
 <!-- MODAL TAMBAH-->
 <div class="modal fade text-left modal-borderless" id="modal-tambah-satker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-        <form action="" method="" class="modal-content">
+        <form action="<?= base_url('/tambahSubsatker'); ?>" method="post" class="modal-content" enctype="multipart/form-data">
             <div class="modal-header">
                 <h5 class="modal-title">Tambah Sub Unit Kerja</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -85,15 +98,17 @@
             <div class="modal-body">
                 <label for="nama-satker" class="mb-2"><strong>Nama Sub Unit Kerja</strong></label>
                 <div class="form-group mb-4">
-                    <input type="text" name="nama_satker" id="nama-satker" class="form-control" placeholder="Ketik Nama Sub Unit Kerja...">
+                    <input type="text" name="nama_subsatker" id="nama-satker" class="form-control" placeholder="Ketik Nama Sub Unit Kerja...">
                 </div>
 
-                <label for="pilih-ref-satker" class="mb-2"><strong>Pilih Ref Satuan Unit Kerja</strong></label>
-                <select class="form-select mb-4" name="ref-satker">
-                    <option disabled selected value="null">- Pilih Ref Satuan Unit Kerja -</option>
-                    <option value="1">Fakultas Sains dan Teknologi</option>
-                    <option value="2">Fakultas Hukum</option>
-                    <option value="3">Fakultas Pertanian</option>
+                <label for="pilih-ref-satker" class="mb-2"><strong>Pilih Satuan Unit Kerja</strong></label>
+                <select class="form-select mb-4" name="id_ref_unit_kerja">
+                    <option disabled selected value="null">- Pilih Satuan Unit Kerja -</option>
+                    <?php if ($list_satker != null) : ?>
+                        <?php foreach ($list_satker as $satker) : ?>
+                            <option value="<?= $satker['id_ref_unit_kerja']; ?>"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </select>
 
             </div>
@@ -114,6 +129,7 @@
 <div class="modal fade text-left modal-borderless" id="modal-edit-satker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
         <form action="" method="" class="modal-content">
+            <input type="text" name="id_subsatker_edit" id="id-subsatker-edit" class="d-none">
             <div class="modal-header">
                 <h5 class="modal-title">Edit Sub Unit Kerja</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -150,9 +166,9 @@
 
 
 <!-- MODAL HAPUS-->
-<div class="modal fade text-left modal-borderless" id="modal-hapus-satker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+<div class="modal fade text-left modal-borderless" id="modal-hapus-subsatker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-        <form action="" method="" class="modal-content">
+        <form action="<?= base_url('hapusSubsatker'); ?>" method="post" class="modal-content" enctype="multipart/form-data">
             <div class="modal-header">
                 <h5 class="modal-title text-danger">Hapus Sub Unit Kerja?</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -160,8 +176,8 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                <input type="hidden" name="id_satker_hapus" id="id-satker-hapus">
-                <h5 id="nama-satker-hapus"></h5>
+                <input name="id_subsatker_hapus" id="id-subsatker-hapus" class="d-none">
+                <h5 id="nama-subsatker-hapus"></h5>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-danger" data-bs-dismiss="modal">

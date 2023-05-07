@@ -25,14 +25,20 @@
         $('#nama-ruangan-hapus').text($(this).data('nama-ruangan'))
     })
 
-    $(document).on('click', '#btn-edit-satker', function() {
-        $('#id-satker-edit').val($(this).data('id'))
-        $('#nama-satker-edit').val($(this).data('nama-satker'))
-        $('#pilih-ref-satker-edit').val($(this).data('ref-satker'))
+    $(document).on('click', '#btn-edit-subsatker', function() {
+        $('#id-subsatker-edit').val($(this).data('id'))
+        $('#nama-subsatker-edit').val($(this).data('nama-subsatker'))
+        $('#pilih-ref-subsatker-edit').val($(this).data('ref-subsatker'))
     })
 
-    $(document).on('click', '#btn-hapus-satker', function() {
-        $('#id-satker-hapus').val($(this).data('id'))
-        $('#nama-satker-hapus').text($(this).data('nama-satker'))
+    $(document).on('click', '#btn-hapus-subsatker', function() {
+        $('#id-subsatker-hapus').val($(this).data('id'))
+        $('#nama-subsatker-hapus').text($(this).data('nama-subsatker'))
+    })
+</script>
+
+<script>
+    $(document).on('click', '#btn-hapus-gedung', function() {
+        $('#id_gedung_post').val($(this).data('id'));
     })
 </script>
