@@ -54,8 +54,8 @@
                                     </div>
                                     <div class="col-6">
                                         <fieldset class="form-group">
-                                            <select class="form-select" id="jenis-rekapitulasi">
-                                                <option value="" selected disabled>- Jenis Rekapitulasi -</option>
+                                            <select class="form-select" id="jenis-rekapitulasi" name="jenis-inventarisasi" required>
+                                                <option value="" selected disabled>- Jenis Inventarisasi -</option>
                                                 <?php foreach ($list_jenis_rekapitulasi as $list) : ?>
                                                     <option value="<?= $list['id']; ?>"><?= $list['jenis_rekapitulasi']; ?></option>
                                                 <?php endforeach; ?>

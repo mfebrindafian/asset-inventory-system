@@ -919,26 +919,135 @@ class masterReport extends BaseController
             $satker_id = session('satker_id');
         }
 
+
         if ($satker_id == 'all') {
             $nama_satker['nama_ref_unit_kerja_lengkap'] = 'Seluruh Unit Kerja';
         } else {
             $nama_satker = $this->masterSatkerModel->getNamaSatker($satker_id);
         }
 
+
         $all_bmn = $this->masterBmnModel->getAllBmnBySatker($satker_id);
         if ($all_bmn != null) {
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
 
-            //BARANG TIDAK DITEMUKAN
-            
+            //Style Table
+            $styleArray = [
+                'alignment' => [
+                    'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                ],
+            ];
+            $styleBorder = [
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                        'color' => ['argb' => 'FF000000'],
+                    ],
+                ],
+
+            ];
 
 
-            //BATAS BARANG TIDAK DITEMUKAN
+            //Batas Style Table
+
+            $id_rekapitulasi = $this->request->getVar('jenis-inventarisasi');
+            $jenis_inventarisasi = $this->masterTabelJenisRekapitulasiModel->getJenisRekapitulasiById($id_rekapitulasi);
+
+            if ($id_rekapitulasi == 1) {
+                $sheet->mergeCells('A1:AB1');
+                $sheet->setCellValue('A1', 'DAFTAR BARANG HASIL INVENTARISASI');
+                $sheet->mergeCells('A2:AB2');
+                $sheet->setCellValue('A2', 'PADA SATUAN KERJA ' . $nama_satker['nama_ref_unit_kerja_lengkap']);
+                $sheet->getStyle('A1:AB2')->applyFromArray($styleArray);
+                $sheet->setCellValue('A4', 'KODE SATKER :');
+                $sheet->setCellValue('A5', 'NAMA SATKER :');
+                $sheet->setCellValue('C5', $nama_satker['nama_ref_unit_kerja_lengkap']);
+
+                $merge1 = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'V', 'W', 'X', 'AA', 'AB'];
+                for ($me = 0; $me < count($merge1); $me++) {
+                    $sheet->mergeCells($merge1[$me] . '7:' . $merge1[$me] . '8');
+                }
+
+                $sheet->mergeCells('H7:I7');
+                $sheet->mergeCells('J7:K7');
+                $sheet->mergeCells('L7:M7');
+                $sheet->mergeCells('N7:P7');
+                $sheet->mergeCells('Q7:S7');
+                $sheet->mergeCells('T7:U7');
+                $sheet->mergeCells('Y7:Z7');
+
+                $sheet->getStyle('A7:AB8')->applyFromArray($styleArray);
+                $sheet->setCellValue('A7', 'No');
+                $sheet->setCellValue('B7', 'Uraian Akun');
+                $sheet->setCellValue('C7', 'Kode Barang');
+                $sheet->setCellValue('D7', 'Nama Barang');
+                $sheet->setCellValue('E7', 'Tahun Perolehan');
+                $sheet->setCellValue('F7', 'NUP');
+                $sheet->setCellValue('G7', 'Merk/Tipe');
+                $sheet->setCellValue('H7', 'Administrasi');
+                $sheet->setCellValue('H8', 'Kuantitas');
+                $sheet->setCellValue('I8', 'Nilai BMN');
+                $sheet->setCellValue('J7', 'Hasil Inventarisasi');
+                $sheet->setCellValue('J8', 'Kuantitas');
+                $sheet->setCellValue('K8', 'Nilai BMN');
+                $sheet->setCellValue('L7', 'Hasil Inventarisasi');
+                $sheet->setCellValue('L8', 'Kuantitas');
+                $sheet->setCellValue('M8', 'Nilai BMN');
+                $sheet->setCellValue('N7', 'Kondisi Barang');
+                $sheet->setCellValue('N8', 'B');
+                $sheet->setCellValue('O8', 'RR');
+                $sheet->setCellValue('P8', 'RB');
+                $sheet->setCellValue('Q7', 'Keberadaan Barang');
+                $sheet->setCellValue('Q8', 'BD');
+                $sheet->setCellValue('R8', 'BTD');
+                $sheet->setCellValue('S8', 'Berlebih');
+                $sheet->setCellValue('T7', 'Pelabelan Kodefikasi');
+                $sheet->setCellValue('T8', 'Sudah Belum');
+                $sheet->setCellValue('U8', 'Belum');
+                $sheet->setCellValue('V7', 'Nama Pegawai Pengguna Barang');
+                $sheet->setCellValue('W7', 'Nama Gedung');
+                $sheet->setCellValue('X7', 'Nama Ruangan');
+                $sheet->setCellValue('Y7', 'Status PSP');
+                $sheet->setCellValue('Y8', 'Sudah');
+                $sheet->setCellValue('Z8', 'Belum');
+                $sheet->setCellValue('AA7', 'Nama Sub Satker');
+                $sheet->setCellValue('AB7', 'Keterangan');
+
+                ///sementara 
+                $sheet->getStyle('A7:AB9')->applyFromArray($styleBorder);
+                $sheet->getStyle('A7:AB9')->getAlignment()->setWrapText(true);
+                $huruf = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB'];
+                $angka = 1;
+                for ($me2 = 0; $me2 < count($huruf); $me2++) {
+                    $sheet->setCellValue($huruf[$me2] . '9', $angka);
+                    $angka++;
+                }
+
+                $column = 10; //titik mulai
+
+                $all_bmn = $this->masterBmnModel->getAllBmnBySatker($satker_id);
+                dd($all_bmn);
+            }
+
+
+
+            // Set judul file excel nya
+            $sheet->setTitle("Laporan Pegawai");
+            $nama_file = 'Inventarisasi ' . $nama_satker['nama_ref_unit_kerja_lengkap'] . ' ' . $jenis_inventarisasi['jenis_rekapitulasi'];
+            // Proses file excel
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment; filename="' . $nama_file . '.xlsx"'); // Set nama file excel nya
+            header('Cache-Control: max-age=0');
+            $writer = new Xlsx($spreadsheet);
+            ob_end_clean();
+            $writer->save('php://output');
+            exit();
         } else {
-            session()->setFlashdata('pesan', 'Rekapitulasi' . $nama_satker['nama_ref_unit_kerja_lengkap'] . ' Tidak Tersedia!');
+            session()->setFlashdata('pesan', 'Inventarisasi ' . $nama_satker['nama_ref_unit_kerja_lengkap'] . ' Tidak Tersedia!');
             session()->setFlashdata('icon', 'error');
-            return redirect()->to('/report-rekapitulasi');
+            return redirect()->to('/report-inventarisasi');
         }
     }
 }
