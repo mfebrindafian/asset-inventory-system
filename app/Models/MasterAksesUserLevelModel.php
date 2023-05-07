@@ -26,6 +26,15 @@ class MasterAksesUserLevelModel extends Model
             ->get()
             ->getResultArray();
     }
+    public function getAllIdByUserId($user_id)
+    {
+        return $this
+            ->table($this->table)
+            ->select('id')
+            ->where('user_id', $user_id)
+            ->get()
+            ->getResultArray();
+    }
 
     // public function getAllAkses()
     // {

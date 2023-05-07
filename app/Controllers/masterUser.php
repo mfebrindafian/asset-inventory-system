@@ -83,7 +83,6 @@ class masterUser extends BaseController
         $user_id = $this->request->getVar('user_id');
         $id_ref_unit_kerja = $this->request->getVar('id_ref_unit_kerja');
 
-
         $this->masterAksesUserLevelModel->save([
             'user_id' => $user_id,
             'level_id' => $level_id,
@@ -113,10 +112,13 @@ class masterUser extends BaseController
 
     public function hapusUser()
     {
-        $user_id = $this->request->getVar('id_user');
+        $user_id = $this->request->getVar('user_id');
 
+        $list_akses = $this->masterAksesUserLevelModel->getAllIdByUserId($user_id);
 
-
+        foreach ($list_akses as $akses) {
+            $this->masterAksesUserLevelModel->delete($akses['id']);
+        }
         return redirect()->to('/user');
     }
 }
