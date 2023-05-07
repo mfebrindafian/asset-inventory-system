@@ -5,14 +5,13 @@
     <div class="row">
         <div class="col-12 col-md-6 order-md-1 order-last">
             <h3>Kelola Menu</h3>
-            <p class="text-subtitle text-muted">Cari barang yang akan diberi label</p>
+            <p class="text-subtitle text-muted">Daftar menu yang ada di SIBAMIRA</p>
         </div>
         <div class="col-12 col-md-6 order-md-2 order-first">
             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Kelola Menu</li>
-
                 </ol>
             </nav>
         </div>
@@ -21,7 +20,6 @@
 <div class="page-content">
     <section class="row">
         <div class="col-12 col-lg-12">
-            <!-- TABLE HEADER-->
             <div class="card card-primary card-outline" style="border: #3c4b64;">
                 <div class="card-body box-profile">
                     <div class="row">
@@ -29,28 +27,22 @@
                             <div class="float-left">
                                 <div class="input-group">
                                     <button type="button" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;" data-bs-toggle="modal" data-bs-target="#modal-tambah"><i class="fas fa-plus mr-2"></i> Tambah</button>
-
                                 </div>
                             </div>
                         </form>
                         <div class="col-md-1">
                         </div>
-                        <div class="col-md-6 py-1 float-end">
-                            <div class="input-group input-group-md float-right" style="width: 250px">
+                        <div class="col-md-6 py-1 ">
+                            <div class="input-group input-group-md float-end" style="width: 250px">
                                 <input type="text" id="pencarian" name="table_search" class="form-control float-left" placeholder="Search ..." />
                             </div>
                         </div>
-
-
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
             </div>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <!-- /.card-header -->
                         <div class="card-content">
                             <div class="card-body table-responsive overflow-hidden">
                                 <table class="table table-hover text-nowrap">
@@ -89,24 +81,16 @@
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
-
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
         </div>
     </section>
 </div>
-
-
-
-
 
 <!-- MODAL TAMBAH MENU -->
 <div id="modal-tambah" class="modal fade text-left modal-borderless" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
@@ -150,17 +134,10 @@
                 <button type="submit" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;">Simpan</button>
             </div>
         </form>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
-
-
-
 
 <!-- MODAL EDIT MENU -->
-
 <div class="modal fade" id="modal-edit">
     <div class="modal-dialog">
         <form action="<?= base_url('/updateMenu') ?>" method="POST" class="modal-content">
@@ -203,11 +180,8 @@
                 <button type="submit" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;">Simpan</button>
             </div>
         </form>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
-
 
 <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
 <script>

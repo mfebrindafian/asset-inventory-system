@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="col-7 ">
-                    <button data-bs-target="#modal-tambah" data-bs-toggle="modal" class="btn btn-primary float-md-end">Tambah</button>
+                    <button data-bs-target="#modal-tambah-gedung" data-bs-toggle="modal" class="btn btn-primary float-md-end">Tambah</button>
                 </div>
             </div>
             <div class="row">
@@ -81,7 +81,7 @@
 </div>
 
 <!-- MODAL HAPUS-->
-<div class="modal fade text-left modal-borderless" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+<div class="modal fade text-left modal-borderless" id="modal-hapus-gedung" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
         <form action="" method="" class="modal-content">
             <input type="text" name="id_gedung" id="id_gedung">
@@ -91,8 +91,9 @@
                     <i data-feather="x"></i>
                 </button>
             </div>
-            <div class="modal-body">
-
+            <div class="modal-body text-center">
+                <input type="hidden" name="id_gedung_hapus" id="id-gedung-hapus">
+                <h5 id="nama-gedung-hapus"></h5>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-danger" data-bs-dismiss="modal">
@@ -107,7 +108,7 @@
 </div>
 
 <!-- MODAL TAMBAH-->
-<div class="modal fade text-left modal-borderless" id="modal-tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+<div class="modal fade text-left modal-borderless" id="modal-tambah-gedung" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
         <form action="<?= base_url('/tambahGedung'); ?>" method="post" class="modal-content" enctype="multipart/form-data">
             <div class="modal-header">
@@ -146,12 +147,58 @@
     </div>
 </div>
 
+
+
+
+<!-- MODAL EDIT-->
+<div class="modal fade text-left modal-borderless" id="modal-edit-gedung" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
+        <form action="" method="" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Gedung</h5>
+                <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id" id="id-gedung-edit">
+                <label for="nama-gedung-edit" class="mb-2"><strong>Nama Gedung</strong></label>
+                <div class="form-group mb-4">
+                    <input type="text" name="" id="nama-gedung-edit" class="form-control" placeholder="Ketik nama gedung...">
+                </div>
+
+                <label for="lokasi-edit" class="mb-2"><strong>Lokasi Kampus</strong></label>
+                <select class="form-select mb-4" name="lokasi" id="lokasi-edit">
+                    <option disabled selected value="null">- Cari Kampus -</option>
+                    <option value="1">Mendalo</option>
+                    <option value="2">Pondok Meja</option>
+                </select>
+
+                <label for="unit-kerja-edit" class="mb-2"><strong>Unit Kerja</strong></label>
+                <select class="form-select mb-4" name="unit-kerja-edit" id="unit-kerja-edit">
+                    <option disabled selected value="null">- Pilih Fakultas -</option>
+                    <option value="1">Fakultas Sains dan Teknologi</option>
+                    <option value="2">Fakultas Hukum</option>
+                    <option value="3">Fakultas Pertanian</option>
+                </select>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
+                    <span>Batal</span>
+                </button>
+                <button type="submit" class="btn btn-primary ml-1">
+                    <span>Update</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script>
     //Mengambil Data edit dengan menggunakan Jquery
     $(document).on('click', '#btn-hapus', function() {
         $('#id_gedung').val($(this).data('id'));
     })
 </script>
-
-
 <?= $this->endSection(); ?>

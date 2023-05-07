@@ -43,8 +43,10 @@ class masterUser extends BaseController
             }
         }
 
+        $data_unit_kerja = $this->masterSatkerModel->getAllSatker();
 
         $data = [
+            'daftar_unit_kerja' => $data_unit_kerja,
             'list_akses' => $list_akses,
             'list_unit_kerja' => $unit_kerja,
             'list_user' => $list_user,
@@ -62,10 +64,10 @@ class masterUser extends BaseController
     public function APIUser()
 
     {
-        $nama_pegawai = $this->request->getVar("nama_pegamai");
+        $nama_pegawai = $this->request->getPost('nama_pegawai');
         $list_pegawai = $this->masterPegawaiModel->getAllPegawaiByName($nama_pegawai);
 
-        echo json_encode($list_pegawai);
+        return json_encode($list_pegawai);
     }
 
     public function APIEditUser($user_id)

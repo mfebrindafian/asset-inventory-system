@@ -178,23 +178,26 @@
                 <div class="d-flex flex-wrap leveling mb-4 mt-2">
                     <div class="pilih-level ">
                         <label for="level" class="checkbox-level active">
-                            <input class="d-none" type="checkbox" name="level_pick" id="level">
+                            <input class="d-none" type="checkbox" name="level_pick" id="level" value="1">
+                            <i class="bi bi-square"></i>
+                            Super Admin
+                        </label>
+                        <label for="level" class="checkbox-level active">
+                            <input class="d-none" type="checkbox" name="level_pick" id="level" value="2">
                             <i class="bi bi-square"></i>
                             Operator Univ
                         </label>
                         <label for="level2" class="checkbox-level active">
-                            <input class="d-none" type="checkbox" name="level_pick2" id="level2">
+                            <input class="d-none" type="checkbox" name="level_pick2" id="level2" value="3">
                             <i class="bi bi-square"></i>
                             Operator Unit Kerja
                         </label>
                     </div>
                 </div>
                 <fieldset class="form-group">
-                    <select class="form-select" name="pegawai">
+                    <select class="form-select" name="pegawai" id="cari-pegawai-edit">
                         <option disabled selected value="null">- Cari Pegawai -</option>
-                        <option value="1">Budiman</option>
-                        <option value="2">Joko</option>
-                        <option value="3">Widodo</option>
+
                     </select>
                 </fieldset>
                 <div class="hasil">
@@ -216,6 +219,11 @@
                 <fieldset class="form-group mt-5">
                     <select class="form-select" name="satker">
                         <option disabled selected value="null">- Pilih Unit Kerja -</option>
+                        <?php if ($daftar_unit_kerja != null) : ?>
+                            <?php foreach ($daftar_unit_kerja as $unit_kerja) : ?>
+                                <option value="<?= $unit_kerja['id_ref_unit_kerja'] ?>"><?= $unit_kerja['nama_ref_unit_kerja_lengkap'] ?></option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                         <option value="1">Fakultas Sains dan Teknologi</option>
                         <option value="2">Fakultas Hukum</option>
                         <option value="3">Fakultas Pertanian</option>
