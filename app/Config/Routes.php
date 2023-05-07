@@ -113,6 +113,10 @@ $routes->post('/tambahUser', 'masterUser::tambahUser');
 $routes->post('/editUser', 'masterUser::editUser');
 $routes->post('/hapusUser', 'masterUser::hapusUser');
 
+$routes->post('/tambahGedung', 'masterData::tambahGedung');
+$routes->post('/editGedung', 'masterData::editGedung');
+$routes->post('/hapusGedung', 'masterData::hapusGedung');
+
 
 // $routes->post('/gantiPasswordDefault', 'masterAkses::gantiPasswordDefault');
 

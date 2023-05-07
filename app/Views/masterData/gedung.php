@@ -42,21 +42,32 @@
                                                 <th>No</th>
                                                 <th>Nama Gedung</th>
                                                 <th>Lokasi</th>
-                                                <th>Fakultas</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Gege</td>
-                                                <td>Mendalo</td>
-                                                <td>Sains dan Teknologi</td>
-                                                <td>
-                                                    <button data-bs-target="#modal-tambah" data-bs-toggle="modal" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
-                                                    <button data-bs-target="#modal-hapus" data-bs-toggle="modal" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
-                                                </td>
-                                            </tr>
+                                            <?php $no = 1; ?>
+                                            <?php if ($list_gedung != null) : ?>
+                                                <?php foreach ($list_gedung as $list) : ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= $list['nama_gedung']; ?></td>
+                                                        <td><?php if ($list_lokasi != null) : ?>
+                                                                <?php foreach ($list_lokasi as $lokasi) : ?>
+                                                                    <?php if ($lokasi['id'] == $list['id_lokasi']) {
+                                                                        echo $lokasi['nama_lokasi'];
+                                                                    } ?>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?></td>
+                                                        <td>
+                                                            <button data-bs-target="#modal-tambah" data-bs-toggle="modal" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
+                                                            <button data-bs-target="#modal-hapus" data-bs-toggle="modal" id="btn-hapus" data-id="<?= $list["id"] ?>" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                                        </td>
+                                                    </tr>
+
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -73,6 +84,7 @@
 <div class="modal fade text-left modal-borderless" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
         <form action="" method="" class="modal-content">
+            <input type="text" name="id_gedung" id="id_gedung">
             <div class="modal-header">
                 <h5 class="modal-title text-danger">Hapus gedung?</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -97,7 +109,7 @@
 <!-- MODAL TAMBAH-->
 <div class="modal fade text-left modal-borderless" id="modal-tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-        <form action="" method="" class="modal-content">
+        <form action="<?= base_url('/tambahGedung'); ?>" method="post" class="modal-content" enctype="multipart/form-data">
             <div class="modal-header">
                 <h5 class="modal-title">Tambah Gedung</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -107,33 +119,18 @@
             <div class="modal-body">
                 <label for="nama-gedung" class="mb-2"><strong>Nama Gedung</strong></label>
                 <div class="form-group mb-4">
-                    <input type="text" name="" id="nama-gedung" class="form-control" placeholder="Ketik nama gedung...">
+                    <input type="text" name="nama_gedung" nama_gedung id="nama-gedung" class="form-control" placeholder="Ketik nama gedung...">
                 </div>
 
-                <label for="lokasi" class="mb-2"><strong>Lokasi Kampus</strong></label>
+                <label for="lokasi" class="mb-2"><strong>Lokasi Gedung</strong></label>
                 <fieldset class="form-group">
-                    <select class="form-select" name="lokasi" id="lokasi">
-                        <option disabled selected value="null">- Cari Kampus -</option>
-                        <option value="1">Mendalo</option>
-                        <option value="2">Pondok Meja</option>
-                    </select>
-                </fieldset>
-
-                <label for="fakultas" class="mb-2"><strong>Fakultas</strong></label>
-                <fieldset class="form-group">
-                    <select class="form-select" name="fakultas">
-                        <option disabled selected value="null">- Pilih Fakultas -</option>
-                        <option value="1">Fakultas Sains dan Teknologi</option>
-                        <option value="2">Fakultas Hukum</option>
-                        <option value="3">Fakultas Pertanian</option>
-                    </select>
-                </fieldset>
-
-                <label for="fakultas" class="mb-2"><strong>Status Gedung</strong></label>
-                <fieldset class="form-group">
-                    <select class="form-select" name="fakultas">
-                        <option disabled selected value="null">- Status gedung -</option>
-                        <option value="1">Runtuh</option>
+                    <select class="form-select" name="id_lokasi" id="lokasi">
+                        <option disabled selected value="null">- Cari Lokasi -</option>
+                        <?php if ($list_lokasi != null) : ?>
+                            <?php foreach ($list_lokasi as $lokasi) : ?>
+                                <option value="<?= $lokasi['id']; ?>"><?= $lokasi['nama_lokasi']; ?></option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </select>
                 </fieldset>
             </div>
@@ -148,4 +145,13 @@
         </form>
     </div>
 </div>
+
+<script>
+    //Mengambil Data edit dengan menggunakan Jquery
+    $(document).on('click', '#btn-hapus', function() {
+        $('#id_gedung').val($(this).data('id'));
+    })
+</script>
+
+
 <?= $this->endSection(); ?>
