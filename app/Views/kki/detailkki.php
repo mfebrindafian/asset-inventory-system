@@ -152,7 +152,7 @@
                 </div>
                 <div class="modal-body">
                     <p class="text-muted">Tambahkan data pada batch ini</p>
-                    <input type="file" name="filekki" />
+                    <input type="file" name="filekki" class="btn btn-primary w-100 py-4" accept=".xls, .xlsx" required />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">

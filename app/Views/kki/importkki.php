@@ -97,27 +97,32 @@
             </div>
             <form action="<?= base_url('/import-kki'); ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <fieldset class="form-group">
-                        <select class="form-select" id="basicSelect" name="satker">
-                            <option>- Satker -</option>
+                    <div class="form-group mb-4">
+                        <label for="satker-kki" class="mb-2"><strong>Pilih Unit Kerja</strong> </label>
+                        <select class="form-select" name="satker" id="satker-kki" required>
+                            <option>- Unit Kerja -</option>
                             <?php if ($list_satker != null) : ?>
                                 <?php foreach ($list_satker as $satker) : ?>
                                     <option value="<?= $satker['id_ref_unit_kerja']; ?>"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></option>
                                 <?php endforeach; ?>
                             <?php endif; ?>
-
                         </select>
-                    </fieldset>
-                    <!-- class="basic-filepond" -->
-                    <input type="file" name="filekki" />
+                    </div>
+                    <input type="file" name="filekki" class="btn btn-primary w-100 py-4" accept=".xls, .xlsx" required />
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
-                        <span>Batal</span>
-                    </button>
-                    <button type="submit" class="btn btn-primary ml-1">
-                        <span>Import</span>
-                    </button>
+                <div class="modal-footer d-flex justify-content-between mt-3">
+                    <a href="#">
+                        Unduh Template
+                    </a>
+                    <div>
+                        <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
+                            <span>Batal</span>
+                        </button>
+                        <button type="submit" id="btn-submit" disabled class="btn btn-primary ml-1 ">
+                            <span>Import</span>
+                        </button>
+                    </div>
+
                 </div>
             </form>
         </div>

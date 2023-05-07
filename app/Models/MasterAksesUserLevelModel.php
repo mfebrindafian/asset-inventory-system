@@ -21,7 +21,7 @@ class MasterAksesUserLevelModel extends Model
     {
         return $this
             ->table($this->table)
-            ->select('level_id')
+            ->select('level_id,satker_id')
             ->where('user_id', $user_id)
             ->get()
             ->getResultArray();

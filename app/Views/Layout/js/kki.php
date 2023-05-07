@@ -10,4 +10,10 @@
             theme: "bootstrap"
         });
     });
+
+    $(document).on('change', '#satker-kki', function() {
+        if ($(this).val() != '') {
+            $('#btn-submit').attr('disabled', false)
+        }
+    })
 </script>
