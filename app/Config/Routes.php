@@ -102,9 +102,9 @@ $routes->post('/saveSubmenu', 'masterSistem::saveSubmenu');
 $routes->post('/switchLevel', 'masterAkses::switchLevel');
 
 $routes->get('/user', 'masterUser::masterUser');
-$routes->get('/gedung', 'masterData::gedung');
-$routes->get('/ruangan', 'masterData::ruangan');
-$routes->get('/satker', 'masterData::satker');
+$routes->get('/kelola-gedung', 'masterData::gedung');
+$routes->get('/kelola-ruangan', 'masterData::ruangan');
+$routes->get('/kelola-subsatker', 'masterData::satker');
 
 
 
