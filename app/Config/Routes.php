@@ -107,6 +107,12 @@ $routes->get('/kelola-ruangan', 'masterData::ruangan');
 $routes->get('/kelola-subsatker', 'masterData::satker');
 
 $routes->post('/APIUser', 'masterUser::APIUser');
+$routes->get('/APIEditUser/(:segment)', 'masterUser::APIEditUser/$1');
+
+$routes->post('/tambahUser', 'masterUser::tambahUser');
+$routes->post('/editUser', 'masterUser::editUser');
+$routes->post('/hapusUser', 'masterUser::hapusUser');
+
 
 // $routes->post('/gantiPasswordDefault', 'masterAkses::gantiPasswordDefault');
 
