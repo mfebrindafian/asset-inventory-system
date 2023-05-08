@@ -89,9 +89,11 @@
                 const userLevels = data_pegawai.level.map((obj) => obj.level_id);
                 $(".checkbox-level .level_id_edit").each(function() {
                     if (userLevels.includes($(this).val())) {
+                        $(this).attr('checked', true)
                         $(this).parent().removeClass('active')
                         $(this).siblings().removeClass().addClass('bi bi-check-square')
                     } else {
+                        $(this).attr('checked', false)
                         $(this).parent().addClass('active')
                         $(this).siblings().removeClass().addClass('bi bi-square')
                     }
