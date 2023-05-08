@@ -25,13 +25,13 @@ class masterUser extends BaseController
     public function masterUser()
     {
         $list_akses = $this->masterAksesUserLevelModel->getAllAkses();
+
         $unit_kerja = [];
         if ($list_akses != null) {
             foreach ($list_akses as $list) {
                 if ($list['satker_id'] != null) {
-                    $unit_kerja[] = implode($this->masterSatkerModel->getNamaSatker($list['satker_id']));
-                } else {
-                    $unit_kerja[] = '';
+                    $unit_kerja['unit'][] = implode($this->masterSatkerModel->getNamaSatker($list['satker_id']));
+                    $unit_kerja['user_id'][] = $list['user_id'];
                 }
             }
         }
@@ -58,6 +58,7 @@ class masterUser extends BaseController
 
         ];
 
+
         return view('kelolaMaster/masterUser', $data);
     }
 
@@ -81,16 +82,34 @@ class masterUser extends BaseController
 
     public function tambahUser()
     {
-        $level_id = $this->request->getVar('level_id');
-        $user_id = $this->request->getVar('user_id');
-        $id_ref_unit_kerja = $this->request->getVar('id_ref_unit_kerja');
+        $pegawai = $this->request->getVar('pegawai');
 
-        $this->masterAksesUserLevelModel->save([
-            'user_id' => $user_id,
-            'level_id' => $level_id,
-            'satker_id' => $id_ref_unit_kerja
-        ]);
 
+        $level_admin = $this->request->getVar('level_admin');
+        if ($level_admin != null) {
+            $this->masterAksesUserLevelModel->save([
+                'user_id' => $pegawai,
+                'level_id' => $level_admin,
+            ]);
+        }
+
+        $level_univ = $this->request->getVar('level_univ');
+        if ($level_univ != null) {
+            $this->masterAksesUserLevelModel->save([
+                'user_id' => $pegawai,
+                'level_id' => $level_univ,
+            ]);
+        }
+
+        $level_unit = $this->request->getVar('level_unit');
+        if ($level_unit != null) {
+            $id_ref_unit_kerja = $this->request->getVar('satker');
+            $this->masterAksesUserLevelModel->save([
+                'user_id' => $pegawai,
+                'level_id' => $level_unit,
+                'satker_id' => $id_ref_unit_kerja
+            ]);
+        }
         return redirect()->to('/user');
     }
 
@@ -114,8 +133,7 @@ class masterUser extends BaseController
 
     public function hapusUser()
     {
-        $user_id = $this->request->getVar('user_id');
-
+        $user_id = $this->request->getVar('id_user_hapus');
         $list_akses = $this->masterAksesUserLevelModel->getAllIdByUserId($user_id);
 
         foreach ($list_akses as $akses) {

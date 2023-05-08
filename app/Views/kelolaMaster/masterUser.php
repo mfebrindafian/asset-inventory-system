@@ -49,6 +49,7 @@
                                         <tbody>
                                             <?php $list_cek = []; ?>
                                             <?php $no = 1; ?>
+                                            <?php $arr = 0; ?>
                                             <?php if ($list_user != null) : ?>
                                                 <?php foreach ($list_user as $user) : ?>
                                                     <?php if (in_array($user['nama_pegawai'], $list_cek) == false) : ?>
@@ -68,13 +69,20 @@
                                                                     <?php endif; ?>
                                                                 <?php endforeach; ?>
                                                             </td>
-                                                            <td><?= $list_unit_kerja[($no - 1)]; ?></td>
+                                                            <td><?php foreach ($list_unit_kerja['user_id'] as $kerja) {
+                                                                    if ($kerja == $user['user_id']) {
+                                                                        if ($list_unit_kerja['unit'][$arr] != '') {
+                                                                            echo $list_unit_kerja['unit'][$arr];
+                                                                        }
+                                                                    }
+                                                                } ?></td>
                                                             <td>
                                                                 <button id="btn-edit-user" data-bs-target="#modal-edit" data-bs-toggle="modal" data-id="<?= $user['user_id'] ?>" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
                                                                 <button id="btn-hapus-user" data-bs-target="#modal-hapus-user" data-bs-toggle="modal" data-id="<?= $user['user_id'] ?>" data-nama-user="<?= $user['gelar_depan'] . ' ' . $user['nama_pegawai'] . ' ' . $user['gelar_belakang'] ?>" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                                                             </td>
                                                         </tr>
                                                         <?php $no++; ?>
+                                                        <?php $arr++; ?>
                                                     <?php endif; ?>
                                                     <?php $list_cek[] = $user['nama_pegawai']; ?>
                                                 <?php endforeach; ?>
@@ -239,7 +247,7 @@
 <!-- MODAL HAPUS-->
 <div class="modal fade text-left modal-borderless" id="modal-hapus-user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-        <form action="" method="" class="modal-content">
+        <form action="<?= base_url('/hapusUser'); ?>" method="post" class="modal-content" enctype="multipart/form-data">
             <div class="modal-header">
                 <h5 class="modal-title text-danger">Hapus User?</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
