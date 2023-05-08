@@ -48,7 +48,8 @@
                         results: $.map(data, function(item) {
                             return {
                                 text: (item.depan != null ? item.gelar_depan : '') + ' ' + (item.nama_pegawai) + ' ' + (item.gelar_belakang != null ? item.gelar_belakang : ''),
-                                id: item.nip
+                                id: item.user_id,
+                                nip: item.nip
                             }
                         })
                     }
@@ -59,7 +60,7 @@
         $('#cari-pegawai-tambah').on('select2:select', function(e) {
             var data = e.params.data;
             $('.nama-fill').html(data.text);
-            $('.nip-fill').html(data.id);
+            $('.nip-fill').html(data.nip);
         });
     });
 </script>
