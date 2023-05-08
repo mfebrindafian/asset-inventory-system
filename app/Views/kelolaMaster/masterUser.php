@@ -95,7 +95,7 @@
 <!-- MODAL TAMBAH-->
 <div class="modal fade text-left modal-borderless" id="modal-tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-        <form action="" method="" class="modal-content">
+        <form action="<?= base_url('/tambahUser'); ?>" method="post" class="modal-content" enctype="multipart/form-data">
             <div class="modal-header">
                 <h5 class="modal-title">Tambah User</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -107,17 +107,17 @@
                 <div class="d-flex flex-wrap leveling mb-4 mt-2">
                     <div class="pilih-level ">
                         <label for="level" class="checkbox-level active">
-                            <input class="d-none" type="checkbox" name="level_id" id="level" value="1">
+                            <input class="d-none" type="checkbox" name="level_admin" id="level" value="1">
                             <i class="bi bi-square"></i>
                             Super Admin
                         </label>
                         <label for="level2" class="checkbox-level active">
-                            <input class="d-none" type="checkbox" name="level_id" id="level2" value="2">
+                            <input class="d-none" type="checkbox" name="level_univ" id="level2" value="2">
                             <i class="bi bi-square"></i>
                             Operator Univ
                         </label>
                         <label for="level3" class="checkbox-level active">
-                            <input class="d-none" type="checkbox" name="level_id" id="level3" value="3">
+                            <input class="d-none" type="checkbox" name="level_unit" id="level3" value="3">
                             <i class="bi bi-square"></i>
                             Operator Unit Kerja
                         </label>
