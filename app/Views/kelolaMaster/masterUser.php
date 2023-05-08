@@ -177,7 +177,7 @@
 <!-- MODAL EDIT -->
 <div class="modal fade text-left modal-borderless" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-        <form action="" method="" class="modal-content">
+        <form action="<?= base_url('/editUser'); ?>" method="post" class="modal-content" enctype="multipart/form-data">
             <input type="hidden" name="pegawai" id="id_pegawai">
             <div class="modal-header">
                 <h5 class="modal-title">Edit User</h5>
@@ -190,17 +190,17 @@
                 <div class="d-flex flex-wrap leveling mb-4 mt-2">
                     <div class="pilih-level ">
                         <label for="level4" class="checkbox-level active">
-                            <input class="d-none level_id_edit" type="checkbox" name="level_id_edit" id="level4" value="1">
+                            <input class="d-none level_id_edit" type="checkbox" name="level_admin" id="level4" value="1">
                             <i class="bi bi-square"></i>
                             Super Admin
                         </label>
                         <label for="level5" class="checkbox-level active">
-                            <input class="d-none level_id_edit" type="checkbox" name="level_id_edit" id="level5" value="2">
+                            <input class="d-none level_id_edit" type="checkbox" name="level_univ" id="level5" value="2">
                             <i class="bi bi-square"></i>
                             Operator Univ
                         </label>
                         <label for="level6" class="checkbox-level active">
-                            <input class="d-none level_id_edit" type="checkbox" name="level_id_edit" id="level6" value="3">
+                            <input class="d-none level_id_edit" type="checkbox" name="level_unit" id="level6" value="3">
                             <i class="bi bi-square"></i>
                             Operator Unit Kerja
                         </label>
