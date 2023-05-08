@@ -28,13 +28,24 @@
     $(document).on('click', '#btn-edit-subsatker', function() {
         $('#id-subsatker-edit').val($(this).data('id'))
         $('#nama-subsatker-edit').val($(this).data('nama-subsatker'))
-        $('#pilih-ref-subsatker-edit').val($(this).data('ref-subsatker'))
+        $('#ref-unit-kerja-edit').val($(this).data('ref-subsatker'))
     })
 
     $(document).on('click', '#btn-hapus-subsatker', function() {
         $('#id-subsatker-hapus').val($(this).data('id'))
         $('#nama-subsatker-hapus').text($(this).data('nama-subsatker'))
     })
+
+    $(document).ready(function() {
+        $('#ref-unit-kerja').select2({
+            dropdownParent: $('#modal-tambah-satker'),
+            theme: "bootstrap",
+        });
+        $('#ref-unit-kerja-edit').select2({
+            dropdownParent: $('#modal-edit-satker'),
+            theme: "bootstrap",
+        });
+    });
 </script>
 
 <script>

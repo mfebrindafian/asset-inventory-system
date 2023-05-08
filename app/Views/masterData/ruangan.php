@@ -48,6 +48,7 @@
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
+                                            <?php $id_gedung = '' ?>
                                             <?php if ($list_ruangan != null) : ?>
                                                 <?php foreach ($list_ruangan as $list) : ?>
                                                     <tr>
@@ -57,12 +58,13 @@
                                                         <td><?php if ($list_gedung != null) : ?>
                                                                 <?php foreach ($list_gedung as $gedung) : ?>
                                                                     <?php if ($gedung['id'] == $list['id_gedung']) {
+                                                                        $id_gedung = $gedung['id'];
                                                                         echo $gedung['nama_gedung'];
                                                                     } ?>
                                                                 <?php endforeach; ?>
                                                             <?php endif; ?></td>
                                                         <td>
-                                                            <button id="btn-edit-ruangan" data-bs-target="#modal-edit-ruangan" data-bs-toggle="modal" data-id="1" data-nama-ruangan="Lab ICT" data-kapasitas="40" data-pilih-gedung="1" class="btn btn-sm btn-outline-primary">
+                                                            <button id="btn-edit-ruangan" data-bs-target="#modal-edit-ruangan" data-bs-toggle="modal" data-id="<?= $list['id'] ?>" data-nama-ruangan="<?= $list['nama_ruang'] ?>" data-kapasitas="<?= $list['kapasitas'] ?>" data-pilih-gedung="<?= $id_gedung ?>" class="btn btn-sm btn-outline-primary">
                                                                 <i class="bi bi-pencil-fill"></i>
                                                             </button>
                                                             <button id="btn-hapus-ruangan" data-bs-target="#modal-hapus-ruangan" data-bs-toggle="modal" data-id="<?= $list["id"] ?>" data-nama-ruangan="<?= $list["nama_ruang"] ?>"" class=" btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
@@ -111,10 +113,8 @@
                         <?php foreach ($list_gedung as $gedung) : ?>
                             <option value="<?= $gedung['id']; ?>"><?= $gedung['nama_gedung']; ?></option>
                         <?php endforeach; ?>
-                    <?php endif; ?></td>
-
+                    <?php endif; ?>
                 </select>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
@@ -154,9 +154,11 @@
                 <label for="pilih-gedung" class="mb-2"><strong>Pilih Gedung</strong></label>
                 <select class="form-select mb-4" name="gedung" id="pilih-gedung-edit">
                     <option disabled selected value="null">- Pilih Gedung -</option>
-                    <option value="1">Fakultas Sains dan Teknologi</option>
-                    <option value="2">Fakultas Hukum</option>
-                    <option value="3">Fakultas Pertanian</option>
+                    <?php if ($list_gedung != null) : ?>
+                        <?php foreach ($list_gedung as $gedung) : ?>
+                            <option value="<?= $gedung['id']; ?>"><?= $gedung['nama_gedung']; ?></option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </select>
 
             </div>

@@ -189,17 +189,17 @@
                 <div class="d-flex flex-wrap leveling mb-4 mt-2">
                     <div class="pilih-level ">
                         <label for="level4" class="checkbox-level active">
-                            <input class="d-none" type="checkbox" name="level_id_edit" id="level4" value="1">
+                            <input class="d-none level_id_edit" type="checkbox" name="level_id_edit" id="level4" value="1">
                             <i class="bi bi-square"></i>
                             Super Admin
                         </label>
                         <label for="level5" class="checkbox-level active">
-                            <input class="d-none" type="checkbox" name="level_id_edit" id="level5" value="2">
+                            <input class="d-none level_id_edit" type="checkbox" name="level_id_edit" id="level5" value="2">
                             <i class="bi bi-square"></i>
                             Operator Univ
                         </label>
                         <label for="level6" class="checkbox-level active">
-                            <input class="d-none" type="checkbox" name="level_id_edit" id="level6" value="3">
+                            <input class="d-none level_id_edit" type="checkbox" name="level_id_edit" id="level6" value="3">
                             <i class="bi bi-square"></i>
                             Operator Unit Kerja
                         </label>

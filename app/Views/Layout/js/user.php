@@ -47,7 +47,7 @@
                     return {
                         results: $.map(data, function(item) {
                             return {
-                                text: (item.depan != null ? item.gelar_depan : '') + ' ' + (item.nama_pegawai) + ' ' + (item.gelar_belakang != null ? item.gelar_belakang : ''),
+                                text: (item.gelar_depan != null ? item.gelar_depan : '') + ' ' + (item.nama_pegawai) + ' ' + (item.gelar_belakang != null ? item.gelar_belakang : ''),
                                 id: item.user_id,
                                 nip: item.nip
                             }
@@ -87,7 +87,7 @@
                 $('.nip-fill-edit').html(pegawai.nip)
 
                 const userLevels = data_pegawai.level.map((obj) => obj.level_id);
-                $(".checkbox-level input[name='level_id_edit']").each(function() {
+                $(".checkbox-level .level_id_edit").each(function() {
                     if (userLevels.includes($(this).val())) {
                         $(this).parent().removeClass('active')
                         $(this).siblings().removeClass().addClass('bi bi-check-square')
@@ -99,10 +99,11 @@
 
                 $('#satker-edit').val(data_pegawai.level[0].satker_id).trigger('change')
 
-                if (userLevels.includes("3")) {
-                    $('#satker-edit').parent().removeClass('d-none')
-                } else {
-                    $('#satker-edit').parent().addClass('d-none')
+                for (i = 0; i < userLevels.length; i++) {
+                    if (userLevels[i] == "3") {
+                        $('#satker-edit').parent().removeClass('d-none')
+                        $('#satker-edit').val(data_pegawai.level[i].satker_id).trigger('change')
+                    }
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {

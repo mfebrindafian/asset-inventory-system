@@ -48,6 +48,7 @@
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
+                                            <?php $id_ref_satker = ''; ?>
                                             <?php if ($list_subsatker != null) : ?>
                                                 <?php foreach ($list_subsatker as $list) : ?>
                                                     <tr>
@@ -56,12 +57,13 @@
                                                         <td><?php if ($list_satker != null) : ?>
                                                                 <?php foreach ($list_satker as $satker) : ?>
                                                                     <?php if ($satker['id_ref_unit_kerja'] == $list['id_ref_unit_kerja']) {
+                                                                        $id_ref_satker = $satker['id_ref_unit_kerja'];
                                                                         echo $satker['nama_ref_unit_kerja_lengkap'];
                                                                     } ?>
                                                                 <?php endforeach; ?>
                                                             <?php endif; ?></td>
                                                         <td>
-                                                            <button id="btn-edit-satker" data-bs-target="#modal-edit-satker" data-bs-toggle="modal" data-id="1" data-nama-satker="Kemahasiswaan" data-ref-satker="1" class="btn btn-sm btn-outline-primary">
+                                                            <button id="btn-edit-satker" data-bs-target="#modal-edit-satker" data-bs-toggle="modal" data-id="<?= $list['id'] ?>" data-nama-satker="<?= $list['nama_subsatker'] ?>" data-ref-satker="<?= $id_ref_satker ?>" class="btn btn-sm btn-outline-primary">
                                                                 <i class="bi bi-pencil-fill"></i>
                                                             </button>
                                                             <button id="btn-hapus-subsatker" data-bs-target="#modal-hapus-subsatker" data-bs-toggle="modal" data-id="<?= $list['id']; ?>" data-nama-subsatker="<?= $list['nama_subsatker']; ?>" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
@@ -102,7 +104,7 @@
                 </div>
 
                 <label for="pilih-ref-satker" class="mb-2"><strong>Pilih Satuan Unit Kerja</strong></label>
-                <select class="form-select mb-4" name="id_ref_unit_kerja">
+                <select class="form-select mb-4" name="id_ref_unit_kerja" id="ref-unit-kerja">
                     <option disabled selected value="null">- Pilih Satuan Unit Kerja -</option>
                     <?php if ($list_satker != null) : ?>
                         <?php foreach ($list_satker as $satker) : ?>
@@ -144,11 +146,13 @@
                 </div>
 
                 <label for="pilih-ref-satker-edit" class="mb-2"><strong>Pilih Ref Satuan Unit Kerja</strong></label>
-                <select class="form-select mb-4" name="ref_satker" id="pilih-ref-satker-edit">
-                    <option disabled selected value="null">- Pilih Ref Satuan Unit Kerja -</option>
-                    <option value="1">Fakultas Sains dan Teknologi</option>
-                    <option value="2">Fakultas Hukum</option>
-                    <option value="3">Fakultas Pertanian</option>
+                <select class="form-select mb-4" name="ref_satker" id="ref-unit-kerja-edit">
+                    <option disabled selected value="null">- Pilih Satuan Unit Kerja -</option>
+                    <?php if ($list_satker != null) : ?>
+                        <?php foreach ($list_satker as $satker) : ?>
+                            <option value="<?= $satker['id_ref_unit_kerja']; ?>"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </select>
 
             </div>

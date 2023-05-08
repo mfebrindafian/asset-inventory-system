@@ -47,6 +47,7 @@
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
+                                            <?php $id_lokasi = ''; ?>
                                             <?php if ($list_gedung != null) : ?>
                                                 <?php foreach ($list_gedung as $list) : ?>
                                                     <tr>
@@ -55,12 +56,13 @@
                                                         <td><?php if ($list_lokasi != null) : ?>
                                                                 <?php foreach ($list_lokasi as $lokasi) : ?>
                                                                     <?php if ($lokasi['id'] == $list['id_lokasi']) {
+                                                                        $id_lokasi = $lokasi['id'];
                                                                         echo $lokasi['nama_lokasi'];
                                                                     } ?>
                                                                 <?php endforeach; ?>
                                                             <?php endif; ?></td>
                                                         <td>
-                                                            <button data-bs-target="#modal-edit-gedung" data-bs-toggle="modal" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
+                                                            <button id="btn-edit-gedung" data-bs-target="#modal-edit-gedung" data-bs-toggle="modal" data-id="<?= $list['id'] ?>" data-nama-gedung="<?= $list['nama_gedung'] ?>" data-lokasi="<?= $id_lokasi; ?>" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
                                                             <button data-bs-target="#modal-hapus-gedung" data-bs-toggle="modal" id="btn-hapus-gedung" data-id="<?= $list["id"] ?>" data-nama-gedung="<?= $list["nama_gedung"] ?>" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                                                         </td>
                                                     </tr>
@@ -120,7 +122,7 @@
             <div class="modal-body">
                 <label for="nama-gedung" class="mb-2"><strong>Nama Gedung</strong></label>
                 <div class="form-group mb-4">
-                    <input type="text" name="nama_gedung" nama_gedung id="nama-gedung" class="form-control" placeholder="Ketik nama gedung...">
+                    <input type="text" name="nama_gedung" id="nama-gedung" class="form-control" placeholder="Ketik nama gedung...">
                 </div>
 
                 <label for="lokasi" class="mb-2"><strong>Lokasi Gedung</strong></label>
@@ -167,17 +169,12 @@
 
                 <label for="lokasi-edit" class="mb-2"><strong>Lokasi Kampus</strong></label>
                 <select class="form-select mb-4" name="lokasi" id="lokasi-edit">
-                    <option disabled selected value="null">- Cari Kampus -</option>
-                    <option value="1">Mendalo</option>
-                    <option value="2">Pondok Meja</option>
-                </select>
-
-                <label for="unit-kerja-edit" class="mb-2"><strong>Unit Kerja</strong></label>
-                <select class="form-select mb-4" name="unit-kerja-edit" id="unit-kerja-edit">
-                    <option disabled selected value="null">- Pilih Fakultas -</option>
-                    <option value="1">Fakultas Sains dan Teknologi</option>
-                    <option value="2">Fakultas Hukum</option>
-                    <option value="3">Fakultas Pertanian</option>
+                    <option disabled selected value="null">- Cari Lokasi -</option>
+                    <?php if ($list_lokasi != null) : ?>
+                        <?php foreach ($list_lokasi as $lokasi) : ?>
+                            <option value="<?= $lokasi['id']; ?>"><?= $lokasi['nama_lokasi']; ?></option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </select>
 
             </div>
