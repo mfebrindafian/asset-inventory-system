@@ -111,7 +111,7 @@
                     <input type="file" name="filekki" class="btn btn-primary w-100 py-4" accept=".xls, .xlsx" required />
                 </div>
                 <div class="modal-footer d-flex justify-content-between mt-3">
-                    <a href="#">
+                    <a href="<?= basename('/unduh-Template-Import'); ?>">
                         Unduh Template
                     </a>
                     <div>

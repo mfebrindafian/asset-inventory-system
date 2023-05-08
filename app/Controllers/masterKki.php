@@ -184,4 +184,27 @@ class masterKki extends BaseController
         }
         return redirect()->to('/list-kki');
     }
+
+
+    public function unduhTemplateImport()
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        
+
+
+
+        // Set judul file excel nya
+        $sheet->setTitle("Laporan Pegawai");
+        $nama_file = 'TEMPLATE IMPORT';
+        // Proses file excel
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . $nama_file . '.xlsx"'); // Set nama file excel nya
+        header('Cache-Control: max-age=0');
+        $writer = new Xlsx($spreadsheet);
+        ob_end_clean();
+        $writer->save('php://output');
+        exit();
+    }
 }

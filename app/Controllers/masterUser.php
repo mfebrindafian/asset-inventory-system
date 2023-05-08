@@ -115,18 +115,93 @@ class masterUser extends BaseController
 
     public function editUser()
     {
-        $id_user = $this->request->getVar('id_user');
-        $level_id = $this->request->getVar('level_id');
-        $user_id = $this->request->getVar('user_id');
-        $id_ref_unit_kerja = $this->request->getVar('id_ref_unit_kerja');
+
+        $pegawai = $this->request->getVar('pegawai');
+        $list_akses = $this->masterAksesUserLevelModel->getAllLevelByUserId($pegawai);
+        $pengakses = [];
+        foreach ($list_akses as $listA) {
+            $pengakses[] = $listA['level_id'];
+        }
+
+        $level_admin = $this->request->getVar('level_admin');
+        if ($level_admin != null) {
+            if (in_array($level_admin, $pengakses) == false) {
+                $this->masterAksesUserLevelModel->save([
+                    'user_id' => $pegawai,
+                    'level_id' => $level_admin,
+                ]);
+            } else {
+                $id = $this->masterAksesUserLevelModel->getId($pegawai, $level_admin);
+                $this->masterAksesUserLevelModel->save([
+                    'id' => $id['id'],
+                    'user_id' => $pegawai,
+                    'level_id' => $level_admin,
+                ]);
+            }
+        } else {
+            foreach ($list_akses as $akses) {
+                if ($akses['level_id'] = '1') {
+                    $id = $this->masterAksesUserLevelModel->getId($pegawai, 1);
+                    $this->masterAksesUserLevelModel->delete($id['id']);
+                    break;
+                }
+            }
+        }
 
 
-        $this->masterAksesUserLevelModel->save([
-            'id' => $id_user,
-            'user_id' => $user_id,
-            'level_id' => $level_id,
-            'satker_id' => $id_ref_unit_kerja
-        ]);
+        $level_univ = $this->request->getVar('level_univ');
+        if ($level_univ != null) {
+            if (in_array($level_univ, $pengakses) == false) {
+                $this->masterAksesUserLevelModel->save([
+                    'user_id' => $pegawai,
+                    'level_id' => $level_univ,
+                ]);
+            } else {
+                $id = $this->masterAksesUserLevelModel->getId($pegawai, $level_univ);
+                $this->masterAksesUserLevelModel->save([
+                    'id' => $id['id'],
+                    'user_id' => $pegawai,
+                    'level_id' => $level_univ,
+                ]);
+            }
+        } else {
+            foreach ($list_akses as $akses) {
+                if ($akses['level_id'] = '2') {
+                    $id = $this->masterAksesUserLevelModel->getId($pegawai, 2);
+                    $this->masterAksesUserLevelModel->delete($id['id']);
+                    break;
+                }
+            }
+        }
+
+        $id_ref_unit_kerja = $this->request->getVar('satker');
+
+        $level_unit = $this->request->getVar('level_unit');
+        if ($level_unit != null) {
+            if (in_array($level_unit, $pengakses) == false) {
+                $this->masterAksesUserLevelModel->save([
+                    'user_id' => $pegawai,
+                    'level_id' => $level_unit,
+                    'satker_id' => $id_ref_unit_kerja
+                ]);
+            } else {
+                $id = $this->masterAksesUserLevelModel->getId($pegawai, $level_unit);
+                $this->masterAksesUserLevelModel->save([
+                    'id' => $id['id'],
+                    'user_id' => $pegawai,
+                    'level_id' => $level_unit,
+                    'satker_id' => $id_ref_unit_kerja
+                ]);
+            }
+        } else {
+            foreach ($list_akses as $akses) {
+                if ($akses['level_id'] = '3') {
+                    $id = $this->masterAksesUserLevelModel->getId($pegawai, 3);
+                    $this->masterAksesUserLevelModel->delete($id['id']);
+                    break;
+                }
+            }
+        }
 
         return redirect()->to('/user');
     }

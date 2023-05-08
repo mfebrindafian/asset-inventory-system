@@ -36,6 +36,28 @@ class MasterAksesUserLevelModel extends Model
             ->getResultArray();
     }
 
+    public function getAllLevelByUserId($user_id)
+    {
+        return $this
+            ->table($this->table)
+            ->select('level_id')
+            ->where('user_id', $user_id)
+            ->get()
+            ->getResultArray();
+    }
+
+    public function getId($user_id, $level_id)
+    {
+        return $this
+            ->table($this->table)
+            ->select('id')
+            ->where('user_id', $user_id)
+            ->where('level_id', $level_id)
+            ->get()
+            ->getRowArray();
+    }
+
+
     // public function getAllAkses()
     // {
     //     $query = ('SELECT * FROM dbsibamira.tbl_akses_user_level tn join kepeg.referensi_unit_kerja tn1 where tn.satker_id = tn1.id_ref_unit_kerja');

@@ -126,6 +126,8 @@ $routes->post('/editSubsatker', 'masterData::editSubsatker');
 $routes->post('/hapusSubsatker', 'masterData::hapusSubsatker');
 
 
+$routes->get('/unduh-Template-Import', 'masterKki::unduhTemplateImport');
+
 // $routes->post('/gantiPasswordDefault', 'masterAkses::gantiPasswordDefault');
 
 
