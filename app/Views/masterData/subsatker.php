@@ -63,7 +63,7 @@
                                                                 <?php endforeach; ?>
                                                             <?php endif; ?></td>
                                                         <td>
-                                                            <button id="btn-edit-satker" data-bs-target="#modal-edit-satker" data-bs-toggle="modal" data-id="<?= $list['id'] ?>" data-nama-satker="<?= $list['nama_subsatker'] ?>" data-ref-satker="<?= $id_ref_satker ?>" class="btn btn-sm btn-outline-primary">
+                                                            <button id="btn-edit-subsatker" data-bs-target="#modal-edit-satker" data-bs-toggle="modal" data-id="<?= $list['id'] ?>" data-nama-subsatker="<?= $list['nama_subsatker'] ?>" data-ref-subsatker="<?= $id_ref_satker ?>" class="btn btn-sm btn-outline-primary">
                                                                 <i class="bi bi-pencil-fill"></i>
                                                             </button>
                                                             <button id="btn-hapus-subsatker" data-bs-target="#modal-hapus-subsatker" data-bs-toggle="modal" data-id="<?= $list['id']; ?>" data-nama-subsatker="<?= $list['nama_subsatker']; ?>" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>

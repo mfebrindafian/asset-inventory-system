@@ -178,6 +178,7 @@
 <div class="modal fade text-left modal-borderless" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
         <form action="" method="" class="modal-content">
+            <input type="hidden" name="pegawai" id="id_pegawai">
             <div class="modal-header">
                 <h5 class="modal-title">Edit User</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">

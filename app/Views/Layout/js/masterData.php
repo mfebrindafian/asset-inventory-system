@@ -27,8 +27,8 @@
 
     $(document).on('click', '#btn-edit-subsatker', function() {
         $('#id-subsatker-edit').val($(this).data('id'))
-        $('#nama-subsatker-edit').val($(this).data('nama-subsatker'))
-        $('#ref-unit-kerja-edit').val($(this).data('ref-subsatker'))
+        $('#nama-satker-edit').val($(this).data('nama-subsatker'))
+        $('#ref-unit-kerja-edit').val($(this).data('ref-subsatker')).trigger('change')
     })
 
     $(document).on('click', '#btn-hapus-subsatker', function() {

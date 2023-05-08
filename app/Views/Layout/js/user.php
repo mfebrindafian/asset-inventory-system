@@ -97,7 +97,7 @@
                     }
                 });
 
-                $('#satker-edit').val(data_pegawai.level[0].satker_id).trigger('change')
+                $('#id_pegawai').val(pegawai.user_id)
 
                 for (i = 0; i < userLevels.length; i++) {
                     if (userLevels[i] == "3") {
