@@ -100,7 +100,7 @@ class masterKki extends BaseController
             $bmn = $spreadsheet->getActiveSheet()->toArray();
 
             foreach ($bmn as $key => $value) {
-                if ($key == 0) {
+                if ($key == 0 || $key == 1) {
                     continue;
                 }
                 $akun_id = $this->masterTabelAkunModel->getId($value['0']);
@@ -190,10 +190,60 @@ class masterKki extends BaseController
     {
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
+        $sheet->getColumnDimension('A')->setWidth(17);
+        $sheet->getColumnDimension('B')->setWidth(20);
+        $sheet->getColumnDimension('C')->setWidth(20);
+        $sheet->getColumnDimension('D')->setWidth(12);
+        $sheet->getColumnDimension('E')->setWidth(50);
+        $sheet->getColumnDimension('F')->setWidth(12);
+        $sheet->getColumnDimension('G')->setWidth(25);
 
-        
+        $styleArray = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => 'FF000000'],
+                ],
+            ],
+            'alignment' => [
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            ],
 
+        ];
 
+        $sheet->setCellValue('A1', 'URAIAN AKUN');
+        $sheet->setCellValue('B1', 'KODE BARANG');
+        $sheet->setCellValue('C1', 'TAHUN PEROLEHAN');
+        $sheet->setCellValue('D1', 'NUP');
+        $sheet->setCellValue('E1', 'MEREK/TIPE');
+        $sheet->setCellValue('F1', 'KUANTITAS');
+        $sheet->setCellValue('G1', 'NILAI BMN');
+
+        $sheet->setCellValue('A2', '1');
+        $sheet->setCellValue('B2', '2');
+        $sheet->setCellValue('C2', '3');
+        $sheet->setCellValue('D2', '4');
+        $sheet->setCellValue('E2', '5');
+        $sheet->setCellValue('F2', '6');
+        $sheet->setCellValue('G2', '7');
+
+        $sheet->getStyle('A1:G2')->applyFromArray($styleArray);
+        $spreadsheet->getActiveSheet()->getStyle('A1:G2')->getFont()->setBold(true);
+
+        $sheet->setCellValue('H6', 'PANDUAN : ');
+        $sheet->setCellValue('H7', '1. Copy data dari dokumen Kertas Kerja dari setiap satuan kerja');
+        $sheet->setCellValue('H8', '2. Input data dimulai pada cell A3 hingga G3 untuk awalan');
+        $sheet->setCellValue('H9', '3. Kolom 1 (Uraian Akun) diisikan data Uraikan Akun pada kertas kerja (kolom 2) (Cth. PM_NON-TIK/PM_TIK/ATB/ATL)');
+        $sheet->setCellValue('H10', '4. Kolom 2 (Kode Barang) diisikan data Kode Barang pada kertas kerja (kolom 3) (Cth. 3030301029)');
+        $sheet->setCellValue('H11', '5. Kolom 3 (Tahun Perolehan) diisikan data Tahun Perolehan pada kertas kerja (kolom 5) (Cth. 2014)');
+        $sheet->setCellValue('H12', '6. Kolom 4 (NUP) diisikan data NUP pada kertas kerja (kolom 6) (Cth. 12)');
+        $sheet->setCellValue('H13', '7. Kolom 5 (Merek/Tipe) diisikan data Merek/Tipe pada kertas kerja (kolom 7) (Cth. BENCHTOP PH METER)');
+        $sheet->setCellValue('H14', '8. Kolom 6 (Kuantitas) diisikan data Kuantitas pada kertas kerja (kolom 8) (Cth. 1)');
+        $sheet->setCellValue('H15', '9. Kolom 7 (Nilai BMN) diisikan data Nilai BMN pada kertas kerja (kolom 9) (Cth. 202000)');
+        $sheet->setCellValue('H16', '10. Pastikan semua data termuat pada kolom yang sesuai dengan panduan');
+        $spreadsheet->getActiveSheet()->getStyle('H6')->getFont()->setBold(true);
+        $spreadsheet->getActiveSheet()->getStyle('H6')->getFont()->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_RED));
 
         // Set judul file excel nya
         $sheet->setTitle("Laporan Pegawai");
