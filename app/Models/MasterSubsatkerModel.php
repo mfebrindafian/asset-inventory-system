@@ -18,4 +18,13 @@ class MasterSubsatkerModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function getNamaSubsatker($id_subsatker)
+    {
+        return $this
+            ->table('tbl_subsatker')
+            ->where('id', $id_subsatker)
+            ->get()
+            ->getRowArray();
+    }
 }

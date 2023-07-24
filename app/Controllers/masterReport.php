@@ -6,8 +6,15 @@ use App\Models\masterSatkerModel;
 use App\Models\masterTabelBmnModel;
 use App\Models\masterTabelJenisRekapitulasiModel;
 use App\Models\masterTabelAkunModel;
+use App\Models\masterPegawaiModel;
+use App\Models\masterGedungModel;
+use App\Models\masterRuanganModel;
+use App\Models\masterSubsatkerModel;
+use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Sum;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Color;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 
 class masterReport extends BaseController
 {
@@ -15,12 +22,21 @@ class masterReport extends BaseController
     protected $masterSatkerModel;
     protected $masterTabelJenisRekapitulasiModel;
     protected $masterAkunModel;
+    protected $masterPegawaiModel;
+    protected $masterGedungModel;
+    protected $masterRuanganModel;
+    protected $masterSubsatkerModel;
+
     public function __construct()
     {
         $this->masterBmnModel = new MasterTabelBmnModel();
         $this->masterSatkerModel = new masterSatkerModel();
         $this->masterTabelJenisRekapitulasiModel = new masterTabelJenisRekapitulasiModel();
         $this->masterAkunModel = new masterTabelAkunModel();
+        $this->masterPegawaiModel = new masterPegawaiModel();
+        $this->masterGedungModel = new masterGedungModel();
+        $this->masterRuanganModel = new masterRuanganModel();
+        $this->masterSubsatkerModel = new masterSubsatkerModel();
     }
 
     public function rekapitulasi()
@@ -910,22 +926,17 @@ class masterReport extends BaseController
 
     public function cetakInventarisasi()
     {
-        $list_akun = $this->masterAkunModel->getAllAkun();
-
-
         if (session('level_id') != 3) {
             $satker_id = $this->request->getVar('satker');
         } else {
             $satker_id = session('satker_id');
         }
 
-
         if ($satker_id == 'all') {
             $nama_satker['nama_ref_unit_kerja_lengkap'] = 'Seluruh Unit Kerja';
         } else {
             $nama_satker = $this->masterSatkerModel->getNamaSatker($satker_id);
         }
-
 
         $all_bmn = $this->masterBmnModel->getAllBmnBySatker($satker_id);
         if ($all_bmn != null) {
@@ -939,6 +950,12 @@ class masterReport extends BaseController
                     'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
                 ],
             ];
+            $styleArray2 = [
+                'alignment' => [
+                    'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
+                ],
+            ];
             $styleBorder = [
                 'borders' => [
                     'allBorders' => [
@@ -946,25 +963,50 @@ class masterReport extends BaseController
                         'color' => ['argb' => 'FF000000'],
                     ],
                 ],
-
             ];
+            $styleBorder2 = [
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_MEDIUM,
+                        'color' => ['argb' => 'FF000000'],
+                    ],
+                ],
+            ];
+
 
 
             //Batas Style Table
 
             $id_rekapitulasi = $this->request->getVar('jenis-inventarisasi');
             $jenis_inventarisasi = $this->masterTabelJenisRekapitulasiModel->getJenisRekapitulasiById($id_rekapitulasi);
-
             if ($id_rekapitulasi == 1) {
+                //pendeklarasian ARRAY
+                $arr_kuantitas_adm = [];
+                $arr_nilai_bmn_adm = [];
+                $arr_kuantitas_inv = [];
+                $arr_nilai_bmn_inv = [];
+                $arr_kuantitas_selisih = [];
+                $arr_nilai_bmn_selisih = [];
+                $kondisi_brg_b = [];
+                $kondisi_brg_rr = [];
+                $kondisi_brg_rb = [];
+                $kbrdn_brg_bd = [];
+                $kbrdn_brg_btd = [];
+                $kbrdn_brg_br = [];
+                $label_kode_s = [];
+                $label_kode_b = [];
+                $status_psp_s = [];
+                $status_psp_b = [];
+
+
                 $sheet->mergeCells('A1:AB1');
                 $sheet->setCellValue('A1', 'DAFTAR BARANG HASIL INVENTARISASI');
                 $sheet->mergeCells('A2:AB2');
-                $sheet->setCellValue('A2', 'PADA SATUAN KERJA ' . $nama_satker['nama_ref_unit_kerja_lengkap']);
+                $sheet->setCellValue('A2', 'PADA SATUAN KERJA ' . strtoupper($nama_satker['nama_ref_unit_kerja_lengkap']));
                 $sheet->getStyle('A1:AB2')->applyFromArray($styleArray);
                 $sheet->setCellValue('A4', 'KODE SATKER :');
                 $sheet->setCellValue('A5', 'NAMA SATKER :');
                 $sheet->setCellValue('C5', $nama_satker['nama_ref_unit_kerja_lengkap']);
-
                 $merge1 = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'V', 'W', 'X', 'AA', 'AB'];
                 for ($me = 0; $me < count($merge1); $me++) {
                     $sheet->mergeCells($merge1[$me] . '7:' . $merge1[$me] . '8');
@@ -977,8 +1019,7 @@ class masterReport extends BaseController
                 $sheet->mergeCells('Q7:S7');
                 $sheet->mergeCells('T7:U7');
                 $sheet->mergeCells('Y7:Z7');
-
-                $sheet->getStyle('A7:AB8')->applyFromArray($styleArray);
+                $sheet->getStyle('A7:AB9')->applyFromArray($styleArray);
                 $sheet->setCellValue('A7', 'No');
                 $sheet->setCellValue('B7', 'Uraian Akun');
                 $sheet->setCellValue('C7', 'Kode Barang');
@@ -992,7 +1033,7 @@ class masterReport extends BaseController
                 $sheet->setCellValue('J7', 'Hasil Inventarisasi');
                 $sheet->setCellValue('J8', 'Kuantitas');
                 $sheet->setCellValue('K8', 'Nilai BMN');
-                $sheet->setCellValue('L7', 'Hasil Inventarisasi');
+                $sheet->setCellValue('L7', 'Selisih');
                 $sheet->setCellValue('L8', 'Kuantitas');
                 $sheet->setCellValue('M8', 'Nilai BMN');
                 $sheet->setCellValue('N7', 'Kondisi Barang');
@@ -1004,7 +1045,7 @@ class masterReport extends BaseController
                 $sheet->setCellValue('R8', 'BTD');
                 $sheet->setCellValue('S8', 'Berlebih');
                 $sheet->setCellValue('T7', 'Pelabelan Kodefikasi');
-                $sheet->setCellValue('T8', 'Sudah Belum');
+                $sheet->setCellValue('T8', 'Sudah');
                 $sheet->setCellValue('U8', 'Belum');
                 $sheet->setCellValue('V7', 'Nama Pegawai Pengguna Barang');
                 $sheet->setCellValue('W7', 'Nama Gedung');
@@ -1014,9 +1055,6 @@ class masterReport extends BaseController
                 $sheet->setCellValue('Z8', 'Belum');
                 $sheet->setCellValue('AA7', 'Nama Sub Satker');
                 $sheet->setCellValue('AB7', 'Keterangan');
-
-                ///sementara 
-                $sheet->getStyle('A7:AB9')->applyFromArray($styleBorder);
                 $sheet->getStyle('A7:AB9')->getAlignment()->setWrapText(true);
                 $huruf = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB'];
                 $angka = 1;
@@ -1027,11 +1065,233 @@ class masterReport extends BaseController
 
                 $column = 10; //titik mulai
 
-                $all_bmn = $this->masterBmnModel->getAllBmnBySatker($satker_id);
-                dd($all_bmn);
+                $bmn_sebelum_sesudah = $this->masterBmnModel->getAllBmnBySatker($satker_id);
+
+                if ($bmn_sebelum_sesudah != null) {
+                    $no_baris = 1;
+                    foreach ($bmn_sebelum_sesudah as $bmn) {
+                        $sheet->setCellValue(('A' . $column), $no_baris);
+                        if ($bmn['akun_id'] == '1') {
+                            $ur_akun = 'PM_NON_TIK';
+                        } elseif ($bmn['akun_id'] == '2') {
+                            $ur_akun = 'PM_TIK';
+                        } elseif ($bmn['akun_id'] == '3') {
+                            $ur_akun = 'ATB';
+                        } elseif ($bmn['akun_id'] == '4') {
+                            $ur_akun = 'ATL';
+                        }
+                        $sheet->setCellValue(('B' . $column), $ur_akun);
+                        $sheet->setCellValue(('C' . $column), $bmn['kd_barang']);
+                        $sheet->setCellValue(('D' . $column),  $bmn['nama_barang']);
+                        $sheet->setCellValue(('E' . $column), $bmn['thn_perolehan']);
+                        $sheet->setCellValue(('F' . $column), $bmn['nup']);
+                        $sheet->setCellValue(('G' . $column), $bmn['merk_tipe']);
+                        $arr_kuantitas_adm[] = $bmn['kuantitas'];
+                        $kuantitas_adm = $bmn['kuantitas'];
+                        $arr_nilai_bmn_adm[] = $bmn['nilai_bmn'];
+                        $nilai_bmn_adm = $bmn['nilai_bmn'];
+                        $sheet->setCellValue(('H' . $column), $bmn['kuantitas']);
+                        $sheet->setCellValue(('I' . $column), $bmn['nilai_bmn']);
+
+                        //perhitungan barang teradministrasi (Ditemukan/Berlebih/telah diadministrasi)
+                        if ($bmn['kbrdn_brg'] == 'BD' || $bmn['kbrdn_brg'] == 'BR') {
+                            $arr_kuantitas_inv[] = $bmn['kuantitas'];
+                            $kuantitas_inv = $bmn['kuantitas'];
+                            $arr_nilai_bmn_inv[] = $bmn['nilai_bmn'];
+                            $nilai_bmn_inv = $bmn['nilai_bmn'];
+                        } else {
+                            $arr_kuantitas_inv[] = 0;
+                            $kuantitas_inv = 0;
+                            $arr_nilai_bmn_inv[] = 0;
+                            $nilai_bmn_inv = 0;
+                        }
+                        $sheet->setCellValue(('J' . $column), $kuantitas_inv);
+                        $sheet->setCellValue(('K' . $column), $nilai_bmn_inv);
+                        $sheet->setCellValue(('L' . $column), ($kuantitas_adm - $kuantitas_inv));
+                        $arr_kuantitas_selisih[] = $kuantitas_adm - $kuantitas_inv;
+                        $arr_nilai_bmn_selisih[] = $nilai_bmn_adm - $nilai_bmn_inv;
+                        $sheet->setCellValue(('M' . $column), $nilai_bmn_adm - $nilai_bmn_inv);
+
+                        if ($bmn['kondisi_brg'] != null) {
+                            if ($bmn['kondisi_brg'] == 'B') {
+                                $sheet->setCellValue(('N' . $column), 'B');
+                                $kondisi_brg_b[] = 1;
+                            } elseif ($bmn['kondisi_brg'] == 'RR') {
+                                $sheet->setCellValue(('O' . $column), 'RR');
+                                $kondisi_brg_rr[] = 1;
+                            } elseif ($bmn['kondisi_brg'] == 'RB') {
+                                $sheet->setCellValue(('P' . $column), 'RB');
+                                $kondisi_brg_rb[] = 1;
+                            }
+                            if ($bmn['kbrdn_brg'] == 'BD') {
+                                $sheet->setCellValue(('Q' . $column), 'BD');
+                                $kbrdn_brg_bd[] = 1;
+                            } elseif ($bmn['kbrdn_brg'] == 'BTD') {
+                                if ($bmn['kategori_btd'] == '1') {
+                                    $kategori_btd = 'Hilang';
+                                } elseif ($bmn['kategori_btd'] == '2') {
+                                    $kategori_btd = 'Salah Kodefikasi';
+                                } elseif ($bmn['kategori_btd'] == '3') {
+                                    $kategori_btd = 'pekerjaan renovasi/pengembangan BMN dicatat sebagai NUP baru';
+                                } elseif ($bmn['kategori_btd'] == '4') {
+                                    $kategori_btd = 'pencatatanganda/fiktif';
+                                }
+                                $sheet->setCellValue(('R' . $column), $kategori_btd);
+                                $kbrdn_brg_btd[] = 1;
+                            } elseif ($bmn['kbrdn_brg'] == 'BR') {
+                                if ($bmn['kategori_br'] == '1') {
+                                    $kategori_br = 'belum tercatat dalam laporan BMN';
+                                } elseif ($bmn['kategori_br'] == '2') {
+                                    $kategori_br = 'Salah Kodefikasi';
+                                } elseif ($bmn['kategori_br'] == '3') {
+                                    $kategori_br = 'pencatatan gelondongan';
+                                }
+                                $sheet->setCellValue(('S' . $column), $kategori_br);
+                                $kbrdn_brg_br[] = 1;
+                            }
+                            if ($bmn['label_kode'] == 'S') {
+                                $sheet->setCellValue(('T' . $column), 'Sudah');
+                                $label_kode_s[] = 1;
+                            } elseif ($bmn['label_kode'] == 'B') {
+                                $sheet->setCellValue(('U' . $column), 'Belum');
+                                $label_kode_b[] = 1;
+                            }
+
+                            $data_pegawai = $this->masterPegawaiModel->getNamaPegawai($bmn['pegawai_id']);
+                            $nama_pegawai = $data_pegawai['gelar_depan'];
+                            if ($data_pegawai['gelar_depan'] != null) {
+                                $nama_pegawai .= ' ';
+                            }
+                            $nama_pegawai .= $data_pegawai['nama_pegawai'];
+                            if ($data_pegawai['gelar_belakang'] != null) {
+                                $nama_pegawai .= ' ';
+                            }
+                            $nama_pegawai .= $data_pegawai['gelar_belakang'];
+                            $sheet->setCellValue(('V' . $column), $nama_pegawai);
+                            $gedung = $this->masterGedungModel->getNamaGedung($bmn['gedung_id']);
+                            $ruangan = $this->masterRuanganModel->getNamaRuangan($bmn['ruangan_id']);
+
+                            if ($bmn['subsatker_id'] != null) {
+                                $subsatker = $this->masterSubsatkerModel->getNamaSubsatker($bmn['subsatker_id']);
+                            } else {
+                                $subsatker['nama_subsatker'] = '';
+                            }
+                            $sheet->setCellValue(('W' . $column),  $gedung['nama_gedung']);
+                            $sheet->setCellValue(('X' . $column), $ruangan['nama_ruang']);
+
+                            if ($bmn['status_psp'] == 'S') {
+                                $sheet->setCellValue(('Y' . $column), 'Sudah');
+                                $status_psp_s[] = 1;
+                            } elseif ($bmn['status_psp'] == 'B') {
+                                $sheet->setCellValue(('Z' . $column), 'Belum');
+                                $status_psp_b[] = 1;
+                            }
+                            $sheet->setCellValue(('AA' . $column), $subsatker['nama_subsatker']);
+                            $sheet->setCellValue(('AB' . $column), $bmn['ket']);
+                        }
+
+                        $column++;
+                        $no_baris++;
+                    }
+                }
+
+                $sheet->mergeCells('A' . $column . ':G' . $column);
+                $sheet->setCellValue('A' . $column, 'TOTAL');
+                $sheet->getStyle('A' . $column)->applyFromArray($styleArray);
+
+                $sheet->setCellValue('H' . $column, array_sum($arr_kuantitas_adm));
+                $sheet->setCellValue('I' . $column, array_sum($arr_nilai_bmn_adm));
+                $sheet->setCellValue('J' . $column, array_sum($arr_kuantitas_inv));
+                $sheet->setCellValue('K' . $column, array_sum($arr_nilai_bmn_inv));
+                $sheet->setCellValue('L' . $column, array_sum($arr_kuantitas_selisih));
+                $sheet->setCellValue('M' . $column, array_sum($arr_nilai_bmn_selisih));
+                $sheet->setCellValue('N' . $column, array_sum($kondisi_brg_b));
+                $sheet->setCellValue('O' . $column, array_sum($kondisi_brg_rr));
+                $sheet->setCellValue('P' . $column, array_sum($kondisi_brg_rb));
+                $sheet->setCellValue('Q' . $column, array_sum($kbrdn_brg_bd));
+                $sheet->setCellValue('R' . $column, array_sum($kbrdn_brg_btd));
+                $sheet->setCellValue('S' . $column, array_sum($kbrdn_brg_br));
+                $sheet->setCellValue('T' . $column, array_sum($label_kode_s));
+                $sheet->setCellValue('U' . $column, array_sum($label_kode_b));
+                $sheet->setCellValue('Y' . $column, array_sum($status_psp_s));
+                $sheet->setCellValue('Z' . $column, array_sum($status_psp_b));
+
+
+                $sheet->getStyle('V' . $column)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB(Color::COLOR_BLACK);
+                $sheet->getStyle('W' . $column)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB(Color::COLOR_BLACK);
+                $sheet->getStyle('X' . $column)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB(Color::COLOR_BLACK);
+                $sheet->getStyle('AA' . $column)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB(Color::COLOR_BLACK);
+                $sheet->getStyle('AB' . $column)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB(Color::COLOR_BLACK);
+
+                $sheet->getStyle('A7:AB' . $column)->applyFromArray($styleBorder);
+                $sheet->getStyle('A10:B' . $column - 1)->applyFromArray($styleArray);
+                $sheet->getStyle('E10:E' . $column - 1)->applyFromArray($styleArray);
+                $sheet->getStyle('N10:U' . $column - 1)->applyFromArray($styleArray);
+                $sheet->getStyle('Y10:Z' . $column - 1)->applyFromArray($styleArray);
+
+                $sheet->getStyle('C10:C' . $column)->applyFromArray($styleArray2);
+
+                $sheet->getColumnDimension('C')->setWidth(12);
+                $sheet->getColumnDimension('D')->setWidth(19);
+                $sheet->getColumnDimension('G')->setWidth(11);
+                $sheet->getColumnDimension('V')->setWidth(17);
+                $sheet->getColumnDimension('W')->setWidth(16);
+                $sheet->getColumnDimension('X')->setWidth(16);
+                $sheet->getColumnDimension('AA')->setWidth(10);
+                $sheet->getColumnDimension('R')->setAutoSize(true);
+                $sheet->getColumnDimension('S')->setAutoSize(true);
+                $sheet->getColumnDimension('AB')->setWidth(15);
+                $sheet->getStyle('A7:AB9')->applyFromArray($styleBorder2);
+                $sheet->getStyle('A1:AB9')->getFont()->setBold(true);
+                $sheet->freezePane('A10');
+                $column++;
+                $sheet->setCellValue('A' . $column, 'Note : B=Baik, RR=Rusak Ringan, BD= Barang Ditemukan, BTD=Barang Tidak Ditemukan');
+                $column = $column + 2;
+                $sheet->setCellValue('A' . $column, 'Keterangan :');
+
+                //Bagian tanda tangan
+                $sheet->setCellValue('Y' . $column, '................, .................... ' . date('Y'));
+                $sheet->setCellValue('Y' . $column + 1, 'Tim INventarisasi BMN');
+                $sheet->setCellValue('Y' . $column + 4, '1. ...................................................');
+                $sheet->setCellValue('Y' . $column + 6, '2. ...................................................');
+                $sheet->setCellValue('Y' . $column + 8, '3. ...................................................');
+                //batas tanda tangan
+
+                $column++;
+                $awal_ket = $column;
+                for ($ket_no = 1; $ket_no <= 28; $ket_no++) {
+                    $sheet->setCellValue('A' . $awal_ket, $ket_no);
+                    $awal_ket++;
+                }
+                $sheet->setCellValue('B' . $column, 'Di isi dengan nomor urut');
+                $sheet->setCellValue('B' . $column + 1, 'Di isi dengan uraian akun (misalnya Peralatan dan Mesin, Jaringan, Aset Tetap Lainnya)');
+                $sheet->setCellValue('B' . $column + 2, 'Di isi dengan kodefikasi barang di SIMAK BMN');
+                $sheet->setCellValue('B' . $column + 3, 'Di isi dengan nama Barang di SIMAK BMN');
+                $sheet->setCellValue('B' . $column + 4, 'Di isi dengan tahun perolehan BMN');
+                $sheet->setCellValue('B' . $column + 5, 'Di isi dengan nomor urut pendaftaran (NUP)');
+                $sheet->setCellValue('B' . $column + 6, 'Di isi dengan merek/tipe barang');
+                $sheet->setCellValue('B' . $column + 7, 'Di isi dengan jumlah barang sesuai data SIMAK BMN sebelum inventarisasi');
+                $sheet->setCellValue('B' . $column + 8, 'Di isi dengan nilai BMN sesuai data SIMAK BMN sebelum inventarisasi');
+                $sheet->setCellValue('B' . $column + 9, 'Di isi dengan jumlah barang setelah inventarisasi');
+                $sheet->setCellValue('B' . $column + 10, 'Di isi dengan nilai BMN setelah inventarisasi');
+                $sheet->setCellValue('B' . $column + 11, 'Di isi dengan jumlah selisih hasil inventarisasi kurangi administrasi');
+                $sheet->setCellValue('B' . $column + 12, 'Di isi dengan nilai BMN selisih hasil inventarisasi kurangi administrasi');
+                $sheet->setCellValue('B' . $column + 13, 'Di isi dengan huruf B');
+                $sheet->setCellValue('B' . $column + 14, 'Di isi dengan huruf RR');
+                $sheet->setCellValue('B' . $column + 15, 'Di isi dengan RB');
+                $sheet->setCellValue('B' . $column + 16, 'Di isi dengan BD');
+                $sheet->setCellValue('B' . $column + 17, 'Di isi dengan kategori BTD sesuai juknis (misalnya hilang, salah kodefikasi dll)');
+                $sheet->setCellValue('B' . $column + 18, 'Di isi dengan kategori Barang berlebih sesuai juknis (misalnya belum tercatat, salah kodefikasi, gelondongan)');
+                $sheet->setCellValue('B' . $column + 19, 'Di isi dengan kata sudah apabila barang yang didata telah dilebelisasi');
+                $sheet->setCellValue('B' . $column + 20, 'Di isi dengan kata belum apabila barang yang didata belum dilebelisasi');
+                $sheet->setCellValue('B' . $column + 21, 'Di isi dengan nama pegawai yang menggunakan barang');
+                $sheet->setCellValue('B' . $column + 22, 'Di isi dengan nama gedung lokasi barang berada');
+                $sheet->setCellValue('B' . $column + 23, 'Di isi dengan ama ruangan lokasi barang berada');
+                $sheet->setCellValue('B' . $column + 24, 'Di isi dengan kata sudah apabila barang yang didata telah ada SK PSP');
+                $sheet->setCellValue('B' . $column + 25, 'Di isi dengan kata belum apabila barang yang didata belum ada SK PSP');
+                $sheet->setCellValue('B' . $column + 26, 'Di isi dengan nama Sub Satker (bagi yan memiliki Sub Satker)');
+                $sheet->setCellValue('B' . $column + 27, 'Di isi dengan Keterangan yang belum terakomodasi');
             }
-
-
 
             // Set judul file excel nya
             $sheet->setTitle("Laporan Pegawai");
