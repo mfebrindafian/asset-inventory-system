@@ -18,4 +18,13 @@ class MasterRuanganModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function getNamaRuangan($id_ruangan)
+    {
+        return $this
+            ->table('tbl_ruangan')
+            ->where('id', $id_ruangan)
+            ->get()
+            ->getRowArray();
+    }
 }

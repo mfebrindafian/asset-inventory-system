@@ -18,4 +18,14 @@ class MasterGedungModel extends Model
             ->get()
             ->getResultArray();
     }
+
+
+    public function getNamaGedung($id_gedung)
+    {
+        return $this
+            ->table('tbl_gedung')
+            ->where('id', $id_gedung)
+            ->get()
+            ->getRowArray();
+    }
 }
