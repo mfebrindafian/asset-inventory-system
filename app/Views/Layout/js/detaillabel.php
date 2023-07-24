@@ -1,9 +1,8 @@
-<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="<?= base_url('/assets/js/pages/jquery.min.js') ?>"></script>
+<script src="<?= base_url('/assets/js/html2pdf.js') ?>"></script>
 <script>
     const options = {
-        margin: [2, 0.5, 0.9, 0.5],
+        margin: [0.1, 0.1, 3, 2.3],
         filename: 'label_<?= $bmn['kd_barang']; ?>.pdf',
         image: {
             type: 'jpeg',
