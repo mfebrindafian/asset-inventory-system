@@ -3411,7 +3411,7 @@
                                                             sSearch: 'Search:',
                                                             sSearchPlaceholder: '',
                                                             sUrl: '',
-                                                            sZeroRecords: 'No matching records found',
+                                                            sZeroRecords: 'Maaf, data yang anda cari tidak ditemukan',
                                                        },
                                                        oSearch: e.extend({}, l.models.oSearch),
                                                        sAjaxDataProp: 'data',

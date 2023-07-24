@@ -20,6 +20,7 @@
             </div>
         </div>
 
+
         <div class="page-content">
             <section class="row">
                 <div class="col-12">
@@ -78,7 +79,9 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="errorlist">
+                            <div id="errorContainer" style="display: none;"></div>
+                        </div>
                         <div class="card-content">
                             <form id="kertas-kerja" action="<?= base_url('/isikertaskerja-add'); ?>" method="post" class="card-body" enctype="multipart/form-data">
                                 <input type="hidden" name="id_bmn" value="<?= $bmn['id']; ?>">
@@ -127,7 +130,8 @@
                                             <h6 class="form-label">kategori barang tidak ditemukan<span class="text-danger">*</span></h6>
                                             <div class="form-group">
                                                 <fieldset class="form-group">
-                                                    <select class="form-select" name="kategori_btd">
+                                                    <select class="form-select" name="kategori_btd" id="kategori-btd">
+                                                        <option selected disabled>Pilih Kategori</option>
                                                         <option value="1">Hilang</option>
                                                         <option value="2">Salah Kodefikasi</option>
                                                         <option value="3">pekerjaan renovasi/pengembangan BMN dicatat sebagai NUP baru</option>
@@ -141,7 +145,8 @@
                                             <h6 class="form-label">kategori barang berlebih<span class="text-danger">*</span></h6>
                                             <div class="form-group">
                                                 <fieldset class="form-group">
-                                                    <select class="form-select" name="kategori_br">
+                                                    <select class="form-select" name="kategori_br" id="kategori-br">
+                                                        <option selected disabled>Pilih Kategori</option>
                                                         <option value="1">belum tercatat dalam laporan BMN</option>
                                                         <option value="2">salah kodefikasi</option>
                                                         <option value="3">pencatatan gelondongan</option>
@@ -172,7 +177,7 @@
                                                                 $nama_pegawai .= $pegawai['gelar_belakang']; ?>
                                                                 <?php if ($bmn['pegawai_id'] != null) : ?>
                                                                     <?php if ($bmn['pegawai_id'] == $pegawai['id_pegawai']) : ?>
-                                                                        <option value="<?= $bmn['pegawai_id']; ?>"><?= $nama_pegawai; ?></option>
+                                                                        <option selected value="<?= $bmn['pegawai_id']; ?>"><?= $nama_pegawai; ?></option>
                                                                     <?php endif; ?>
                                                                 <?php endif; ?>
                                                             <?php endforeach; ?>
@@ -204,7 +209,7 @@
                                                         <?php foreach ($list_gedung as $gedung) : ?>
                                                             <?php if ($bmn['gedung_id'] != null) : ?>
                                                                 <?php if ($bmn['gedung_id'] == $gedung['id']) : ?>
-                                                                    <option value="<?= $gedung['id']; ?>"><?= $gedung['nama_gedung']; ?></option>
+                                                                    <option selected value="<?= $gedung['id']; ?>"><?= $gedung['nama_gedung']; ?></option>
                                                                 <?php endif; ?>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
@@ -226,7 +231,7 @@
                                                         <?php foreach ($list_ruangan as $ruangan) : ?>
                                                             <?php if ($bmn['ruangan_id'] != null) : ?>
                                                                 <?php if ($bmn['ruangan_id'] == $ruangan['id']) : ?>
-                                                                    <option value="<?= $ruangan['id']; ?>"><?= $ruangan['nama_ruang']; ?></option>
+                                                                    <option selected value="<?= $ruangan['id']; ?>"><?= $ruangan['nama_ruang']; ?></option>
                                                                 <?php endif; ?>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
@@ -280,7 +285,7 @@
                                                         <?php foreach ($list_subsatker as $subsatker) : ?>
                                                             <?php if ($bmn['subsatker_id'] != null) : ?>
                                                                 <?php if ($bmn['subsatker_id'] == $subsatker['id']) : ?>
-                                                                    <option value="<?= $subsatker['id']; ?>"><?= $subsatker['nama_subsatker']; ?></option>
+                                                                    <option selected value="<?= $subsatker['id']; ?>"><?= $subsatker['nama_subsatker']; ?></option>
                                                                 <?php endif; ?>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>

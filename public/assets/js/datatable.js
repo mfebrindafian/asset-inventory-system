@@ -3161,7 +3161,7 @@
                          sSearch: 'Search:',
                          sSearchPlaceholder: '',
                          sUrl: '',
-                         sZeroRecords: 'No matching records found',
+                         sZeroRecords: 'Maaf, data yang anda cari tidak ditemukan',
                     },
                     oSearch: P.extend({}, w.models.oSearch),
                     sAjaxDataProp: 'data',

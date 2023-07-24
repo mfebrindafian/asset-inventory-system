@@ -24,22 +24,19 @@
             <div class="row mb-4">
                 <div class="col-5">
                     <div class="form-group">
-                        <input type="search" class="form-control" name="" id="" placeholder="Cari ..." />
+                        <input type="text" class="form-control" name="" id="searchbar" placeholder="Cari ..." />
                     </div>
                 </div>
                 <div class="col-4">
                     <fieldset class="form-group">
-                        <select class="form-select" id="basicSelect">
+                        <select class="form-select" id="uraianakun">
                             <option>- Uraian Akun -</option>
-                            <option>PM NON TIK</option>
-                            <option>PM TIK</option>
-                            <option>ATL</option>
-                            <option>ATB</option>
+                            <option value="PM_NON_TIK">PM NON TIK</option>
+                            <option value="PM_TIK">PM TIK</option>
+                            <option value="ATL">ATL</option>
+                            <option value="ATB">ATB</option>
                         </select>
                     </fieldset>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-primary"><i class="bi bi-search"></i></button>
                 </div>
             </div>
 
@@ -88,23 +85,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination pagination-primary justify-content-end">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">
-                                                <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">
-                                                <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+
                             </div>
                         </div>
                     </div>

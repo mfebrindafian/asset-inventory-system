@@ -29,10 +29,10 @@
                 </div>
                 <div class="col-5 col-md-5">
                     <fieldset class="form-group">
-                        <select class="form-select" id="basicSelect">
+                        <select class="form-select" id="status">
                             <option>- Status -</option>
-                            <option>Belum diproses</option>
-                            <option>Sudah diproses</option>
+                            <option value="belum">Belum diproses</option>
+                            <option value="sudah">Sudah diproses</option>
                         </select>
                     </fieldset>
                 </div>
@@ -55,6 +55,7 @@
                                                 <th>Merek</th>
                                                 <th>Kuantitas</th>
                                                 <th>Nilai BMN</th>
+                                                <th class="d-none">status</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -71,6 +72,7 @@
                                                         <td class="text-bold-500"><?= $bmn['merk_tipe']; ?></td>
                                                         <td class="text-bold-500"><?= $bmn['kuantitas']; ?></td>
                                                         <td class="text-bold-500 text-nowrap"><?= "Rp " . number_format($bmn['nilai_bmn'], 0, '', '.') ?></td>
+                                                        <td class="d-none"><?= $bmn['kondisi_brg'] == null ? 'belum' : 'sudah' ?></td>
                                                         <td class="text-bold-500"><a href="<?= base_url('/kertas-kerja/' . $bmn['id']) ?>" class="btn btn-sm <?php if ($bmn['kondisi_brg'] == null) {
                                                                                                                                                                     echo 'btn-danger';
                                                                                                                                                                 } else {

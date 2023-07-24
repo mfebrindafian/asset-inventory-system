@@ -8,7 +8,7 @@
         })
         $('.dataTables_length').addClass('d-none');
         $('.dataTables_filter').addClass('d-none');
-        $('.dataTables_info').addClass('d-none');
+        $('.dataTables_info').addClass('mt-4');
         $('.dataTables_paginate').addClass('mt-4');
     });
 
