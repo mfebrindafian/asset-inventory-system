@@ -75,7 +75,7 @@
                                                     } ?>
                                                 </td>
                                                 <td>
-                                                    <button id="btn-edit" type="button" class="btn btn-info btn-sm" style="background-color: #2D95C9; border:none;" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $list['id'] ?>" data-nama_menu="<?= $list['nama_menu'] ?>" data-link="<?= $list['link'] ?>" data-icon="<?= $list['icon'] ?>" data-urutan="<?= $list['urutan'] ?>" data-is_active="<?= $list['is_active'] ?>">
+                                                    <button id="btn-edit-menu" type="button" class="btn btn-info btn-sm" style="background-color: #2D95C9; border:none;" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $list['id'] ?>" data-nama_menu="<?= $list['nama_menu'] ?>" data-link="<?= $list['link'] ?>" data-icon="<?= $list['icon'] ?>" data-urutan="<?= $list['urutan'] ?>" data-is_active="<?= $list['is_active'] ?>">
                                                         <i class="bi bi-pencil-fill"></i>
                                                     </button>
                                                 </td>

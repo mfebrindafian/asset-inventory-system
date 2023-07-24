@@ -30,7 +30,7 @@
                 <div class="col-3"></div>
                 <div class="col-5">
                     <div class="form-group">
-                        <input type="search" class="form-control" name="" id="" placeholder="Cari ..." />
+                        <input type="text" class="form-control" id="searchbar" placeholder="Cari ..." />
                     </div>
                 </div>
             </div>
@@ -105,23 +105,7 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <nav aria-label="Page navigation example">
-                                                    <ul class="pagination pagination-primary justify-content-end">
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#">
-                                                                <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#">
-                                                                <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </nav>
+
                                             </div>
                                             <?php $ke2++ ?>
                                         <?php endforeach; ?>

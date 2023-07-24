@@ -49,3 +49,7 @@
 .checkbox-level i {
      margin-right: 7px;
 }
+
+.sel-disabled {
+     background-color: #f2f2f2;
+}

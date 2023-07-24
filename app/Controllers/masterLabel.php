@@ -5,17 +5,29 @@ namespace App\Controllers;
 use App\Models\masterTabelBmnModel;
 use App\Models\masterTabelAkunModel;
 use App\Models\masterSatkerModel;
+use App\Models\masterPegawaiModel;
+use App\Models\masterGedungModel;
+use App\Models\masterRuanganModel;
+use App\Models\masterSubsatkerModel;
 
 class masterLabel extends BaseController
 {
     protected $masterBmnModel;
     protected $masterAkunModel;
     protected $masterSatkerModel;
+    protected $masterPegawaiModel;
+    protected $masterGedungModel;
+    protected $masterRuanganModel;
+    protected $masterSubsatkerModel;
     public function __construct()
     {
         $this->masterBmnModel = new MasterTabelBmnModel();
         $this->masterAkunModel = new MasterTabelAkunModel();
         $this->masterSatkerModel = new MasterSatkerModel();
+        $this->masterPegawaiModel = new MasterPegawaiModel();
+        $this->masterGedungModel = new MasterGedungModel();
+        $this->masterRuanganModel = new MasterRuanganModel();
+        $this->masterSubsatkerModel = new MasterSubsatkerModel();
     }
 
     public function label()
@@ -34,6 +46,10 @@ class masterLabel extends BaseController
     }
     public function detaillabel($id_bmn)
     {
+        $list_pegawai = $this->masterPegawaiModel->getAllPegawai();
+        $list_gedung = $this->masterGedungModel->getAllGedung();
+        $list_ruangan = $this->masterRuanganModel->getAllRuangan();
+        $list_subsatker = $this->masterSubsatkerModel->getAllSubsatker();
         $data_bmn = $this->masterBmnModel->getDataBmnById($id_bmn);
         $satker = $this->masterSatkerModel->getNamaSatker($data_bmn['satker_id']);
 
@@ -43,6 +59,10 @@ class masterLabel extends BaseController
             'subMenu' => '',
             'halaman' => 'detaillabel',
             'bmn' => $data_bmn,
+            'list_pegawai' => $list_pegawai,
+            'list_gedung' => $list_gedung,
+            'list_ruangan' => $list_ruangan,
+            'list_subsatker' => $list_subsatker,
             'nama_satker' => $satker['nama_ref_unit_kerja_lengkap']
         ];
         // dd($data);

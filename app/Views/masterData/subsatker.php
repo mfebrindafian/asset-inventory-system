@@ -24,7 +24,7 @@
             <div class="row mb-4">
                 <div class="col-5">
                     <div class="form-group">
-                        <input type="search" class="form-control" name="" id="" placeholder="Cari ..." />
+                        <input type="text" class="form-control" name="" id="searchbar" placeholder="Cari ..." />
                     </div>
                 </div>
                 <div class="col-7 ">

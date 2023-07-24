@@ -99,7 +99,7 @@
                 <div class="modal-body">
                     <div class="form-group mb-4">
                         <label for="satker-kki" class="mb-2"><strong>Pilih Unit Kerja</strong> </label>
-                        <select class="form-select" name="satker" id="satker-kki" required>
+                        <select class="form-select select-satker2" name="satker" id="satker-kki" required>
                             <option>- Unit Kerja -</option>
                             <?php if ($list_satker != null) : ?>
                                 <?php foreach ($list_satker as $satker) : ?>

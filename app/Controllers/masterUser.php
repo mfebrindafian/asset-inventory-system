@@ -55,10 +55,7 @@ class masterUser extends BaseController
             'menu' => 'Role User',
             'subMenu' => '',
             'list_level' => session('list_user_level'),
-
         ];
-
-
         return view('kelolaMaster/masterUser', $data);
     }
 
@@ -140,7 +137,7 @@ class masterUser extends BaseController
             }
         } else {
             foreach ($list_akses as $akses) {
-                if ($akses['level_id'] = '1') {
+                if ($akses['level_id'] == '1') {
                     $id = $this->masterAksesUserLevelModel->getId($pegawai, 1);
                     $this->masterAksesUserLevelModel->delete($id['id']);
                     break;
@@ -150,6 +147,7 @@ class masterUser extends BaseController
 
 
         $level_univ = $this->request->getVar('level_univ');
+        // dd($list_akses);
         if ($level_univ != null) {
             if (in_array($level_univ, $pengakses) == false) {
                 $this->masterAksesUserLevelModel->save([
@@ -166,7 +164,7 @@ class masterUser extends BaseController
             }
         } else {
             foreach ($list_akses as $akses) {
-                if ($akses['level_id'] = '2') {
+                if ($akses['level_id'] == '2') {
                     $id = $this->masterAksesUserLevelModel->getId($pegawai, 2);
                     $this->masterAksesUserLevelModel->delete($id['id']);
                     break;
@@ -195,7 +193,7 @@ class masterUser extends BaseController
             }
         } else {
             foreach ($list_akses as $akses) {
-                if ($akses['level_id'] = '3') {
+                if ($akses['level_id'] == '3') {
                     $id = $this->masterAksesUserLevelModel->getId($pegawai, 3);
                     $this->masterAksesUserLevelModel->delete($id['id']);
                     break;

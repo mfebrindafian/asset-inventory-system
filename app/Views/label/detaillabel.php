@@ -86,24 +86,24 @@
                                                                                 echo 'bg-light-success';
                                                                             } else if ($bmn['kondisi_brg'] == 'RR') {
                                                                                 echo 'bg-light-warning';
-                                                                            } else {
+                                                                            } else if ($bmn['kondisi_brg'] == 'RB') {
                                                                                 echo 'bg-light-danger';
                                                                             } ?>"> <?php if ($bmn['kondisi_brg'] == 'B') {
                                                                                         echo 'Baik';
                                                                                     } else if ($bmn['kondisi_brg'] == 'RR') {
                                                                                         echo 'Rusak Ringan';
-                                                                                    } else {
+                                                                                    } else if ($bmn['kondisi_brg'] == 'RB') {
                                                                                         echo 'Rusak Berat';
                                                                                     } ?></span></p>
 
                                 <h6>Pelebelan Kodefikasi</h6>
                                 <p class="text-muted"><span class="badge  <?php if ($bmn['label_kode'] == 'S') {
                                                                                 echo 'bg-light-success';
-                                                                            } else {
+                                                                            } else if ($bmn['label_kode'] == 'B') {
                                                                                 echo 'bg-light-danger';
                                                                             } ?>"><?php if ($bmn['label_kode'] == 'S') {
                                                                                         echo 'Sudah Dilabeli';
-                                                                                    } else {
+                                                                                    } else  if ($bmn['label_kode'] == 'B') {
                                                                                         echo 'Belum Dilabeli';
                                                                                     } ?></span></p>
 
@@ -112,42 +112,105 @@
                                                                                 echo 'bg-light-success';
                                                                             } else if ($bmn['kbrdn_brg'] == 'BR') {
                                                                                 echo 'bg-light-warning';
-                                                                            } else {
+                                                                            } else if ($bmn['kbrdn_brg'] == 'BTD') {
                                                                                 echo 'bg-light-danger';
                                                                             } ?>"><?php if ($bmn['kbrdn_brg'] == 'BD') {
                                                                                         echo 'Barang Ditemukan';
                                                                                     } else if ($bmn['kbrdn_brg'] == 'BR') {
                                                                                         echo 'Barang Berlebih';
-                                                                                    } else {
-                                                                                        echo 'Barang Tidak Ditemukan';
+                                                                                    } else if ($bmn['kbrdn_brg'] == 'BTD') {
+                                                                                        echo 'Barang Tidak Diketemukan';
                                                                                     } ?></span></p>
+                                <?php if ($bmn['kbrdn_brg'] == 'BTD') : ?>
+                                    <h6>Kategori Barang Tidak Ditemukan</h6>
+                                    <p class="text-muted"><span class="badge bg-light-danger"><?php if ($bmn['kategori_btd'] == '1') {
+                                                                                                    echo 'Hilang';
+                                                                                                } else if ($bmn['kategori_btd'] == '2') {
+                                                                                                    echo 'Salah kodefikasi';
+                                                                                                } else if ($bmn['kategori_btd'] == '3') {
+                                                                                                    echo 'Pekerjaan renovasi/pengembangan dicatat sebagai NUP baru';
+                                                                                                } else if ($bmn['kategori_btd'] == '4') {
+                                                                                                    echo 'pencatatatan ganda/ fiktif';
+                                                                                                } ?></span></p>
+                                <?php endif; ?>
 
-                                <h6>Nama Pegawai Pengguna Barang</h6>
-                                <p class="text-muted"><?= $bmn['pegawai_id']; ?></p>
+                                <?php if ($bmn['kbrdn_brg'] == 'BR') : ?>
+                                    <h6>Kategori Berlebih</h6>
+                                    <p class="text-muted"><span class="badge bg-light-warning"><?php if ($bmn['kategori_br'] == '1') {
+                                                                                                    echo 'Belum tercatat dalam laporan BMN';
+                                                                                                } else if ($bmn['kategori_br'] == '2') {
+                                                                                                    echo 'Salah kodefikasi';
+                                                                                                } else if ($bmn['kategori_br'] == '3') {
+                                                                                                    echo 'Pencatatan gelondongan';
+                                                                                                } ?></span></p>
+                                <?php endif; ?>
+
+
                             </div>
                             <div class="col-sm-4">
+                                <h6>Nama Pegawai Pengguna Barang</h6>
+                                <p class="text-muted">
+                                    <?php if ($list_pegawai != null) : ?>
+                                        <?php foreach ($list_pegawai as $pegawai) : ?>
+                                            <?php if ($bmn['pegawai_id'] == $pegawai['id_pegawai']) : ?>
+                                                <?php
+                                                $nama_pegawai = $pegawai['gelar_depan'];
+                                                if ($pegawai['gelar_depan'] != null) {
+                                                    $nama_pegawai .= ' ';
+                                                }
+                                                $nama_pegawai .= $pegawai['nama_pegawai'];
+                                                if ($pegawai['gelar_belakang'] != null) {
+                                                    $nama_pegawai .= ' ';
+                                                }
+                                                $nama_pegawai .= $pegawai['gelar_belakang']; ?>
+                                                <?= $nama_pegawai; ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </p>
                                 <h6>Nama Gedung</h6>
-                                <p class="text-muted"><?= $bmn['gedung_id']; ?></p>
+                                <p class="text-muted"><?php if ($list_gedung != null) : ?>
+                                        <?php foreach ($list_gedung as $gedung) : ?>
+                                            <?php if ($bmn['gedung_id'] == $gedung['id']) : ?>
+
+                                                <?= $gedung['nama_gedung']; ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?></p>
 
                                 <h6>Nama Ruangan</h6>
-                                <p class="text-muted"><?= $bmn['ruangan_id']; ?></p>
+                                <p class="text-muted"><?php if ($list_ruangan != null) : ?>
+                                        <?php foreach ($list_ruangan as $ruangan) : ?>
+                                            <?php if ($bmn['ruangan_id'] == $ruangan['id']) : ?>
+
+                                                <?= $ruangan['nama_ruang']; ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?></p>
 
                                 <h6>Status PSP</h6>
                                 <p class="text-muted"><span class="badge  <?php if ($bmn['status_psp'] == 'S') {
                                                                                 echo 'bg-light-success';
-                                                                            } else {
+                                                                            } else if ($bmn['status_psp'] == 'B') {
                                                                                 echo 'bg-light-danger';
                                                                             } ?>"> <?php if ($bmn['status_psp'] == 'S') {
                                                                                         echo 'Sudah';
-                                                                                    } else {
+                                                                                    } else if ($bmn['status_psp'] == 'B') {
                                                                                         echo 'Belum';
                                                                                     } ?></span></p>
 
                                 <h6>Nama Sub Satuan Kerja</h6>
-                                <p class="text-muted"><?= $bmn['subsatker_id']; ?></p>
+                                <p class="text-muted"><?php if ($list_subsatker != null) : ?>
+                                        <?php foreach ($list_subsatker as $subsatker) : ?>
+                                            <?php if ($bmn['subsatker_id'] == $subsatker['id']) : ?>
+
+                                                <?= $subsatker['nama_subsatker']; ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?></p>
 
                                 <h6>Keterangan</h6>
-                                <p class="text-muted"><?= $bmn['ket']; ?></p>
+                                <p class="text-muted"><?= $bmn['ket'] == '' ? '-' : $bmn['ket']; ?></p>
                             </div>
                         </div>
                     </div>

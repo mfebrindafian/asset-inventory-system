@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="card-content">
-                            <form action="<?= base_url('/isikertaskerja-add'); ?>" method="post" class="card-body" enctype="multipart/form-data">
+                            <form id="kertas-kerja" action="<?= base_url('/isikertaskerja-add'); ?>" method="post" class="card-body" enctype="multipart/form-data">
                                 <input type="hidden" name="id_bmn" value="<?= $bmn['id']; ?>">
                                 <input type="hidden" name="tipe_akun" value="<?= $bmn['ur_akun'];  ?>">
 
@@ -158,6 +158,7 @@
                                             <div class="form-group">
                                                 <fieldset class="form-group">
                                                     <select class="form-select" name="pegawai">
+                                                        <option selected disabled>Cari pegawai</option>
                                                         <?php if ($list_pegawai != null) : ?>
                                                             <?php foreach ($list_pegawai as $pegawai) : ?>
                                                                 <?php $nama_pegawai = $pegawai['gelar_depan'];
@@ -198,6 +199,7 @@
                                             <h6>Nama Gedung<span class="text-danger">*</span></h6>
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="nama-gedung">
+                                                    <option selected disabled>Cari Gedung</option>
                                                     <?php if ($list_gedung != null) : ?>
                                                         <?php foreach ($list_gedung as $gedung) : ?>
                                                             <?php if ($bmn['gedung_id'] != null) : ?>
@@ -219,7 +221,7 @@
                                             <h6>Nama Ruangan<span class="text-danger">*</span></h6>
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="nama-ruangan">
-
+                                                    <option selected disabled>Cari Ruangan</option>
                                                     <?php if ($list_ruangan != null) : ?>
                                                         <?php foreach ($list_ruangan as $ruangan) : ?>
                                                             <?php if ($bmn['ruangan_id'] != null) : ?>
@@ -270,10 +272,10 @@
 
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Nama Sub Satker<span class="text-danger">*</span></h6>
+                                            <h6>Nama Sub Satker</h6>
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="nama-subsatker">
-
+                                                    <option selected disabled>Cari Sub Satker</option>
                                                     <?php if ($list_subsatker != null) : ?>
                                                         <?php foreach ($list_subsatker as $subsatker) : ?>
                                                             <?php if ($bmn['subsatker_id'] != null) : ?>

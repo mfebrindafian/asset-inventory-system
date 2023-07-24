@@ -29,28 +29,32 @@
                                 <h5 class="mb-3">Cetak daftar barang hasil inventarisasi BMN</h5>
                                 <div class="row">
                                     <div class="col-6">
-                                        <fieldset class="form-group">
-                                            <select class="form-select" name="satker" id="satker">
-                                                <?php if ($list_satker != null) : ?>
-                                                    <?php if (session('level_id') == 3) : ?>
-                                                        <?php foreach ($list_satker as $satker) : ?>
-                                                            <?php if ($satker['id_ref_unit_kerja'] == session('satker_id')) : ?>
-                                                                <option selected value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>
-                                                            <?php endif; ?>
-                                                        <?php endforeach; ?>
-                                                    <?php else : ?>
-                                                        <option>- Satker -</option>
-                                                        <option value="all"> Seluruh Satker</option>
-                                                        <?php foreach ($list_satker as $satker) : ?>
-                                                            <option value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>
-                                                        <?php endforeach; ?>
+                                        <?php if (session('level_id') == 2) :  ?>
+                                            <fieldset class="form-group">
+                                                <select class="form-select" name="satker" id="satker">
+                                                    <?php if ($list_satker != null) : ?>
+                                                        <?php if (session('level_id') == 3) : ?>
+                                                            <?php foreach ($list_satker as $satker) : ?>
+                                                                <?php if ($satker['id_ref_unit_kerja'] == session('satker_id')) : ?>
+                                                                    <option selected value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>
+                                                                <?php endif; ?>
+                                                            <?php endforeach; ?>
+                                                        <?php else : ?>
+                                                            <option>- Satker -</option>
+                                                            <option value="all"> Seluruh Satker</option>
+                                                            <?php foreach ($list_satker as $satker) : ?>
+                                                                <option value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
                                                     <?php endif; ?>
-                                                <?php endif; ?>
-                                            </select>
-                                        </fieldset>
-                                        <!-- <span class="badge bg-light-secondary w-100 mb-3">
-                                            <h6 class="m-0 py-1 text-truncate">Fakultas Sains dan Teknologi</h6>
-                                        </span> -->
+                                                </select>
+                                            </fieldset>
+                                        <?php endif; ?>
+                                        <?php if (session('level_id') == 3) : ?>
+                                            <span class="badge bg-light-secondary w-100 mb-3">
+                                                <h6 class="m-0 py-2">Fakultas Sains dan Teknologi</h6>
+                                            </span>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="col-6">
                                         <fieldset class="form-group">
@@ -70,8 +74,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="card">
+            <!-- DAK TEKEJAR BUK -->
+            <!-- <div class="card">
                 <div class="card-header pb-0">
                     <div class="row">
                         <div class="col-md-6">
@@ -80,17 +84,7 @@
                         </div>
                     </div>
                     <div class="row mt-4">
-                        <!-- <div class="col-5">
-                                                            <fieldset class="form-group">
-                                                                 <select class="form-select">
-                                                                      <option>- Satker -</option>
-                                                                      <option>Seluruh Satker</option>
-                                                                      <option>Fakultas Sains dan Teknologi</option>
-                                                                      <option>Fakultas Hukum</option>
-                                                                      <option>Fakultas Peternakan</option>
-                                                                 </select>
-                                                            </fieldset>
-                                                       </div> -->
+                    
                         <div class="col-5">
                             <fieldset class="form-group">
                                 <select class="form-select">
@@ -114,7 +108,6 @@
 
                 <div class="card-content">
                     <div class="card-body pt-0 text-center text-sm-start">
-                        <!-- Table with outer spacing -->
                         <div class="table-responsive">
                             <table class="table table-lg">
                                 <thead>
@@ -186,7 +179,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 </div>

@@ -37,7 +37,7 @@ class masterAkses extends BaseController
 
 
         if ($user == NULL) {
-            session()->setFlashdata('pesan', 'Username Anda Salah');
+            session()->setFlashdata('pesan', 'Username dan password tidak sesuai!');
             session()->setFlashdata('icon', 'error');
             return redirect()->to('/');
         }
@@ -84,7 +84,7 @@ class masterAkses extends BaseController
             session()->setFlashdata('pesan', 'berhasil login');
             return redirect()->to('/dashboard-sibamira');
         }
-        session()->setFlashdata('pesan', 'Password salah');
+        session()->setFlashdata('pesan', 'Username dan password tidak sesuai!');
         session()->setFlashdata('icon', 'error');
         return redirect()->to('/');
     }

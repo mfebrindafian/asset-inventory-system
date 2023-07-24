@@ -169,16 +169,15 @@
                                         <?php endif; ?></p>
 
                                     <h6>Status PSP</h6>
-                                    <p class="text-muted"><span class="badge  <?php if ($bmn['label_kode'] == 'S') {
+                                    <p class="text-muted"><span class="badge  <?php if ($bmn['status_psp'] == 'S') {
                                                                                     echo 'bg-light-success';
-                                                                                } else if ($bmn['label_kode'] == 'B') {
+                                                                                } else if ($bmn['status_psp'] == 'B') {
                                                                                     echo 'bg-light-danger';
-                                                                                } ?>"> <?php if ($bmn['label_kode'] == 'S') {
+                                                                                } ?>"> <?php if ($bmn['status_psp'] == 'S') {
                                                                                             echo 'Sudah';
-                                                                                        } else if ($bmn['label_kode'] == 'B') {
+                                                                                        } else if ($bmn['status_psp'] == 'B') {
                                                                                             echo 'Belum';
                                                                                         } ?></span></p>
-
                                     <h6>Nama Sub Satuan Kerja</h6>
                                     <p class="text-muted"><?php if ($list_subsatker != null) : ?>
                                             <?php foreach ($list_subsatker as $subsatker) : ?>
@@ -190,7 +189,7 @@
                                         <?php endif; ?></p>
 
                                     <h6>Keterangan</h6>
-                                    <p class="text-muted"><?= $bmn['ket']; ?></p>
+                                    <p class="text-muted"><?= $bmn['ket'] == '' ? '-' : $bmn['ket']; ?></p>
                                 </div>
                             </div>
                         </div>

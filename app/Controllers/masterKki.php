@@ -49,7 +49,30 @@ class masterKki extends BaseController
             'list_kki' => $data_batch,
             'list_satker' => $list_satker
         ];
+
         return view('kki/importkki', $data);
+    }
+
+    public function APIListKKI()
+    {
+        $list_bmn = $this->masterTabelBmnModel->getListBmn();
+
+        if ($list_bmn != null) {
+            foreach ($list_bmn as $bmn) {
+                $satker = $this->masterSatkerModel->getNamaSatker($bmn['satker_id']);
+                $data_batch[] = [
+                    'kd_batch' => $bmn['kd_batch'],
+                    'jml_perKdBatch' => count($this->masterTabelBmnModel->getJmlBatch($bmn['kd_batch'])),
+                    'nama_satker' => $satker['nama_ref_unit_kerja_lengkap']
+                ];
+            }
+        } else {
+            $data_batch = null;
+        }
+
+        $list =  json_encode($data_batch);
+
+        echo ($list);
     }
     public function detailkki($kd_batch)
     {
