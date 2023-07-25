@@ -28,8 +28,8 @@
                 <div class="col-3 col-md-5"></div>
                 <div class="col-6 col-md-4">
                     <fieldset class="form-group">
-                        <select class="form-select" name="satker">
-                            <option>- Satker -</option>
+                        <select class="form-select" name="satker" id="pilih-satker">
+                            <option selected value="null">- Semua Satker -</option>
                             <?php if ($list_satker != null) : ?>
                                 <?php foreach ($list_satker as $satker) : ?>
                                     <option value="<?= $satker['id_ref_unit_kerja']; ?>"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></option>
@@ -42,7 +42,11 @@
             </div>
             <div class="row" id="listKki">
             </div>
-            <div id="loadingSpinner" style="display: none;" class="w-100 text-center fa-2x">Memuat...</div>
+            <?= $this->include('layout/loader') ?>
+
+            <div id="empty" style="display: none; font-size: larger;" class="w-100 text-center">
+                <span> Maaf, data tidak tersedia</span>
+            </div>
         </div>
     </section>
 </div>

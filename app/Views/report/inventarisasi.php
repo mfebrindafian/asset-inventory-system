@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="../dashboard.html">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">PM TIK</li>
+                    <li class="breadcrumb-item active" aria-current="page">Inventarisasi</li>
                 </ol>
             </nav>
         </div>
@@ -25,13 +25,13 @@
                 <div class="card-content">
                     <div class="card-body">
                         <div class="row">
-                            <form action="/cetakInventarisasi" method="POST" class="col-12">
+                            <form id="inventarisasi" action="/cetakInventarisasi" method="POST" class="col-12">
                                 <h5 class="mb-3">Cetak daftar barang hasil inventarisasi BMN</h5>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <?php if (session('level_id') == 2) :  ?>
                                             <fieldset class="form-group">
-                                                <select class="form-select" name="satker" id="satker">
+                                                <select class="form-select" name="satker" id="satker" required>
                                                     <?php if ($list_satker != null) : ?>
                                                         <?php if (session('level_id') == 3) : ?>
                                                             <?php foreach ($list_satker as $satker) : ?>
@@ -40,7 +40,7 @@
                                                                 <?php endif; ?>
                                                             <?php endforeach; ?>
                                                         <?php else : ?>
-                                                            <option>- Satker -</option>
+                                                            <option selected disabled>- Satker -</option>
                                                             <option value="all"> Seluruh Satker</option>
                                                             <?php foreach ($list_satker as $satker) : ?>
                                                                 <option value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>

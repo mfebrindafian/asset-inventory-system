@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="../dashboard.html">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">PM NON TIK</li>
+                    <li class="breadcrumb-item active" aria-current="page">Rekapitulasi</li>
                 </ol>
             </nav>
         </div>
@@ -24,12 +24,12 @@
                 <div class="card-content">
                     <div class="card-body">
                         <div class="row">
-                            <form action="<?= base_url('/cetak-rekapitulasi'); ?>" method="POST" class="col-12">
+                            <form id="rekapitulasi" action="<?= base_url('/cetak-rekapitulasi'); ?>" method="POST" class="col-12">
                                 <h5 class="mb-3">Cetak rekapitulasi laporan hasil inventarisasi BMN</h5>
                                 <?php if (session('level_id') == 2) :  ?>
                                     <fieldset class="form-group">
-                                        <select name="satker" class="form-select">
-                                            <option>- Satker -</option>
+                                        <select name="satker" class="form-select" required>
+                                            <option selected disabled>- Satker -</option>
                                             <option value="all">Seluruh Satker</option>
                                             <?php if ($list_satker != null) : ?>
                                                 <?php foreach ($list_satker as $satker) : ?>
@@ -44,7 +44,7 @@
                                         <h6 class="m-0 py-2 text-truncate">Fakultas Sains dan Teknologi</h6>
                                     </span>
                                 <?php endif; ?>
-                                <button class="btn btn-primary w-100">Download</button>
+                                <button type="submit" class="btn btn-primary w-100">Download</button>
                             </form>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                     <div class="row mt-4">
                         <div class=" <?= (session('level_id') == 3) ? 'position-absolute d-none' : 'col-sm-5' ?>">
                             <fieldset class="form-group">
-                                <select class="form-select" name="satker" id="satker">
+                                <select class="form-select" name="satker" id="satker" required>
                                     <?php if ($list_satker != null) : ?>
                                         <?php if (session('level_id') == 3) : ?>
                                             <?php foreach ($list_satker as $satker) : ?>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="col-sm-5 col-12">
                             <fieldset class="form-group">
-                                <select class="form-select" id="jenis-rekapitulasi">
+                                <select class="form-select" id="jenis-rekapitulasi" required>
                                     <option value="" selected disabled>- Jenis Rekapitulasi -</option>
                                     <?php foreach ($list_jenis_rekapitulasi as $list) : ?>
                                         <?php if ($list['id'] != '8') : ?>

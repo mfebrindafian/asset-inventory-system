@@ -40,14 +40,16 @@
     let page = 1;
     const perPage = 5;
     let isLoading = false;
+    let satker = $('#pilih-satker').val();
+    let listKki = null
 
     async function loadListKki(page) {
         isLoading = true;
         $('#loadingSpinner').show();
+        $('#empty').hide();
 
-        const response = await fetch(`<?= base_url("API-list-kki") ?>?page=${page}&perPage=${perPage}`);
-        const listKki = await response.json();
-        console.log(listKki)
+        const response = await fetch(`<?= base_url("API-list-kki") ?>?page=${page}&perPage=${perPage}&satker=${satker}`);
+        listKki = await response.json();
         if (listKki != null) {
             $.each(listKki, function(index, value) {
                 $('#listKki').append(`
@@ -73,6 +75,9 @@
 
         isLoading = false;
         $('#loadingSpinner').hide();
+        if ($('#listKki').children().length == 0) {
+            $('#empty').show();
+        }
     }
 
     function onScroll() {
@@ -85,4 +90,13 @@
         loadListKki(page);
         $(window).on('scroll', onScroll);
     });
+
+    $('#pilih-satker').on('change', function() {
+        $('#listKki').empty()
+        page = 1
+        listKki = null
+        satker = $('#pilih-satker').val();
+        loadListKki(page);
+        $(window).on('scroll', onScroll);
+    })
 </script>

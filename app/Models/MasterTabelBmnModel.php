@@ -377,4 +377,16 @@ class masterTabelBmnModel extends Model
             ->get()
             ->getResultArray();
     }
+    public function getListBmnApiSatker($page, $perPage, $satker)
+    {
+        $offset = ($page - 1) * $perPage;
+
+        return $this
+            ->table('tbl_bmn')
+            ->where('satker_id', $satker)
+            ->groupBy('kd_batch')
+            ->limit($perPage, $offset)
+            ->get()
+            ->getResultArray();
+    }
 }

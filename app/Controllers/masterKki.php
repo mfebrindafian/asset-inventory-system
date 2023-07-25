@@ -56,9 +56,14 @@ class masterKki extends BaseController
     public function APIListKKI()
     {
         $page = $this->request->getGet('page') ?? 1;
-        $perPage = $this->request->getGet('perPage') ?? 10;
-
-        $list_bmn = $this->masterTabelBmnModel->getListBmnApi($page, $perPage);
+        $perPage = $this->request->getGet('perPage') ?? 5;
+        $satker = $this->request->getGet('satker');
+        // dd($satker);
+        if ($satker == "null") {
+            $list_bmn = $this->masterTabelBmnModel->getListBmnApi($page, $perPage);
+        } else {
+            $list_bmn = $this->masterTabelBmnModel->getListBmnApiSatker($page, $perPage, $satker);
+        }
 
         if ($list_bmn != null) {
             foreach ($list_bmn as $bmn) {
