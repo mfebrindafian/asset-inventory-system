@@ -86,7 +86,9 @@
                                 <select class="form-select" id="jenis-rekapitulasi">
                                     <option value="" selected disabled>- Jenis Rekapitulasi -</option>
                                     <?php foreach ($list_jenis_rekapitulasi as $list) : ?>
-                                        <option value="<?= $list['id']; ?>"><?= $list['jenis_rekapitulasi']; ?></option>
+                                        <?php if ($list['id'] != '8') : ?>
+                                            <option value="<?= $list['id']; ?>"><?= $list['jenis_rekapitulasi']; ?></option>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </select>
                             </fieldset>

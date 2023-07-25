@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class masterTabelBmnModel extends Model
 {
     protected $table = 'tbl_bmn';
-    protected $allowedFields = ['akun_id', 'barang_id', 'thn_perolehan', 'nup', 'merk_tipe', 'kuantitas', 'nilai_bmn', 'kondisi_brg', 'kbrdn_brg', 'kategori_btd', 'kategori_br', 'label_kode', 'pegawai_id', 'gedung_id', 'ruangan_id', 'status_psp', 'subsatker_id', 'satker_id', 'ket', 'kd_batch', 'opUniv_id', 'opSatker_id'];
+    protected $allowedFields = ['akun_id', 'barang_id', 'thn_perolehan', 'nup', 'merk_tipe', 'kuantitas', 'nilai_bmn', 'nilai_bmn_minus', 'kondisi_brg', 'kbrdn_brg', 'kategori_btd', 'kategori_br', 'label_kode', 'pegawai_id', 'gedung_id', 'ruangan_id', 'status_psp', 'subsatker_id', 'satker_id', 'ket', 'kd_batch', 'opUniv_id', 'opSatker_id'];
 
     public function getAllBmn()
     {
@@ -90,6 +90,144 @@ class masterTabelBmnModel extends Model
             return $this
                 ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
                 ->where('kbrdn_brg', 'BD')
+                ->where('satker_id', $satker_id)
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        }
+    }
+    public function getAllBmnBySatkerTdkDitemukan($satker_id)
+    {
+        if ($satker_id == 'all') {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kbrdn_brg', 'BTD')
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        } else {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kbrdn_brg', 'BTD')
+                ->where('satker_id', $satker_id)
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        }
+    }
+    public function getAllBmnBySatkerBaik($satker_id)
+    {
+        if ($satker_id == 'all') {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kondisi_brg', 'B')
+                ->where('kbrdn_brg', 'BD')
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        } else {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kondisi_brg', 'B')
+                ->where('kbrdn_brg', 'BD')
+                ->where('satker_id', $satker_id)
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        }
+    }
+    public function getAllBmnBySatkerRusakRingan($satker_id)
+    {
+        if ($satker_id == 'all') {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kondisi_brg', 'RR')
+                ->where('kbrdn_brg', 'BD')
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        } else {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kondisi_brg', 'RR')
+                ->where('kbrdn_brg', 'BD')
+                ->where('satker_id', $satker_id)
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        }
+    }
+    public function getAllBmnBySatkerRusakBerat($satker_id)
+    {
+        if ($satker_id == 'all') {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kondisi_brg', 'RB')
+                ->where('kbrdn_brg', 'BD')
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        } else {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kondisi_brg', 'RB')
+                ->where('kbrdn_brg', 'BD')
+                ->where('satker_id', $satker_id)
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        }
+    }
+
+    public function getAllBmnBySatkerBerlebih($satker_id)
+    {
+        if ($satker_id == 'all') {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kbrdn_brg', 'BR')
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        } else {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kbrdn_brg', 'BR')
+                ->where('satker_id', $satker_id)
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        }
+    }
+
+    public function getAllBmnBySatkerNilaiMinus($satker_id)
+    {
+        if ($satker_id == 'all') {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kbrdn_brg', 'BD')
+                ->where('kbrdn_brg', 'BTD')
+                ->where('nilai_bmn_minus IS NOT NULL')
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        } else {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kbrdn_brg', 'BD')
+                ->where('kbrdn_brg', 'BTD')
+                ->where('nilai_bmn_minus IS NOT NULL')
                 ->where('satker_id', $satker_id)
                 ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
                 ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
