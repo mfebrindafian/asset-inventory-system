@@ -27,3 +27,4 @@
         background-color: #edf4ff;
     }
 </style>
+<link rel="stylesheet" href="<?= base_url('/assets/css/datatable.css') ?>">

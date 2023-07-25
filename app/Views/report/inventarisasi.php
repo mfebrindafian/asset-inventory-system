@@ -28,7 +28,7 @@
                             <form action="/cetakInventarisasi" method="POST" class="col-12">
                                 <h5 class="mb-3">Cetak daftar barang hasil inventarisasi BMN</h5>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <?php if (session('level_id') == 2) :  ?>
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="satker" id="satker">
@@ -52,11 +52,11 @@
                                         <?php endif; ?>
                                         <?php if (session('level_id') == 3) : ?>
                                             <span class="badge bg-light-secondary w-100 mb-3">
-                                                <h6 class="m-0 py-2">Fakultas Sains dan Teknologi</h6>
+                                                <h6 class="m-0 py-2 text-truncate">Fakultas Sains dan Teknologi</h6>
                                             </span>
                                         <?php endif; ?>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <fieldset class="form-group">
                                             <select class="form-select" id="jenis-rekapitulasi" name="jenis-inventarisasi" required>
                                                 <option value="" selected disabled>- Jenis Inventarisasi -</option>

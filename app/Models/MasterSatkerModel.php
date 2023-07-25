@@ -28,6 +28,16 @@ class MasterSatkerModel extends Model
             ->get()
             ->getRowArray();
     }
+
+    public function getSatker($satker_id)
+    {
+        return $this
+            ->table('referensi_unit_kerja')
+            ->select('id_ref_unit_kerja,nama_ref_unit_kerja_lengkap')
+            ->where('id_ref_unit_kerja', $satker_id)
+            ->get()
+            ->getRowArray();
+    }
     public function getIdSatker($nama_satker)
     {
         return $this

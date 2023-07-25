@@ -96,6 +96,12 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="form-group mb-4">
+                    <label for="satker-kki" class="mb-2"><strong>Satuan Kerja</strong> </label>
+                    <select class="form-select select-satker2" name="satker" id="satker-kki" required disabled>
+                        <option selected disabled>- Satuan Kerja -</option>
+                    </select>
+                </div>
                 <label for="nama-ruangan" class="mb-2"><strong>Nama Ruangan</strong></label>
                 <div class="form-group mb-4">
                     <input type="text" name="nama_ruangan" id="nama-ruangan" class="form-control" placeholder="Ketik Nama Ruangan...">
@@ -141,6 +147,14 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" name="id" id="id-ruangan-edit">
+
+                <div class="form-group mb-4">
+                    <label for="satker-kki" class="mb-2"><strong>Satuan Kerja</strong> </label>
+                    <select class="form-select select-satker2" name="satker" id="satker-kki" required disabled>
+                        <option selected disabled>- Satuan Kerja -</option>
+                    </select>
+                </div>
+
                 <label for="nama-ruangan" class="mb-2"><strong>Nama Ruangan</strong></label>
                 <div class="form-group mb-4">
                     <input type="text" name="nama_ruangan" id="nama-ruangan-edit" class="form-control" placeholder="Ketik Nama Ruangan...">
@@ -181,20 +195,30 @@
         <form action="<?= base_url('/hapusRuangan'); ?>" method="post" class="modal-content" enctype="multipart/form-data">
             <!-- <input type="text" name="id_ruangan_hapus" id="id-ruangan-hapus" class="d-none"> -->
             <div class="modal-header">
-                <h5 class="modal-title text-danger">Hapus Ruangan?</h5>
+                <h5 class="modal-title text-danger"></h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
                 </button>
             </div>
-            <div class="modal-body text-center">
+            <div class="modal-body d-flex flex-column align-items-center py-0">
+                <h6 class="mb-3">Hapus ruangan?</h6>
                 <input name="id_ruangan_hapus" id="id-ruangan-hapus" class="d-none">
-                <h5 id="nama-ruangan-hapus"></h5>
+                <p class="text-center" style="font-size: 15px;">Apakah anda yakin menghapus ruangan <b id="nama-ruangan-hapus"></b>?<br>
+                    Anda tidak dapat membatalkan tindakan ini!</p>
+
+                <div class="d-flex  text-center border-danger  rounded-2" style="border-left: 2px solid red; width: 90%; background-color: #FFE8DB;">
+                    <div class="text-center py-3" style="width: 15%; color: #A0443B; "><i class="bi bi-exclamation-triangle-fill"></i></div>
+                    <div class="text-start py-3 px-2" style="width: 85%; font-size: 14px; color: red;">
+                        <strong style="color: #A0443B; ">Peringatan!</strong>
+                        <p class="mb-0">Dengan menghapus ruangan ini, memungkinkan terjadi terjadinya error pada ekspor laporan. <br> Diharapkan <b>periksa kembali</b>, apakah data ruangan ini telah <b>digunakan</b> atau belum!</p>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light-danger" data-bs-dismiss="modal">
+            <div class="py-4 pb-5 text-center">
+                <button type="button" style="width: 70px;" class="btn btn-light-secondary" data-bs-dismiss="modal">
                     <span>Batal</span>
                 </button>
-                <button type="submit" class="btn btn-danger ml-1">
+                <button type="submit" style="width: 70px;" class="btn btn-danger ml-1">
                     <span>Ya</span>
                 </button>
             </div>

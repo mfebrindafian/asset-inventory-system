@@ -97,7 +97,7 @@
                                                                             <td class="text-bold-500"><?= $data['nup']; ?></td>
                                                                             <td class="text-bold-500"><?= $data['merk_tipe']; ?></td>
                                                                             <td class="text-bold-500"><?= $data['kuantitas']; ?></td>
-                                                                            <td class="text-bold-500"><?= $data['nilai_bmn']; ?></td>
+                                                                            <td class="text-bold-500"><?= "Rp " . number_format($data['nilai_bmn'], 0, '', '.') ?></td>
                                                                         </tr>
                                                                     <?php endif; ?>
                                                                 <?php endforeach; ?>

@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <h6>Nilai BMN</h6>
-                                    <p class="text-muted">Rp. <?= $bmn['nilai_bmn']; ?></p>
+                                    <p class="text-muted"><?= "Rp " . number_format($bmn['nilai_bmn'], 0, '', '.') ?></p>
 
                                     <h6>Kondisi Barang</h6>
 

@@ -63,7 +63,7 @@
                                         <p class="text-muted"><?= $bmn['kuantitas']; ?></p>
 
                                         <h6>Nilai BMN</h6>
-                                        <p class="text-muted">Rp. <?= $bmn['nilai_bmn']; ?></p>
+                                        <p class="text-muted"><?= "Rp " . number_format($bmn['nilai_bmn'], 0, '', '.') ?></p>
                                     </div>
                                 </div>
                             </div>
