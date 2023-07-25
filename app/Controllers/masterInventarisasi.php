@@ -144,7 +144,6 @@ class masterInventarisasi extends BaseController
 
         $data_user = session('data_user');
 
-
         $tipe_akun = preg_replace('/[^A-Za-z0-9\-\(\) ]/', '', strtolower($this->request->getVar('tipe_akun')));
 
         $kondisi_brg = $this->request->getVar('kondisi-barang');
@@ -161,6 +160,7 @@ class masterInventarisasi extends BaseController
             $kategori_btd = null;
         }
 
+        $nilai_bmn_minus = $this->request->getVar('nilai_bmn_minus');
         $pelabelan = $this->request->getVar('pelabelan');
         $status_psp = $this->request->getVar('status-psp');
 
@@ -168,6 +168,7 @@ class masterInventarisasi extends BaseController
 
         $this->masterBmnModel->save([
             'id' => $id_bmn,
+            'nilai_bmn_minus' => $nilai_bmn_minus,
             'kondisi_brg' => $kondisi_brg,
             'kbrdn_brg' => $kbrdn_brg,
             'kategori_btd' => $kategori_btd,
