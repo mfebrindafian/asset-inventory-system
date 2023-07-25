@@ -103,7 +103,7 @@
                     <div class="text-center py-3" style="width: 15%; color: #A0443B; "><i class="bi bi-exclamation-triangle-fill"></i></div>
                     <div class="text-start py-3 px-2" style="width: 85%; font-size: 14px; color: red;">
                         <strong style="color: #A0443B; ">Peringatan!</strong>
-                        <p class="mb-0">Dengan menghapus gedung ini, memungkinkan terjadi terjadinya error pada ekspor laporan. <br> Diharapkan <b>periksa kembali</b>, apakah data gedung ini telah <b>digunakan</b> atau belum!</p>
+                        <p class="mb-0">Dengan menghapus gedung ini, memungkinkan terjadi terjadinya error pada ekspor laporan. <br> Diharapkan <b>periksa kembali</b> apakah data gedung ini telah <b>digunakan</b> atau belum!</p>
                     </div>
                 </div>
             </div>
