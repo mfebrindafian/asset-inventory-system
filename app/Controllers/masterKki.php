@@ -55,25 +55,27 @@ class masterKki extends BaseController
 
     public function APIListKKI()
     {
-        $list_bmn = $this->masterTabelBmnModel->getListBmn();
+        $page = $this->request->getGet('page') ?? 1;
+        $perPage = $this->request->getGet('perPage') ?? 10;
+
+        $list_bmn = $this->masterTabelBmnModel->getListBmnApi($page, $perPage);
 
         if ($list_bmn != null) {
             foreach ($list_bmn as $bmn) {
-                $satker = $this->masterSatkerModel->getNamaSatker($bmn['satker_id']);
+                $satker = $this->masterSatkerModel->getSatker($bmn['satker_id']);
                 $data_batch[] = [
                     'kd_batch' => $bmn['kd_batch'],
                     'jml_perKdBatch' => count($this->masterTabelBmnModel->getJmlBatch($bmn['kd_batch'])),
+                    'id_satker' => intval($satker['id_ref_unit_kerja']),
                     'nama_satker' => $satker['nama_ref_unit_kerja_lengkap']
                 ];
             }
         } else {
             $data_batch = null;
         }
-
-        $list =  json_encode($data_batch);
-
-        echo ($list);
+        return $this->response->setJSON($data_batch);
     }
+
     public function detailkki($kd_batch)
     {
         $data_batch = $this->masterTabelBmnModel->getDataBatch($kd_batch);

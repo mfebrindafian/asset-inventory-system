@@ -41,7 +41,7 @@
                                 <?php endif; ?>
                                 <?php if (session('level_id') == 3) : ?>
                                     <span class="badge bg-light-secondary w-100 mb-3">
-                                        <h6 class="m-0 py-2">Fakultas Sains dan Teknologi</h6>
+                                        <h6 class="m-0 py-2 text-truncate">Fakultas Sains dan Teknologi</h6>
                                     </span>
                                 <?php endif; ?>
                                 <button class="btn btn-primary w-100">Download</button>

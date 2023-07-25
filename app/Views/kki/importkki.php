@@ -40,47 +40,9 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="row">
-
-                <?php if ($list_kki != null) : ?>
-                    <?php foreach ($list_kki as $kki) : ?>
-                        <div class="col-12 col-md-12">
-                            <div class="card">
-                                <div class="row px-4 py-4">
-                                    <div class="col-md-10">
-                                        <h4 class="card-title"><?= $kki['nama_satker']; ?></h4>
-                                        <span class="badge bg-light-primary">Jumlah data: <?= $kki['jml_perKdBatch']; ?></span>
-                                        <p class="text-muted mt-4 mb-0">Kode Batch: <?= $kki['kd_batch']; ?></p>
-                                    </div>
-                                    <div class="col-md-2 mt-3 mt-md-0 d-flex justify-content-end align-items-center">
-                                        <a href="<?= base_url('/detail-kki/' . $kki['kd_batch']) ?>" class="btn btn-outline-primary">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-
+            <div class="row" id="listKki">
             </div>
-            <div class="row">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination pagination-primary justify-content-end">
-                        <li class="page-item">
-                            <a class="page-link" href="#">
-                                <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">
-                                <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            <div id="loadingSpinner" style="display: none;" class="w-100 text-center fa-2x">Memuat...</div>
         </div>
     </section>
 </div>

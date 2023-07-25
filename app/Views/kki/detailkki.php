@@ -97,7 +97,7 @@
                                                                             <td class="text-bold-500"><?= $data['nup']; ?></td>
                                                                             <td class="text-bold-500"><?= $data['merk_tipe']; ?></td>
                                                                             <td class="text-bold-500"><?= $data['kuantitas']; ?></td>
-                                                                            <td class="text-bold-500"><?= $data['nilai_bmn']; ?></td>
+                                                                            <td class="text-bold-500"><?= "Rp " . number_format($data['nilai_bmn'], 0, '', '.') ?></td>
                                                                         </tr>
                                                                     <?php endif; ?>
                                                                 <?php endforeach; ?>
@@ -151,26 +151,38 @@
     </div>
 </div>
 
-<!-- MODAL -->
+<!-- MODAL HAPUS-->
 <div class="modal fade text-left modal-borderless" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Hapus batch</h5>
+                <h5 class="modal-title"></h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
                 </button>
             </div>
             <div class="modal-body d-flex justify-content-center">
-                <h5>Yakin ingin menghapus batch ini?</h5>
+                <div class="modal-body d-flex flex-column align-items-center py-0">
+                    <h6 class="mb-3">Hapus Batch?</h6>
+                    <p class="text-center" style="font-size: 15px;">Apakah anda yakin menghapus batch ini?<br>
+                        Anda tidak dapat membatalkan tindakan ini!</p>
+
+                    <div class="d-flex  text-center border-danger  rounded-2" style="border-left: 2px solid red; width: 90%; background-color: #FFE8DB;">
+                        <div class="text-center py-3" style="width: 15%; color: #A0443B; "><i class="bi bi-exclamation-triangle-fill"></i></div>
+                        <div class="text-start py-3 px-2" style="width: 85%; font-size: 14px; color: red;">
+                            <strong style="color: #A0443B; ">Peringatan!</strong>
+                            <p class="mb-0">Dengan menghapus batch ini, memungkinkan terjadi terjadinya error pada ekspor laporan. <br> Diharapkan <b>periksa kembali</b> data batch sebelum menghapus!</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light-danger" data-bs-dismiss="modal">
+            <div class="py-4 pb-5 text-center">
+                <button type="button" style="width: 70px;" class="btn btn-light-secondary" data-bs-dismiss="modal">
                     <span>Batal</span>
                 </button>
-                <button type="submit" class="btn btn-danger ml-1">
-                    <a href="<?= base_url('/hapus-batch/' . $kd_batch); ?>"><span>Hapus</span></a>
-                </button>
+                <a style="width: 70px;" href="<?= base_url('/hapus-batch/' . $kd_batch); ?>" class="btn btn-danger ml-1">
+                    Hapus
+                </a>
             </div>
         </div>
     </div>

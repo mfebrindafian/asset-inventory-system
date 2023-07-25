@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-md-6 py-1 ">
                             <div class="input-group input-group-md float-end" style="width: 250px">
-                                <input type="text" id="pencarian" name="table_search" class="form-control float-left" placeholder="Search ..." />
+                                <input type="text" id="searchbar" name="table_search" class="form-control float-left" placeholder="Search ..." />
                             </div>
                         </div>
                     </div>
@@ -93,12 +93,7 @@
                                 <tr class="kepala-tabel">
                                     <th style="width: 10px">NO.</th>
                                     <th>MENU</th>
-                                    <th style="width: 60px">VIEW</th>
-                                    <th style="width: 60px">ADD</th>
-                                    <th style="width: 60px">EDIT</th>
-                                    <th style="width: 60px">DELETE</th>
-                                    <th style="width: 60px">PRINT</th>
-                                    <th style="width: 60px">UPLOAD</th>
+                                    <th class="text-center">AKSES VIEW</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -118,21 +113,6 @@
                                                 <i class="bi <?= $list_menu[$i]['view_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
                                             </label>
                                         </td>
-                                        <td class="sel sel-disabled">
-
-                                        </td>
-                                        <td class="sel sel-disabled">
-
-                                        </td>
-                                        <td class="sel sel-disabled">
-
-                                        </td>
-                                        <td class="sel sel-disabled">
-
-                                        </td>
-                                        <td class="sel sel-disabled">
-
-                                        </td>
                                     </tr>
 
                                     <?php for ($j = 0; $j < count($list_submenu); $j++) : ?>
@@ -150,36 +130,7 @@
                                                         <i class="bi <?= $list_submenu[$j]['view_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
                                                     </label>
                                                 </td>
-                                                <td class="sel">
-                                                    <label for="add_submenu<?= $j; ?>" class="ikon-sel">
-                                                        <input class="d-none" type="checkbox" name="add_submenu<?= $j; ?>" id="add_submenu<?= $j; ?>" <?= $list_submenu[$j]['add_level'] == 'Y' ? 'checked' : ''; ?> />
-                                                        <i class="bi <?= $list_submenu[$j]['add_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
-                                                    </label>
-                                                </td>
-                                                <td class="sel">
-                                                    <label for="edit_submenu<?= $j; ?>" class="ikon-sel">
-                                                        <input class="d-none" type="checkbox" name="edit_submenu<?= $j; ?>" id="edit_submenu<?= $j; ?>" <?= $list_submenu[$j]['edit_level'] == 'Y' ? 'checked' : ''; ?> />
-                                                        <i class="bi <?= $list_submenu[$j]['edit_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
-                                                    </label>
-                                                </td>
-                                                <td class="sel">
-                                                    <label for="delete_submenu<?= $j; ?>" class="ikon-sel">
-                                                        <input class="d-none" type="checkbox" name="delete_submenu<?= $j; ?>" id="delete_submenu<?= $j; ?>" <?= $list_submenu[$j]['delete_level'] == 'Y' ? 'checked' : ''; ?> />
-                                                        <i class="bi <?= $list_submenu[$j]['delete_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
-                                                    </label>
-                                                </td>
-                                                <td class="sel">
-                                                    <label for="print_submenu<?= $j; ?>" class="ikon-sel">
-                                                        <input class="d-none" type="checkbox" name="print_submenu<?= $j; ?>" id="print_submenu<?= $j; ?>" <?= $list_submenu[$j]['print_level'] == 'Y' ? 'checked' : ''; ?> />
-                                                        <i class="bi <?= $list_submenu[$j]['print_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
-                                                    </label>
-                                                </td>
-                                                <td class="sel">
-                                                    <label for="upload_submenu<?= $j; ?>" class="ikon-sel">
-                                                        <input class="d-none" type="checkbox" name="upload_submenu<?= $j; ?>" id="upload_submenu<?= $j; ?>" <?= $list_submenu[$j]['upload_level'] == 'Y' ? 'checked' : ''; ?> />
-                                                        <i class="bi <?= $list_submenu[$j]['upload_level'] == 'Y' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger'; ?>"></i>
-                                                    </label>
-                                                </td>
+
                                             </tr>
                                         <?php endif; ?>
 

@@ -63,7 +63,7 @@
                                         <p class="text-muted"><?= $bmn['kuantitas']; ?></p>
 
                                         <h6>Nilai BMN</h6>
-                                        <p class="text-muted">Rp. <?= $bmn['nilai_bmn']; ?></p>
+                                        <p class="text-muted"><?= "Rp " . number_format($bmn['nilai_bmn'], 0, '', '.') ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -298,6 +298,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-sm-4 mb-5">
+                                        <h6>BMN Minus</h6>
+                                        <fieldset class="form-group">
+                                            <input type="number" min="0" name="" id="" class="form-control border-2">
+                                        </fieldset>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -312,6 +320,7 @@
 
                                 <div class="row">
                                     <div class="col-12">
+                                        <p class="float-start text-danger">Input bertanda (*) wajib diisi</p>
                                         <button type="submit" class="btn btn-primary float-end">Simpan</button>
                                     </div>
                                 </div>

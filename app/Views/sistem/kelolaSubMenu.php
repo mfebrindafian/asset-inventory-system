@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-md-6 py-1 ">
                             <div class="input-group input-group-md float-end" style="width: 250px">
-                                <input type="text" id="pencarian" name="table_search" class="form-control float-left" placeholder="Search ..." />
+                                <input type="text" id="searchbar" name="table_search" class="form-control float-left" placeholder="Search ..." />
                             </div>
                         </div>
                     </div>

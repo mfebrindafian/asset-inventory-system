@@ -61,6 +61,14 @@
             dropdownParent: $('#modal-edit-satker'),
             theme: "bootstrap",
         });
+        $('#satuan-kerja').select2({
+            dropdownParent: $('#modal-tambah-gedung'),
+            theme: "bootstrap",
+        });
+        $('#satuan-kerja-edit').select2({
+            dropdownParent: $('#modal-edit-gedung'),
+            theme: "bootstrap",
+        });
     });
 </script>
 
