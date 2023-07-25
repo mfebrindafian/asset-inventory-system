@@ -224,4 +224,16 @@ class masterTabelBmnModel extends Model
                 ->getResultArray();
         }
     }
+
+    public function getListBmnApi($page, $perPage)
+    {
+        $offset = ($page - 1) * $perPage;
+
+        return $this
+            ->table('tbl_bmn')
+            ->groupBy('kd_batch')
+            ->limit($perPage, $offset)
+            ->get()
+            ->getResultArray();
+    }
 }
