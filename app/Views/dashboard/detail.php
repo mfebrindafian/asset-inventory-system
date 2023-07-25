@@ -150,9 +150,7 @@
                                                     }
                                                     $nama_pegawai .= $pegawai['gelar_belakang']; ?>
                                                     <?= $nama_pegawai; ?>
-                                                <?php else : ?>
-                                                    <?= '-';
-                                                    break; ?>
+
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
 
