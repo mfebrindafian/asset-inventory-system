@@ -2548,6 +2548,7 @@ class masterReport extends BaseController
 
                 $column = 10; //titik mulai
                 $bmn_nilai_minus = $this->masterBmnModel->getAllBmnBySatkerNilaiMinus($satker_id);
+
                 if ($bmn_nilai_minus != null) {
                     $no_baris = 1;
                     foreach ($bmn_nilai_minus as $bmn) {
@@ -2645,7 +2646,7 @@ class masterReport extends BaseController
                 $sheet->getStyle('R' . $column)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB(Color::COLOR_BLACK);
                 $sheet->getStyle('S' . $column)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB(Color::COLOR_BLACK);
 
-                $sheet->getStyle('A7:R' . $column)->applyFromArray($styleBorder);
+                $sheet->getStyle('A7:S' . $column)->applyFromArray($styleBorder);
                 $sheet->getStyle('A10:B' . $column - 1)->applyFromArray($styleArray);
                 $sheet->getStyle('E10:E' . $column - 1)->applyFromArray($styleArray);
                 $sheet->getStyle('K10:Q' . $column - 1)->applyFromArray($styleArray);

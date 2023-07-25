@@ -12,7 +12,7 @@
         border-radius: 4px;
         width: 100%;
         padding: 15px 20px 15px 20px;
-        background-color: #fff5fa;
+        background-color: #FFE8DB;
     }
 
     .error {

@@ -1,12 +1,18 @@
 <script src="<?= base_url('/assets/js/pages/jquery.min.js') ?>"></script>
 <script src="<?= base_url('/assets/js/add/select2.min.js') ?>"></script>
 <script src="<?= base_url('/assets/js/jquery.validate.min.js') ?>"></script>
+<script src="<?= base_url('/assets/js/easy-number-separator.js') ?>"></script>
 <script>
     $(document).ready(function() {
         $('.form-select').select2({
             theme: "bootstrap"
         });
     });
+
+    console.log($('#nilai_bmn_minus').val())
+    $('#nilai_bmn_minus').on('keyup', function() {
+        console.log(this.value)
+    })
 </script>
 
 <script>

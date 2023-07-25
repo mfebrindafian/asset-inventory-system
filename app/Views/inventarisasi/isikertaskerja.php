@@ -300,14 +300,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4 mb-5">
-                                        <h6>Nilai Buku / nilai BMN setelah penyusutan (opsional)</h6>
+                                        <h6 class="text-nowrap">Nilai Buku / nilai BMN setelah penyusutan / nilai saat ini (opsional)</h6>
                                         <div class="input-group mb-2">
                                             <label for="nilai_bmn_minus" class="input-group-text">Rp.</label>
-                                            <input type="number" min="0" name="nilai_bmn_minus" id="nilai_bmn_minus" class="form-control border-2">
+                                            <input type="text" name="nilai_bmn_minus" id="nilai_bmn_minus" class="form-control  border-2" value="<?= $bmn['nilai_bmn_minus'] ?>">
                                         </div>
                                         <span class="badge bg-light-warning"><u>Nilai buku</u> diisikan ketika barang mengalami penyusutan nilai dari nilai perolehan BMN</span>
                                         <span class="badge bg-light-warning"> Inputkan nilai aset setelah penyusutan, misal: Rp. 1.000 menjadi Rp. 900, maka inputkan nilai <strong><u>Rp. 900</u></strong></span>
-
                                     </div>
                                 </div>
 

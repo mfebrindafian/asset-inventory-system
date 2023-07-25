@@ -161,6 +161,9 @@ class masterInventarisasi extends BaseController
         }
 
         $nilai_bmn_minus = $this->request->getVar('nilai_bmn_minus');
+        if ($nilai_bmn_minus == '') {
+            $nilai_bmn_minus = null;
+        }
         $pelabelan = $this->request->getVar('pelabelan');
         $status_psp = $this->request->getVar('status-psp');
 

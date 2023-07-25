@@ -216,8 +216,9 @@ class masterTabelBmnModel extends Model
             return $this
                 ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
                 ->where('kbrdn_brg', 'BD')
-                ->where('kbrdn_brg', 'BTD')
+                ->orWhere('kbrdn_brg', 'BTD')
                 ->where('nilai_bmn_minus IS NOT NULL')
+                ->where('nilai_bmn_minus !=', 0)
                 ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
                 ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
                 ->get()
@@ -226,8 +227,9 @@ class masterTabelBmnModel extends Model
             return $this
                 ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
                 ->where('kbrdn_brg', 'BD')
-                ->where('kbrdn_brg', 'BTD')
+                ->orWhere('kbrdn_brg', 'BTD')
                 ->where('nilai_bmn_minus IS NOT NULL')
+                ->where('nilai_bmn_minus !=', 0)
                 ->where('satker_id', $satker_id)
                 ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
                 ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
@@ -235,6 +237,7 @@ class masterTabelBmnModel extends Model
                 ->getResultArray();
         }
     }
+
 
     public function getAllBmnByDoneInven($satker_id)
     {
