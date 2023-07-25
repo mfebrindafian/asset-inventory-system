@@ -90,7 +90,7 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Kondisi Barang <span class="text-danger">*</span></h6>
+                                            <h6>Kondisi Barang <span class="text-danger text-sm" style="font-weight: 400;">* wajib diisi</span></h6>
                                             <input type="radio" class="btn-check" name="kondisi-barang" id="baik" value="B" <?php if ($bmn['kondisi_brg'] == 'B') {
                                                                                                                                 echo 'checked';
                                                                                                                             } ?> autocomplete="off" />
@@ -109,7 +109,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Keberadaan Barang <span class="text-danger">*</span></h6>
+                                            <h6>Keberadaan Barang <span class="text-danger text-sm" style="font-weight: 400;">* wajib diisi</span></h6>
                                             <input type="radio" class="btn-check" name="keberadaan-barang" id="ditemukan" value="BD" <?php if ($bmn['kbrdn_brg'] == 'BD') {
                                                                                                                                             echo 'checked';
                                                                                                                                         } ?> autocomplete="off" />
@@ -127,7 +127,7 @@
 
                                     <div class="col-sm-4">
                                         <div class="mb-5 d-none" id="kategori_btd">
-                                            <h6 class="form-label">kategori barang tidak ditemukan<span class="text-danger">*</span></h6>
+                                            <h6 class="form-label">kategori barang tidak ditemukan <span class="text-danger text-sm" style="font-weight: 400;">* wajib diisi</span></h6>
                                             <div class="form-group">
                                                 <fieldset class="form-group">
                                                     <select class="form-select" name="kategori_btd" id="kategori-btd">
@@ -142,7 +142,7 @@
                                         </div>
 
                                         <div class="mb-5 d-none" id="kategori_bb">
-                                            <h6 class="form-label">kategori barang berlebih<span class="text-danger">*</span></h6>
+                                            <h6 class="form-label">kategori barang berlebih <span class="text-danger text-sm" style="font-weight: 400;">* wajib diisi</span></h6>
                                             <div class="form-group">
                                                 <fieldset class="form-group">
                                                     <select class="form-select" name="kategori_br" id="kategori-br">
@@ -159,7 +159,7 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6 class="form-label">Nama Pegawai Pengguna Barang<span class="text-danger">*</span></h6>
+                                            <h6 class="form-label">Nama Pegawai Pengguna Barang <span class="text-danger text-sm" style="font-weight: 400;">* wajib diisi</span></h6>
                                             <div class="form-group">
                                                 <fieldset class="form-group">
                                                     <select class="form-select" name="pegawai">
@@ -201,7 +201,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Nama Gedung<span class="text-danger">*</span></h6>
+                                            <h6>Nama Gedung <span class="text-danger text-sm" style="font-weight: 400;">* wajib diisi</span></h6>
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="nama-gedung">
                                                     <option selected disabled>Cari Gedung</option>
@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Nama Ruangan<span class="text-danger">*</span></h6>
+                                            <h6>Nama Ruangan <span class="text-danger text-sm" style="font-weight: 400;">* wajib diisi</span></h6>
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="nama-ruangan">
                                                     <option selected disabled>Cari Ruangan</option>
@@ -248,7 +248,7 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Pelabelan Kodefikasi <span class="text-danger">*</span></h6>
+                                            <h6>Pelabelan Kodefikasi <span class="text-danger text-sm" style="font-weight: 400;">* wajib diisi</span></h6>
                                             <input type="radio" class="btn-check" name="pelabelan" id="sudah" value="S" <?php if ($bmn['label_kode'] == 'S') {
                                                                                                                             echo 'checked';
                                                                                                                         } ?> autocomplete="off" />
@@ -262,7 +262,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Status PSP <span class="text-danger">*</span></h6>
+                                            <h6>Status PSP <span class="text-danger text-sm" style="font-weight: 400;">* wajib diisi</span></h6>
                                             <input type="radio" class="btn-check" name="status-psp" id="sudah-psp" value="S" <?php if ($bmn['status_psp'] == 'S') {
                                                                                                                                     echo 'checked';
                                                                                                                                 } ?> autocomplete="off" />
@@ -277,7 +277,7 @@
 
                                     <div class="col-sm-4">
                                         <div class="mb-5">
-                                            <h6>Nama Sub Satker</h6>
+                                            <h6>Nama Sub Satker (opsional)</h6>
                                             <fieldset class="form-group">
                                                 <select class="form-select" name="nama-subsatker">
                                                     <option selected disabled>Cari Sub Satker</option>
@@ -300,12 +300,17 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4 mb-5">
-                                        <h6>BMN Minus</h6>
-                                        <fieldset class="form-group">
-                                            <input type="number" min="0" name="" id="" class="form-control border-2">
-                                        </fieldset>
+                                        <h6>Nilai Buku / nilai BMN setelah penyusutan (opsional)</h6>
+                                        <div class="input-group mb-2">
+                                            <label for="nilai_bmn_minus" class="input-group-text">Rp.</label>
+                                            <input type="number" min="0" name="nilai_bmn_minus" id="nilai_bmn_minus" class="form-control border-2">
+                                        </div>
+                                        <span class="badge bg-light-warning"><u>Nilai buku</u> diisikan ketika barang mengalami penyusutan nilai dari nilai perolehan BMN</span>
+                                        <span class="badge bg-light-warning"> Inputkan nilai aset setelah penyusutan, misal: Rp. 1.000 menjadi Rp. 900, maka inputkan nilai <strong><u>Rp. 900</u></strong></span>
+
                                     </div>
                                 </div>
+
 
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -320,7 +325,6 @@
 
                                 <div class="row">
                                     <div class="col-12">
-                                        <p class="float-start text-danger">Input bertanda (*) wajib diisi</p>
                                         <button type="submit" class="btn btn-primary float-end">Simpan</button>
                                     </div>
                                 </div>
