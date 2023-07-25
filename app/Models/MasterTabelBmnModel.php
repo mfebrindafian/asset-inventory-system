@@ -76,6 +76,28 @@ class masterTabelBmnModel extends Model
         }
     }
 
+    public function getAllBmnBySatkerDitemukan($satker_id)
+    {
+        if ($satker_id == 'all') {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kbrdn_brg', 'BD')
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        } else {
+            return $this
+                ->select('tbl_bmn.*,tbl_akun.ur_akun,tbl_akun.ket_akun,tbl_barang.kd_barang,tbl_barang.nama_barang')
+                ->where('kbrdn_brg', 'BD')
+                ->where('satker_id', $satker_id)
+                ->join('tbl_akun', 'tbl_akun.id = tbl_bmn.akun_id')
+                ->join('tbl_barang', 'tbl_barang.id = tbl_bmn.barang_id')
+                ->get()
+                ->getResultArray();
+        }
+    }
+
     public function getAllBmnByDoneInven($satker_id)
     {
         if ($satker_id == 'all') {
