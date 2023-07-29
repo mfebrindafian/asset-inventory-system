@@ -87,4 +87,7 @@ class MasterUserLevelModel extends Model
             ->get()
             ->getResultArray();
     }
+
+
+    
 }

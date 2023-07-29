@@ -57,13 +57,6 @@ class MasterAksesUserLevelModel extends Model
             ->getRowArray();
     }
 
-
-    // public function getAllAkses()
-    // {
-    //     $query = ('SELECT * FROM dbsibamira.tbl_akses_user_level tn join kepeg.referensi_unit_kerja tn1 where tn.satker_id = tn1.id_ref_unit_kerja');
-    //     return $this->db->query($query)->getResultArray();
-    // }
-
     public function getUserLevel($user_id)
     {
         return $this
@@ -84,10 +77,6 @@ class MasterAksesUserLevelModel extends Model
             ->get()
             ->getRowArray();
     }
-
-
-
-
 
     public function getAksesMenu($level_id, $user_id)
     {
@@ -147,4 +136,5 @@ class MasterAksesUserLevelModel extends Model
             ->get()
             ->getResultArray();
     }
+
 }

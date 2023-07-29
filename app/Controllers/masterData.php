@@ -34,6 +34,7 @@ class masterData extends BaseController
 
         $list_gedung = $this->masterGedungModel->getAllGedung();
         $list_lokasi = $this->masterLokasiModel->getAllLokasi();
+        $list_satker = $this->masterSatkerModel->getAllSatker();
 
         $data = [
             'list_gedung' => $list_gedung,
@@ -43,6 +44,7 @@ class masterData extends BaseController
             'menu' => 'Master Data',
             'subMenu' => 'Gedung',
             'list_level' => session('list_user_level'),
+            'list_satker' => $list_satker,
 
         ];
 
@@ -53,10 +55,12 @@ class masterData extends BaseController
     {
         $nama_gedung = $this->request->getVar('nama_gedung');
         $id_lokasi = $this->request->getVar('id_lokasi');
+        $satker_id = $this->request->getVar('satker');
 
         $this->masterGedungModel->save([
             'nama_gedung' => $nama_gedung,
-            'id_lokasi' => $id_lokasi
+            'id_lokasi' => $id_lokasi,
+            'satker_id' => $satker_id
         ]);
         return redirect()->to('/kelola-gedung');
     }
@@ -66,11 +70,13 @@ class masterData extends BaseController
         $id_gedung = $this->request->getVar('id_gedung');
         $nama_gedung = $this->request->getVar('nama_gedung');
         $id_lokasi = $this->request->getVar('id_lokasi');
+        $satker_id = $this->request->getVar('satker');
 
         $this->masterGedungModel->save([
             'id' => $id_gedung,
             'nama_gedung' => $nama_gedung,
-            'id_lokasi' => $id_lokasi
+            'id_lokasi' => $id_lokasi,
+            'satker_id' => $satker_id
         ]);
         return redirect()->to('/kelola-gedung');
     }

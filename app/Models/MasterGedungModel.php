@@ -8,7 +8,7 @@ class MasterGedungModel extends Model
 {
     // protected $DBGroup = 'siakad';
     protected $table = 'tbl_gedung';
-    protected $allowedFields = ['nama_gedung', 'id_lokasi'];
+    protected $allowedFields = ['nama_gedung', 'id_lokasi', 'satker_id'];
 
 
     public function getAllGedung()

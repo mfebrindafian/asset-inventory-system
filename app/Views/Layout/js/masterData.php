@@ -21,7 +21,7 @@
         $('#id-gedung-edit').val($(this).data('id'))
         $('#nama-gedung-edit').val($(this).data('nama-gedung'))
         $('#lokasi-edit').val($(this).data('lokasi'))
-        $('#unit-kerja-edit').val($(this).data('unit-kerja'))
+        $('#satuan-kerja-edit').val($(this).data('satker'))
     })
 
     $(document).on('click', '#btn-hapus-gedung', function() {

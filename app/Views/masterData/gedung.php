@@ -42,6 +42,7 @@
                                                 <th>No</th>
                                                 <th>Nama Gedung</th>
                                                 <th>Lokasi</th>
+                                                <th>Satker</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -61,8 +62,16 @@
                                                                     } ?>
                                                                 <?php endforeach; ?>
                                                             <?php endif; ?></td>
+                                                        <td><?php if ($list_satker != null) : ?>
+                                                                <?php foreach ($list_satker as $satker) : ?>
+                                                                    <?php if ($satker['id_ref_unit_kerja'] == $list['satker_id']) {
+                                                                        $id_satker = $satker['id_ref_unit_kerja'];
+                                                                        echo $satker['nama_ref_unit_kerja_lengkap'];
+                                                                    } ?>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?> </td>
                                                         <td>
-                                                            <button id="btn-edit-gedung" data-bs-target="#modal-edit-gedung" data-bs-toggle="modal" data-id="<?= $list['id'] ?>" data-nama-gedung="<?= $list['nama_gedung'] ?>" data-lokasi="<?= $id_lokasi; ?>" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
+                                                            <button id="btn-edit-gedung" data-bs-target="#modal-edit-gedung" data-bs-toggle="modal" data-id="<?= $list['id'] ?>" data-nama-gedung="<?= $list['nama_gedung'] ?>" data-lokasi="<?= $id_lokasi; ?>" data-satker="<?= $id_satker; ?>" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
                                                             <button data-bs-target="#modal-hapus-gedung" data-bs-toggle="modal" id="btn-hapus-gedung" data-id="<?= $list["id"] ?>" data-nama-gedung="<?= $list["nama_gedung"] ?>" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                                                         </td>
                                                     </tr>
@@ -103,7 +112,7 @@
                     <div class="text-center py-3" style="width: 15%; color: #A0443B; "><i class="bi bi-exclamation-triangle-fill"></i></div>
                     <div class="text-start py-3 px-2" style="width: 85%; font-size: 14px; color: red;">
                         <strong style="color: #A0443B; ">Peringatan!</strong>
-                        <p class="mb-0">Dengan menghapus gedung ini, memungkinkan terjadi terjadinya error pada ekspor laporan. <br> Diharapkan <b>periksa kembali</b> apakah data gedung ini telah <b>digunakan</b> atau belum!</p>
+                        <p class="mb-0">Dengan menghapus gedung ini, memungkinkan terjadinya error pada ekspor laporan. <br> Diharapkan <b>periksa kembali</b> apakah data gedung ini telah <b>digunakan</b> atau belum!</p>
                     </div>
                 </div>
             </div>
@@ -139,6 +148,11 @@
                     <label for="satker-kki" class="mb-2"><strong>Pilih Satuan Kerja</strong> </label>
                     <select class="form-select select-satker2" name="satker" id="satuan-kerja" required>
                         <option>- Satuan Kerja -</option>
+                        <?php if ($list_satker != null) : ?>
+                            <?php foreach ($list_satker as $satker) : ?>
+                                <option value="<?= $satker['id_ref_unit_kerja']; ?>"> <a href="/aa"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></a></option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </select>
                 </div>
 
@@ -170,7 +184,7 @@
 <!-- MODAL EDIT-->
 <div class="modal fade text-left modal-borderless" id="modal-edit-gedung" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-        <form action="" method="" class="modal-content">
+        <form action="<?= base_url('/editGedung'); ?>" method="POST" class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Edit Gedung</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -178,21 +192,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                <input type="hidden" name="id" id="id-gedung-edit">
+                <input type="hidden" name="id_gedung" id="id-gedung-edit">
                 <label for="nama-gedung-edit" class="mb-2"><strong>Nama Gedung</strong></label>
                 <div class="form-group mb-4">
-                    <input type="text" name="" id="nama-gedung-edit" class="form-control" placeholder="Ketik nama gedung...">
+                    <input type="text" name="nama_gedung" id="nama-gedung-edit" class="form-control" placeholder="Ketik nama gedung...">
                 </div>
 
                 <div class="form-group mb-4">
                     <label for="satker-kki" class="mb-2"><strong>Pilih Satuan Kerja</strong> </label>
-                    <select class="form-select select-satker2" name="satker" id="satuan-kerja-edit" required>
-                        <option>- Satuan Kerja -</option>
+                    <select class="form-select select-satker2" name="satker" id="satuan-kerja-edit">
+                        <option disabled selected value="null">- Satuan Kerja -</option>
+                        <?php if ($list_satker != null) : ?>
+                            <?php foreach ($list_satker as $satker) : ?>
+                                <option value="<?= $satker['id_ref_unit_kerja']; ?>"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </select>
                 </div>
 
                 <label for="lokasi-edit" class="mb-2"><strong>Lokasi Gedung</strong></label>
-                <select class="form-select mb-4" name="lokasi" id="lokasi-edit">
+                <select class="form-select mb-4" name="id_lokasi" id="lokasi-edit">
                     <option disabled selected value="null">- Cari Lokasi -</option>
                     <?php if ($list_lokasi != null) : ?>
                         <?php foreach ($list_lokasi as $lokasi) : ?>
