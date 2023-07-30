@@ -69,13 +69,16 @@
                                                                     <?php endif; ?>
                                                                 <?php endforeach; ?>
                                                             </td>
-                                                            <td><?php foreach ($list_unit_kerja['user_id'] as $kerja) {
-                                                                    if ($kerja == $user['user_id']) {
-                                                                        if ($list_unit_kerja['unit'][$arr] != '') {
-                                                                            echo $list_unit_kerja['unit'][$arr];
+                                                            <td><?php if ($list_unit_kerja != null) : ?>
+
+                                                                    <?php foreach ($list_unit_kerja['user_id'] as $kerja) {
+                                                                        if ($kerja == $user['user_id']) {
+                                                                            if ($list_unit_kerja['unit'][$arr] != '') {
+                                                                                echo $list_unit_kerja['unit'][$arr];
+                                                                            }
                                                                         }
-                                                                    }
-                                                                } ?></td>
+                                                                    } ?>
+                                                                <?php endif; ?></td>
                                                             <td>
                                                                 <button id="btn-edit-user" data-bs-target="#modal-edit" data-bs-toggle="modal" data-id="<?= $user['user_id'] ?>" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
                                                                 <button id="btn-hapus-user" data-bs-target="#modal-hapus-user" data-bs-toggle="modal" data-id="<?= $user['user_id'] ?>" data-nama-user="<?= $user['gelar_depan'] . ' ' . $user['nama_pegawai'] . ' ' . $user['gelar_belakang'] ?>" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>

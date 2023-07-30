@@ -8,7 +8,7 @@ class MasterSubsatkerModel extends Model
 {
     // protected $DBGroup = 'siakad';
     protected $table = 'tbl_subsatker';
-    protected $allowedFields = ['nama_subsatker', 'id_ref_unit_kerja'];
+    protected $allowedFields = ['nama_subsatker', 'satker_id'];
 
 
     public function getAllSubsatker()
@@ -26,5 +26,14 @@ class MasterSubsatkerModel extends Model
             ->where('id', $id_subsatker)
             ->get()
             ->getRowArray();
+    }
+
+    public function getAllSubsatkerBySatker($satker_id)
+    {
+        return $this
+            ->table($this->table)
+            ->where('satker_id', $satker_id)
+            ->get()
+            ->getResultArray();
     }
 }

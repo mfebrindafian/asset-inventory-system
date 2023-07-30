@@ -50,24 +50,24 @@
                                             <?php $no = 1; ?>
                                             <?php $id_gedung = '' ?>
                                             <?php if ($list_ruangan != null) : ?>
-                                                <?php foreach ($list_ruangan as $list) : ?>
+                                                <?php foreach ($list_ruangan as $list2) : ?>
                                                     <tr>
                                                         <td><?= $no++; ?></td>
-                                                        <td><?= $list['nama_ruang']; ?></td>
-                                                        <td><?= $list['kapasitas']; ?></td>
+                                                        <td><?= $list2['nama_ruang']; ?></td>
+                                                        <td><?= $list2['kapasitas']; ?></td>
                                                         <td><?php if ($list_gedung != null) : ?>
                                                                 <?php foreach ($list_gedung as $gedung) : ?>
-                                                                    <?php if ($gedung['id'] == $list['id_gedung']) {
+                                                                    <?php if ($gedung['id'] == $list2['id_gedung']) {
                                                                         $id_gedung = $gedung['id'];
                                                                         echo $gedung['nama_gedung'];
                                                                     } ?>
                                                                 <?php endforeach; ?>
                                                             <?php endif; ?></td>
                                                         <td>
-                                                            <button id="btn-edit-ruangan" data-bs-target="#modal-edit-ruangan" data-bs-toggle="modal" data-id="<?= $list['id'] ?>" data-nama-ruangan="<?= $list['nama_ruang'] ?>" data-kapasitas="<?= $list['kapasitas'] ?>" data-pilih-gedung="<?= $id_gedung ?>" class="btn btn-sm btn-outline-primary">
+                                                            <button id="btn-edit-ruangan" data-bs-target="#modal-edit-ruangan" data-bs-toggle="modal" data-id="<?= $list2['id'] ?>" data-nama-ruangan="<?= $list2['nama_ruang'] ?>" data-kapasitas="<?= $list2['kapasitas'] ?>" data-pilih-gedung="<?= $id_gedung ?>" class="btn btn-sm btn-outline-primary">
                                                                 <i class="bi bi-pencil-fill"></i>
                                                             </button>
-                                                            <button id="btn-hapus-ruangan" data-bs-target="#modal-hapus-ruangan" data-bs-toggle="modal" data-id="<?= $list["id"] ?>" data-nama-ruangan="<?= $list["nama_ruang"] ?>"" class=" btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                                            <button id="btn-hapus-ruangan" data-bs-target="#modal-hapus-ruangan" data-bs-toggle="modal" data-id="<?= $list2["id"] ?>" data-nama-ruangan="<?= $list2["nama_ruang"] ?>"" class=" btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                                                         </td>
                                                     </tr>
 
@@ -96,11 +96,10 @@
                 </button>
             </div>
             <div class="modal-body">
+                <label for="nama-satker" class="mb-2"><strong>Nama satker</strong></label>
                 <div class="form-group mb-4">
-                    <label for="satker-kki" class="mb-2"><strong>Satuan Kerja</strong> </label>
-                    <select class="form-select select-satker2" name="satker" id="satker-kki" required disabled>
-                        <option selected disabled>- Satuan Kerja -</option>
-                    </select>
+                    <input type="text" name="nama_satker" id="nama-satker" class="form-control" value="<?= $nama_satker; ?>" disabled>
+
                 </div>
                 <label for="nama-ruangan" class="mb-2"><strong>Nama Ruangan</strong></label>
                 <div class="form-group mb-4">
@@ -138,7 +137,7 @@
 <!-- MODAL EDIT-->
 <div class="modal fade text-left modal-borderless" id="modal-edit-ruangan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-        <form action="" method="" class="modal-content">
+        <form action="<?= base_url('editRuangan'); ?>" method="POST" class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Edit Ruangan</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -146,13 +145,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <input type="hidden" name="id" id="id-ruangan-edit">
+                <input type="hidden" name="id_ruangan" id="id-ruangan-edit">
 
+                <label for="nama-satker" class="mb-2"><strong>Nama satker</strong></label>
                 <div class="form-group mb-4">
-                    <label for="satker-kki" class="mb-2"><strong>Satuan Kerja</strong> </label>
-                    <select class="form-select select-satker2" name="satker" id="satker-kki" required disabled>
-                        <option selected disabled>- Satuan Kerja -</option>
-                    </select>
+                    <input type="text" name="nama_satker" id="nama-satker" class="form-control" value="<?= $nama_satker; ?>" disabled>
+
                 </div>
 
                 <label for="nama-ruangan" class="mb-2"><strong>Nama Ruangan</strong></label>
@@ -166,7 +164,7 @@
                 </div>
 
                 <label for="pilih-gedung" class="mb-2"><strong>Pilih Gedung</strong></label>
-                <select class="form-select mb-4" name="gedung" id="pilih-gedung-edit">
+                <select class="form-select mb-4" name="id_gedung" id="pilih-gedung-edit">
                     <option disabled selected value="null">- Pilih Gedung -</option>
                     <?php if ($list_gedung != null) : ?>
                         <?php foreach ($list_gedung as $gedung) : ?>

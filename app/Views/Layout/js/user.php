@@ -88,6 +88,13 @@
             $('#satker-tambah').parent().addClass('d-none')
         }
     })
+    $(document).on('change', '#level6', function() {
+        if ($('#level6').is(':checked')) {
+            $('#satker-edit').parent().removeClass('d-none')
+        } else {
+            $('#satker-edit').parent().addClass('d-none')
+        }
+    })
 </script>
 
 <script>

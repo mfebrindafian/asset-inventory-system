@@ -25,6 +25,7 @@ class masterUser extends BaseController
     public function masterUser()
     {
         $list_akses = $this->masterAksesUserLevelModel->getAllAkses();
+        // d($list_akses);
 
         $unit_kerja = [];
         if ($list_akses != null) {
@@ -35,6 +36,7 @@ class masterUser extends BaseController
                 }
             }
         }
+        // dd($unit_kerja);
 
         $list_user = [];
         if ($list_akses != null) {
@@ -56,6 +58,7 @@ class masterUser extends BaseController
             'subMenu' => '',
             'list_level' => session('list_user_level'),
         ];
+        // dd($data);
         return view('kelolaMaster/masterUser', $data);
     }
 

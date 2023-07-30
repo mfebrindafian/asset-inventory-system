@@ -28,4 +28,13 @@ class MasterGedungModel extends Model
             ->get()
             ->getRowArray();
     }
+
+    public function getAllGedungBySatker($satker_id)
+    {
+        return $this
+            ->table($this->table)
+            ->where('satker_id', $satker_id)
+            ->get()
+            ->getResultArray();
+    }
 }

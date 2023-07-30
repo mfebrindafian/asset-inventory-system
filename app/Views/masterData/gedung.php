@@ -201,7 +201,7 @@
                 <div class="form-group mb-4">
                     <label for="satker-kki" class="mb-2"><strong>Pilih Satuan Kerja</strong> </label>
                     <select class="form-select select-satker2" name="satker" id="satuan-kerja-edit">
-                        <option disabled selected value="null">- Satuan Kerja -</option>
+                        <option disabled>- Satuan Kerja -</option>
                         <?php if ($list_satker != null) : ?>
                             <?php foreach ($list_satker as $satker) : ?>
                                 <option value="<?= $satker['id_ref_unit_kerja']; ?>"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></option>

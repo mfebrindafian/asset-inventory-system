@@ -54,14 +54,7 @@
                                                     <tr>
                                                         <td><?= $no++; ?></td>
                                                         <td><?= $list['nama_subsatker']; ?></td>
-                                                        <td><?php if ($list_satker != null) : ?>
-                                                                <?php foreach ($list_satker as $satker) : ?>
-                                                                    <?php if ($satker['id_ref_unit_kerja'] == $list['id_ref_unit_kerja']) {
-                                                                        $id_ref_satker = $satker['id_ref_unit_kerja'];
-                                                                        echo $satker['nama_ref_unit_kerja_lengkap'];
-                                                                    } ?>
-                                                                <?php endforeach; ?>
-                                                            <?php endif; ?></td>
+                                                        <td><?= $nama_satker; ?></td>
                                                         <td>
                                                             <button id="btn-edit-subsatker" data-bs-target="#modal-edit-satker" data-bs-toggle="modal" data-id="<?= $list['id'] ?>" data-nama-subsatker="<?= $list['nama_subsatker'] ?>" data-ref-subsatker="<?= $id_ref_satker ?>" class="btn btn-sm btn-outline-primary">
                                                                 <i class="bi bi-pencil-fill"></i>
@@ -99,25 +92,17 @@
             </div>
             <div class="modal-body">
                 <div class="form-group mb-4">
-                    <label for="satker-kki" class="mb-2"><strong>Satuan Kerja</strong> </label>
-                    <select class="form-select select-satker2" name="satker" id="satker-kki" required disabled>
-                        <option selected disabled>- Satuan Kerja -</option>
-                    </select>
+                    <label for="nama-satker" class="mb-2"><strong>Nama satker</strong></label>
+                    <div class="form-group mb-4">
+                        <input type="text" name="nama_satker" id="nama-satker" class="form-control" value="<?= $nama_satker; ?>" disabled>
+
+                    </div>
                 </div>
                 <label for="nama-satker" class="mb-2"><strong>Nama Sub Unit Kerja</strong></label>
                 <div class="form-group mb-4">
                     <input type="text" name="nama_subsatker" id="nama-satker" class="form-control" placeholder="Ketik Nama Sub Unit Kerja...">
                 </div>
 
-                <label for="pilih-ref-satker" class="mb-2"><strong>Pilih Satuan Unit Kerja</strong></label>
-                <select class="form-select mb-4" name="id_ref_unit_kerja" id="ref-unit-kerja">
-                    <option disabled selected value="null">- Pilih Satuan Unit Kerja -</option>
-                    <?php if ($list_satker != null) : ?>
-                        <?php foreach ($list_satker as $satker) : ?>
-                            <option value="<?= $satker['id_ref_unit_kerja']; ?>"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></option>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </select>
 
             </div>
             <div class="modal-footer">
@@ -136,8 +121,8 @@
 <!-- MODAL EDIT-->
 <div class="modal fade text-left modal-borderless" id="modal-edit-satker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-        <form action="" method="" class="modal-content">
-            <input type="text" name="id_subsatker_edit" id="id-subsatker-edit" class="d-none">
+        <form action="<?= base_url('/editSubsatker'); ?>" method="POST" class="modal-content">
+            <input type="hidden" name="id_subsatker" id="id-subsatker-edit">
             <div class="modal-header">
                 <h5 class="modal-title">Edit Sub Unit Kerja</h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -145,27 +130,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <input type="hidden" name="id" id="id-satker-edit">
+                <label for="nama-satker" class="mb-2"><strong>Nama satker</strong></label>
                 <div class="form-group mb-4">
-                    <label for="satker-kki" class="mb-2"><strong>Satuan Kerja</strong> </label>
-                    <select class="form-select select-satker2" name="satker" id="satker-kki" required disabled>
-                        <option selected disabled>- Satuan Kerja -</option>
-                    </select>
+                    <input type="text" name="nama_satker" id="nama-satker" class="form-control" value="<?= $nama_satker; ?>" disabled>
+
                 </div>
                 <label for="nama-satker-edit" class="mb-2"><strong>Nama Sub Unit Kerja</strong></label>
                 <div class="form-group mb-4">
-                    <input type="text" name="nama_satker" id="nama-satker-edit" class="form-control" placeholder="Ketik Nama Sub Unit Kerja...">
+                    <input type="text" name="nama_subsatker" id="nama-satker-edit" class="form-control" placeholder="Ketik Nama Sub Unit Kerja...">
                 </div>
 
-                <label for="pilih-ref-satker-edit" class="mb-2"><strong>Pilih Ref Satuan Unit Kerja</strong></label>
-                <select class="form-select mb-4" name="ref_satker" id="ref-unit-kerja-edit">
-                    <option disabled selected value="null">- Pilih Satuan Unit Kerja -</option>
-                    <?php if ($list_satker != null) : ?>
-                        <?php foreach ($list_satker as $satker) : ?>
-                            <option value="<?= $satker['id_ref_unit_kerja']; ?>"><?= $satker['nama_ref_unit_kerja_lengkap']; ?></option>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </select>
 
             </div>
             <div class="modal-footer">

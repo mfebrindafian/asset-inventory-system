@@ -91,9 +91,9 @@ class masterData extends BaseController
 
     public function ruangan()
     {
-
-        $list_ruangan = $this->masterRuanganModel->getAllRuangan();
-        $list_gedung = $this->masterGedungModel->getAllGedung();
+        $nama_satker = $this->masterSatkerModel->getNamaSatker(session('satker_id'));
+        $list_ruangan = $this->masterRuanganModel->getAllRuanganBySatker(session('satker_id'));
+        $list_gedung = $this->masterGedungModel->getAllGedungBySatker(session('satker_id'));
         $data = [
             'list_gedung' => $list_gedung,
             'list_ruangan' => $list_ruangan,
@@ -102,8 +102,10 @@ class masterData extends BaseController
             'menu' => 'Master Data',
             'subMenu' => 'Ruangan',
             'list_level' => session('list_user_level'),
+            'nama_satker' => $nama_satker['nama_ref_unit_kerja_lengkap'],
 
         ];
+        // dd($data);
 
         return view('masterData/ruangan', $data);
     }
@@ -118,7 +120,8 @@ class masterData extends BaseController
         $this->masterRuanganModel->save([
             'nama_ruang' => $nama_ruangan,
             'kapasitas' => $kapasitas,
-            'id_gedung' => $id_gedung
+            'id_gedung' => $id_gedung,
+            'satker_id' => session('satker_id')
         ]);
         return redirect()->to('/kelola-ruangan');
     }
@@ -135,7 +138,8 @@ class masterData extends BaseController
             'id' => $id_ruangan,
             'nama_ruang' => $nama_ruangan,
             'kapasitas' => $kapasitas,
-            'id_gedung' => $id_gedung
+            'id_gedung' => $id_gedung,
+            'satker_id' => session('satker_id')
         ]);
         return redirect()->to('/kelola-ruangan');
     }
@@ -149,8 +153,8 @@ class masterData extends BaseController
     }
     public function subsatker()
     {
-        $list_satker = $this->masterSatkerModel->getAllSatker();
-        $list_subsatker = $this->masterSubsatkerModel->getAllSubsatker();
+        $nama_satker = $this->masterSatkerModel->getNamaSatker(session('satker_id'));
+        $list_subsatker = $this->masterSubsatkerModel->getAllSubsatkerBySatker(session('satker_id'));
 
         $data = [
             'halaman' => 'masterData',
@@ -158,8 +162,9 @@ class masterData extends BaseController
             'menu' => 'Master Data',
             'subMenu' => 'Satker',
             'list_level' => session('list_user_level'),
-            'list_satker' => $list_satker,
-            'list_subsatker' => $list_subsatker
+            // 'list_satker' => $list_satker,
+            'list_subsatker' => $list_subsatker,
+            'nama_satker' => $nama_satker['nama_ref_unit_kerja_lengkap'],
         ];
 
         return view('masterData/subsatker', $data);
@@ -168,12 +173,22 @@ class masterData extends BaseController
     public function tambahSubsatker()
     {
         $nama_subsatker = $this->request->getVar('nama_subsatker');
-        $id_ref_unit_kerja = $this->request->getVar('id_ref_unit_kerja');
-
-
         $this->masterSubsatkerModel->save([
             'nama_subsatker' => $nama_subsatker,
-            'id_ref_unit_kerja' => $id_ref_unit_kerja
+            'satker_id' => session('satker_id')
+        ]);
+
+        return redirect()->to('/kelola-subsatker');
+    }
+
+    public function editSubsatker()
+    {
+        $nama_subsatker = $this->request->getVar('nama_subsatker');
+        $id_subsatker = $this->request->getVar('id_subsatker');
+        $this->masterSubsatkerModel->save([
+            'id' => $id_subsatker,
+            'nama_subsatker' => $nama_subsatker,
+            'satker_id' => session('satker_id')
         ]);
 
         return redirect()->to('/kelola-subsatker');

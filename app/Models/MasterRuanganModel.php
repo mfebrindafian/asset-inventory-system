@@ -8,7 +8,7 @@ class MasterRuanganModel extends Model
 {
     // protected $DBGroup = 'siakad';
     protected $table = 'tbl_ruangan';
-    protected $allowedFields = ['nama_ruang', 'kapasitas', 'id_gedung'];
+    protected $allowedFields = ['nama_ruang', 'kapasitas', 'id_gedung', 'satker_id'];
 
 
     public function getAllRuangan()
@@ -26,5 +26,14 @@ class MasterRuanganModel extends Model
             ->where('id', $id_ruangan)
             ->get()
             ->getRowArray();
+    }
+
+    public function getAllRuanganBySatker($satker_id)
+    {
+        return $this
+            ->table('tbl_ruangan')
+            ->where('satker_id', $satker_id)
+            ->get()
+            ->getResultArray();
     }
 }
