@@ -34,7 +34,7 @@ class masterAkses extends BaseController
         $password = $this->request->getVar('password');
 
         //ini merupakan pengkondisian sementara yang digunakan untuk mengakses sistem pertama kali ketika belum ada pegawai yang ditunjuk akses nya menjadi super admin
-        if ($username == 'adminsementarasibamira' && $password == 'neliti2022') {
+        if ($username == '' && $password == '') {
             $level_id = '1';
             $list_menu = $this->masterUserLevelModel->getAksesMenu($level_id);
             $list_submenu = $this->masterUserLevelModel->getAksesSubmenu($level_id);
